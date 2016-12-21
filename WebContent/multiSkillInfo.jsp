@@ -60,7 +60,7 @@
                                 <div class="row top-header-row">
                                     <div class="col col-md-8 col-sm-8 col-xs-8">
                                     	<img class="acc-login" src="images/logo.png" >
-                                        <h4 class="proj-name">Certification Data</h4>
+                                        <h4 class="proj-name">Skills Matrix</h4>
                                     </div>
                                     <div class="col col-md-4 col-sm-4 col-xs-4">
                                     	<span>Accenture Center for IBM Technologies</span><br>
@@ -151,19 +151,15 @@
                     <tr>
                         <th style="width:9%;">Enterprise ID</th>
                         <th style="width:9%;">Employee ID</th>                       
-                        <th style="width:9%;">Role</th>
-                        <th style="width:9%;">Location</th>                        
-                        <th style="width:9%;">Certification Date</th>
+                        <th style="width:9%;">Employee Name</th>                                                
+                        <th style="width:9%;">Team</th>
+                        <th style="width:9%;">Country</th>
+                        <th style="width:9%;">City</th>
                         <th style="width:8%;">Overall Score</th>
-                        <th style="width:7%;">Section 1</th>
-                        <th style="width:7%;">Section 2</th>
-                        <th style="width:7%;">Section 3</th>
-                        <th style="width:7%;">Section 4</th>
-                        <th style="width:7%;">Section 5</th>                      
-                        <th style="width:8%;">Section 6</th>
-                        <th style="width:7%;">Cleared</th>
-                        <th style="width:9%;">Upload Date</th>
-                        <th style="width:10%;" class="no-sort">View PDF</th>                 
+                        <th style="width:7%;">Primary Skill</th>
+                        <th style="width:7%;">Secondry Skill</th>
+                        <th style="width:9%;">Certifications</th>
+                        <th style="width:10%;" class="no-sort">PoC</th>                 
                     </tr>
                 </thead>
                 <tfoot>
@@ -218,13 +214,6 @@
 </table>
         </div>
         
-    <div>Legends:</div>
-    <div>Section 1: Hosting Cloud Applications</div>
-    <div>Section 2: Planning Cloud Applications</div>
-    <div>Section 3: Implementing Cloud Ready Applications</div>
-    <div>Section 4: Enhancing Cloud Applications Using Managed Services</div>
-    <div>Section 5: Using DevOps Services & Tools to Manage Cloud Applications</div>
-    <div>Section 6: Using Data Services</div>
                
     </div>   
      </form>
