@@ -13,6 +13,18 @@
         <pathelement location="bin"/>
     	<pathelement location="WebContent/WEB-INF/lib/cloudant-client-2.0.0.jar"/> 
     	<pathelement location="WebContent/WEB-INF/lib/gson-2.2.4.jar"/>
+    	<pathelement location="WebContent/WEB-INF/lib/nosqljson.jar"/> 
+    	<pathelement location="WebContent/WEB-INF/lib/db2jcc.jar"/>
+    	<pathelement location="dep-jar/com.ibm.ws.javaee.jaxrs.1.1_1.0.1.jar"/>
+    	<pathelement location="WebContent/WEB-INF/lib/poi-3.9.jar"/>
+    	<pathelement location="WebContent/WEB-INF/lib/poi-ooxml-3.9.jar"/>
+    	<pathelement location="WebContent/WEB-INF/lib/poi-ooxml-schemas-3.9.jar"/>
+    	<pathelement location="WebContent/WEB-INF/lib/xmlbeans-2.3.0.jar"/>
+    	<pathelement location="WebContent/WEB-INF/lib/dom4j-1.6.1.jar"/>
+    	<pathelement location="WebContent/WEB-INF/lib/com.ibm.json4j.jar"/>  
+    	<pathelement location="WebContent/resources/messages.properties"/>
+    	<pathelement location="WebContent/WEB-INF/lib/JUnit/junit.jar"/>
+    	<pathelement location="WebContent/WEB-INF/lib/JUnit/org.hamcrest.core_1.3.0.v201303031735.jar"/>
 	<fileset dir="dep-jar"> 
         	<include name="*.jar"/> 
     	</fileset>
