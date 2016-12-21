@@ -152,12 +152,12 @@
                         <th style="width:9%;">Enterprise ID</th>
                         <th style="width:9%;">Employee ID</th>                       
                         <th style="width:9%;">Employee Name</th>                                                
-                        <th style="width:9%;">Team</th>
-                        <th style="width:9%;">Country</th>
-                        <th style="width:9%;">City</th>
-                        <th style="width:7%;">Primary Skill</th>
-                        <th style="width:7%;">Secondry Skill</th>
-                        <th style="width:9%;">Certifications</th>
+                        <th style="width:7%;">Team</th>
+                        <th style="width:7%;">Country</th>
+                        <th style="width:7%;">City</th>
+                        <th style="width:12%;">Primary Skill</th>
+                        <th style="width:12%;">Secondry Skill</th>
+                        <th style="width:12%;">Certifications</th>
                         <th style="width:10%;" class="no-sort">PoC</th>                 
                     </tr>
                 </thead>
