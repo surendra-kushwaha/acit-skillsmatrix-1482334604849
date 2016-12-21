@@ -78,7 +78,6 @@
 			<div class="success-msg">Skill added Successfully.</div>
 			<ul class="nav nav-tabs">
 		        <li class="active"><a href="multiSkilling.jsp">Search</a></li>
-		        <li><a href="skillUpdateForm.jsp">Update</a></li>
 		    </ul>   
               <div id="formHome">
               <%if(!uploadFlag.equalsIgnoreCase("YES")){ %>
@@ -88,9 +87,9 @@
                         <div><span class="form-lables">Enterprise ID</span>
                             <span><input type="text" name="enterprizeId" /></span>
                         </div>
-                        <div class="form-group clr-both"><span class="form-lables">Role<span class="mant-symbol"></span></span>                       
+                        <div class="form-group clr-both"><span class="form-lables">Primary Skill<span class="mant-symbol"></span></span>                       
                         	<select id="skillRole" name="skillRole">
-                            	<option value="" selected>Select Role</option>
+                            	<option value="" selected>Select Skill</option>
                                 <option value="Integration Developer">Integration Developer</option>
                                 <option value="Integration Architect">Integration Architect</option>
                                 <option value="PaaS Developer">PaaS Developer</option>                               
@@ -98,11 +97,12 @@
                         </div>                       
                     </div>                    
                     <div class="col col-md-4">                                            
-                      <div class="form-group clr-both"><span class="form-lables">Cleared<span class="mant-symbol"></span></span>
+                      <div class="form-group clr-both"><span class="form-lables">Secondary Skill<span class="mant-symbol"></span></span>
 	                        <select id="clear" name="clear">
-	                            	<option value="" selected>All</option>
-	                                <option value="Yes">Yes</option>
-	                                <option value="No">No</option>	                                
+	                            <option value="" selected>Select Skill</option>
+                                <option value="Integration Developer">Integration Developer</option>
+                                <option value="Integration Architect">Integration Architect</option>
+                                <option value="PaaS Developer">PaaS Developer</option> 	                                
 	                        </select>
                        </div>
                       
@@ -155,7 +155,6 @@
                         <th style="width:9%;">Team</th>
                         <th style="width:9%;">Country</th>
                         <th style="width:9%;">City</th>
-                        <th style="width:8%;">Overall Score</th>
                         <th style="width:7%;">Primary Skill</th>
                         <th style="width:7%;">Secondry Skill</th>
                         <th style="width:9%;">Certifications</th>
