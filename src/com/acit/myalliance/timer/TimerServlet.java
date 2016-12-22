@@ -48,7 +48,7 @@ void add(HttpServletRequest request, HttpServletResponse response) throws IOExce
         schedulerJobs.setInterval(interval);
         schedulerJobs.setEnableState(state);
         String data=schedulerJobs.runSharePoint();
-        System.out.println("State Interval::"+state+interval);
+        //System.out.println("State Interval::"+state+interval);
         // running timer task as daemon thread
         //Timer timer = new Timer(true);        
         //timer.scheduleAtFixedRate(schedulerJobs, 0,interval * 60 * 1000);
