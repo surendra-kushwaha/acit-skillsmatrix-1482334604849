@@ -294,65 +294,6 @@ public static String loadCache(String username,String password)throws Exception 
 		InputStream inputStreamName =nameChangedAllianceResponse.getEntity().getContent();		
 		kxNameChangedResponse = new String(IOUtils.toString(inputStreamName, "UTF-8"));
 		System.out.println("Name Changed alliance loaded to cache");
-		System.out.println("hi14");
-		String mapName = CacheUtil.dataServiceMapName;
-		System.out.println("hi15");
-		String username1 = null;
-		String password1= null;
-		String endpoint = null;
-		String gridName = null;
-		if (CacheUtil.ogSession == null || CacheUtil.mapExpValClear) {
-		Map env = System.getenv();
-		String vcap = (String) env.get("VCAP_SERVICES");
-
-		if (vcap == null) {
-			System.out.println("No VCAP_SERVICES found");
-		} else {System.out.println("VCAP_SERVICES found");
-			try {
-				if (CacheUtil.ivObjectGrid == null && !CacheUtil.connectedGrid) {
-					System.out.println("connectGrid null");
-					JSONObject obj = new JSONObject(vcap);
-					String[] names = JSONObject.getNames(obj);
-					if (names != null) {
-						for (String name : names) {
-							if (name.startsWith("DataCache")) {
-								JSONArray val = obj.getJSONArray(name);
-								JSONObject serviceAttr = val.getJSONObject(0);
-								JSONObject credentials = serviceAttr.getJSONObject("credentials");
-								username1= credentials.getString("username");
-								password1= credentials.getString("password");
-								endpoint = credentials.getString("catalogEndPoint");
-								gridName = credentials.getString("gridName");
-								mapName = CacheUtil.dataServiceMapName;
-								break;
-							}
-						}
-					}
-					//CacheUtil.connectToGrid(username1, password1, endpoint, gridName);
-				}
-
-			} catch (Exception e) {
-				LOG.error("Exception Message: " + e.getMessage());
-				e.printStackTrace();
-			}
-		}
-
-	}
-		
-		ObjectMap map = null;
-		map = CacheUtil.ogSession.getMap(mapName);
-		System.out.println("hi16");
-		int timeToLive = Integer.parseInt(Utility.getProperties("timeToLive"));
-		System.out.println("hi17");
-		map.setTimeToLive(timeToLive);
-		System.out.println("hi18");
-		map.upsert("activeAlliance", jsonPrettyPrintString);
-		System.out.println("hi19");
-		map.upsert("expiredAlliance", kxResponse);
-		map.upsert("renamedAlliance", kxNameChangedResponse);
-		System.out.println("hi20");
-		CacheUtil.mapExpValClear = false;
-		System.out.println("hi21");
 		
 		
 		//return responseFedAuth.getStatusLine().getStatusCode();
