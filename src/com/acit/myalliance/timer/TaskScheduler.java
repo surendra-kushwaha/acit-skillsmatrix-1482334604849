@@ -71,9 +71,9 @@ public void run() {
 }
 */
 
-public InputStream runSharePoint() {
+public String runSharePoint() {
     LOG.info("Job started at:" + new Date());
-    InputStream data=null;
+    String data=null;
     try{
     	 if (this.isEnabled) {
     	String username=Utility.getProperties("GenericUserName");
@@ -114,7 +114,8 @@ public boolean getEnableState() {
         return isEnabled;
 }
 
-public InputStream loadCache(String username,String password)throws Exception {
+public String loadCache(String username,String password)throws Exception {
+	String jsonPrettyPrintString = null;
 	HttpResponse responseSP = null;
 	String SOAP_ENV_TOKEN_REQUEST = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"
 			+ "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:saml=\"urn:oasis:names:tc:SAML:1.0:assertion\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wssc=\"http://schemas.xmlsoap.org/ws/2005/02/sc\" xmlns:wst=\"http://schemas.xmlsoap.org/ws/2005/02/trust\">\r\n"
@@ -256,11 +257,13 @@ public InputStream loadCache(String username,String password)throws Exception {
 		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);		
 		InputStream inputStream =activeAllianceResponse.getEntity().getContent();		
 		kxActiveResponse = new String(IOUtils.toString(inputStream, "UTF-8"));
-		InputStream instream = IOUtils.toInputStream(kxActiveResponse);
+		System.out.println(" Sharepoint Res::"+kxActiveResponse);
+		//InputStream instream = IOUtils.toInputStream(kxActiveResponse);
 		System.out.println("hi10");
-		String jsonPrettyPrintString = null;
+		
 		try {
-			JSONObject xmlJSONObj = XML.toJSONObject(IOUtils.toString(instream));
+			//JSONObject xmlJSONObj = XML.toJSONObject(IOUtils.toString(instream));
+			JSONObject xmlJSONObj = XML.toJSONObject(kxActiveResponse);
 			JsonArray contactListArray = new JsonArray();
 			System.out.println("hi11");
 			String sharePointURL=Utility.getProperties("activeAllianceURL");
@@ -271,26 +274,7 @@ public InputStream loadCache(String username,String password)throws Exception {
 			LOG.error(je.toString());
 		}
 		System.out.println("Active alliance loaded to cache");
-		//Invoking expired alliance service
-		System.out.println("hi12");
-		HttpGet getSPRequest = new HttpGet(Utility.getProperties("expiredAllianceURL"));
-		getSPRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-		getSPRequest.addHeader("Cookie", fedAUth);
-		responseSP = httpclientSP.execute(getSPRequest);		
-		InputStream inputStreamExpired =responseSP.getEntity().getContent();		
-		String kxResponse = new String(IOUtils.toString(inputStreamExpired, "UTF-8"));
-		System.out.println("Expired alliance loaded to cache");
-		System.out.println("hi13");
-		//Invoking expired name change service
-		HttpGet getNameChangedRequest = new HttpGet(Utility.getProperties("nameChangedAllianceURL"));
-		getNameChangedRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-		getNameChangedRequest.addHeader("Cookie", fedAUth);
-		nameChangedAllianceResponse = httpclientSP.execute(getNameChangedRequest);		
-		InputStream inputStreamName =nameChangedAllianceResponse.getEntity().getContent();		
-		kxNameChangedResponse = new String(IOUtils.toString(inputStreamName, "UTF-8"));
-		System.out.println("Name Changed alliance loaded to cache");
-		
-		
+				
 		//return responseFedAuth.getStatusLine().getStatusCode();
 
 	}catch (Exception e) {
@@ -302,7 +286,7 @@ public InputStream loadCache(String username,String password)throws Exception {
 		 * catch block e.printStackTrace(); } catch (SAXException e) { //
 		 * TODO Auto-generated catch block e.printStackTrace(); }
 		 */
-	return responseSP.getEntity().getContent();
+	return jsonPrettyPrintString;
 }
 
 /*

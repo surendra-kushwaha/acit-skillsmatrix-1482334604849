@@ -47,15 +47,15 @@ void add(HttpServletRequest request, HttpServletResponse response) throws IOExce
         schedulerJobs.setCronName(jobName);
         schedulerJobs.setInterval(interval);
         schedulerJobs.setEnableState(state);
-        InputStream data=schedulerJobs.runSharePoint();
+        String data=schedulerJobs.runSharePoint();
         System.out.println("State Interval::"+state+interval);
         // running timer task as daemon thread
-        Timer timer = new Timer(true);        
+        //Timer timer = new Timer(true);        
         //timer.scheduleAtFixedRate(schedulerJobs, 0,interval * 60 * 1000);
         // return
         PrintWriter out = response.getWriter();
-        String theString = IOUtils.toString(data, "utf-8"); 
-        out.println(jobName + " successful" + "Data::"+theString);
+        //String theString = IOUtils.toString(data, "utf-8"); 
+        out.println("Data from sharepoint ::"+data);
         //System.out.println("inside add  added successfully");
         response.setContentType("text/html");
         response.setStatus(HttpServletResponse.SC_OK);
