@@ -149,16 +149,16 @@
             <table id="skillDetails" style="width:100%">
                 <thead>
                     <tr>
-                        <th style="width:9%;">Enterprise ID</th>
-                        <th style="width:9%;">Employee ID</th>                       
+                        <th style="width:9%;">Enterprise ID</th>                      
                         <th style="width:9%;">Employee Name</th>                                                
                         <th style="width:7%;">Team</th>
                         <th style="width:7%;">Country</th>
-                        <th style="width:7%;">City</th>
-                        <th style="width:12%;">Primary Skill</th>
-                        <th style="width:12%;">Secondry Skill</th>
-                        <th style="width:12%;">Certifications</th>
-                        <th style="width:10%;" class="no-sort">PoC</th>                 
+                        <th style="width:12%;">Expert Skills</th>
+                        <th style="width:12%;">Supporting Skills</th>
+                        <th style="width:15%;">Certifications Obtained</th>
+                        <th style="width:15%;">Certifications Planned-FY17</th>
+                        <th style="width:10%;">Point of Contact</th> 
+                        <th style="width:10%;">Comments</th>                
                     </tr>
                 </thead>
                 <tfoot>

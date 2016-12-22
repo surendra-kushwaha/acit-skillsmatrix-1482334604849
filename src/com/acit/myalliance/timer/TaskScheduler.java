@@ -71,14 +71,14 @@ public void run() {
 }
 */
 
-public String runSharePoint() {
+public InputStream runSharePoint() {
     LOG.info("Job started at:" + new Date());
-    String data="";
+    InputStream data=null;
     try{
     	 if (this.isEnabled) {
     	String username=Utility.getProperties("GenericUserName");
     	String tokenid=Utility.getProperties("GenericPassword");
-		data= loadCache(username,tokenid);
+		 data=loadCache(username,tokenid);
     	 } else {
              //this.cancel();
     	 }
@@ -114,7 +114,7 @@ public boolean getEnableState() {
         return isEnabled;
 }
 
-public static String loadCache(String username,String password)throws Exception {
+public InputStream loadCache(String username,String password)throws Exception {
 	HttpResponse responseSP = null;
 	String SOAP_ENV_TOKEN_REQUEST = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"
 			+ "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:saml=\"urn:oasis:names:tc:SAML:1.0:assertion\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wssc=\"http://schemas.xmlsoap.org/ws/2005/02/sc\" xmlns:wst=\"http://schemas.xmlsoap.org/ws/2005/02/trust\">\r\n"
@@ -302,7 +302,7 @@ public static String loadCache(String username,String password)throws Exception 
 		 * catch block e.printStackTrace(); } catch (SAXException e) { //
 		 * TODO Auto-generated catch block e.printStackTrace(); }
 		 */
-	return responseSP.getEntity().getContent().toString();
+	return responseSP.getEntity().getContent();
 }
 
 /*
@@ -321,6 +321,7 @@ private static InputStream convertToJSON(String sharepointURL, InputStream input
 		JSONObject jsonobject = jsonarray.getJSONObject(i);
 		allianceJson = new JsonObject();
 		JSONObject propertiesJson = jsonobject.getJSONObject("content").getJSONObject("m:properties");
+		System.out.println("propertiesJson::"+propertiesJson);
 		Iterator keyIterator = propertiesJson.keys();
 		while (keyIterator.hasNext()) {
 			String ele = (String) keyIterator.next();
