@@ -54,7 +54,7 @@ void add(HttpServletRequest request, HttpServletResponse response) throws IOExce
         //timer.scheduleAtFixedRate(schedulerJobs, 0,interval * 60 * 1000);
         // return
         PrintWriter out = response.getWriter();
-        String theString = IOUtils.toString(data, ""); 
+        String theString = IOUtils.toString(data, "utf-8"); 
         out.println(jobName + " successful" + "Data::"+theString);
         //System.out.println("inside add  added successfully");
         response.setContentType("text/html");

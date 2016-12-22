@@ -88,22 +88,24 @@
                             <span><input type="text" name="enterprizeId" /></span>
                         </div>
                         <div class="form-group clr-both"><span class="form-lables">Primary Skill<span class="mant-symbol"></span></span>                       
-                        	<select id="skillRole" name="skillRole">
+                        	<!--<select id="skillRole" name="skillRole">
                             	<option value="" selected>Select Skill</option>
                                 <option value="Integration Developer">Integration Developer</option>
                                 <option value="Integration Architect">Integration Architect</option>
                                 <option value="PaaS Developer">PaaS Developer</option>                               
-                        	</select>
+                        	</select>-->
+                        	<span><input type="text" name="ExpertSkill" /></span>
                         </div>                       
                     </div>                    
                     <div class="col col-md-4">                                            
-                      <div class="form-group clr-both"><span class="form-lables">Secondary Skill<span class="mant-symbol"></span></span>
-	                        <select id="clear" name="clear">
+                      <div class="form-group clr-both"><span class="form-lables">Supporting Skill<span class="mant-symbol"></span></span>
+	                        <!--<select id="clear" name="clear">
 	                            <option value="" selected>Select Skill</option>
                                 <option value="Integration Developer">Integration Developer</option>
                                 <option value="Integration Architect">Integration Architect</option>
                                 <option value="PaaS Developer">PaaS Developer</option> 	                                
-	                        </select>
+	                        </select>-->
+	                        <span><input type="text" name="SupSkill" /></span>
                        </div>
                       
                       <div class="form-group clr-both"><span class="form-lables">Work Location<span class="mant-symbol"></span></span>
