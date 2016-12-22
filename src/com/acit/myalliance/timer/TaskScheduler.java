@@ -257,12 +257,12 @@ public String loadCache(String username,String password)throws Exception {
 		System.out.println("hi9");
 		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);
 		Thread.sleep(1000);
-		System.out.println("Response:-:::"+IOUtils.toString(activeAllianceResponse.getEntity().getContent(), "UTF-8"));
+		//System.out.println("Response:-:::"+IOUtils.toString(activeAllianceResponse.getEntity().getContent(), "UTF-8"));
 		//System.out.println("Response:::A:"+activeAllianceResponse.toString());
 		InputStream inputStream1 =activeAllianceResponse.getEntity().getContent();	
 		//System.out.println("DATA__ "+inputStream1.toString());
 		kxActiveResponse = new String(IOUtils.toString(inputStream1, "UTF-8"));
-		System.out.println(" Sharepoint Res::"+kxActiveResponse);
+		//System.out.println(" Sharepoint Res::"+kxActiveResponse);
 		InputStream instream = IOUtils.toInputStream(kxActiveResponse);
 		System.out.println("hi10");
 		
