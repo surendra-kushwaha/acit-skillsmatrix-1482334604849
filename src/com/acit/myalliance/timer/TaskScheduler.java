@@ -257,13 +257,13 @@ public String loadCache(String username,String password)throws Exception {
 		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);		
 		InputStream inputStream =activeAllianceResponse.getEntity().getContent();		
 		kxActiveResponse = new String(IOUtils.toString(inputStream, "UTF-8"));
-		System.out.println(" Sharepoint Res::"+kxActiveResponse);
-		//InputStream instream = IOUtils.toInputStream(kxActiveResponse);
+		//System.out.println(" Sharepoint Res::"+kxActiveResponse);
+		InputStream instream = IOUtils.toInputStream(kxActiveResponse);
 		System.out.println("hi10");
 		
 		try {
-			//JSONObject xmlJSONObj = XML.toJSONObject(IOUtils.toString(instream));
-			JSONObject xmlJSONObj = XML.toJSONObject(kxActiveResponse);
+			JSONObject xmlJSONObj = XML.toJSONObject(IOUtils.toString(instream));
+			//JSONObject xmlJSONObj = XML.toJSONObject(kxActiveResponse);
 			JsonArray contactListArray = new JsonArray();
 			System.out.println("hi11");
 			String sharePointURL=Utility.getProperties("activeAllianceURL");
@@ -300,6 +300,7 @@ private static InputStream convertToJSON(String sharepointURL, InputStream input
 	JsonObject contactInArray;
 	JSONArray jsonarray;
 	jsonarray = xmlJSONObj.getJSONObject("feed").getJSONArray("entry");
+	System.out.println("jsonarray:::"+jsonarray);
 	// Iterate through entry to get alliance details
 	for (int i = 0; i < jsonarray.length(); i++) {
 		JSONObject jsonobject = jsonarray.getJSONObject(i);
