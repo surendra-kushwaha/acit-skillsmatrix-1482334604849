@@ -116,6 +116,7 @@ public boolean getEnableState() {
 
 public String loadCache(String username,String password)throws Exception {
 	String jsonPrettyPrintString = null;
+	String kxActiveResponse=null;
 	HttpResponse responseSP = null;
 	String SOAP_ENV_TOKEN_REQUEST = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"
 			+ "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:saml=\"urn:oasis:names:tc:SAML:1.0:assertion\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wssc=\"http://schemas.xmlsoap.org/ws/2005/02/sc\" xmlns:wst=\"http://schemas.xmlsoap.org/ws/2005/02/trust\">\r\n"
@@ -199,7 +200,7 @@ public String loadCache(String username,String password)throws Exception {
 		
 		System.out.println("hi3");
 		
-		String serviceURL = "https://ts.accenture.com/sites/AlliancesWizard/myAlliance/Pages/default.aspx";
+		String serviceURL = "https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/Pages/default.aspx";
 		String serviceTokenRequestFormat = String.format(SERVICE_TOKEN_REQUEST, codeGroup, serviceURL);
 		HttpResponse serviceTokenResponse = postRequest(new URI("https://login.microsoftonline.com/extSTS.srf"),
 				serviceTokenRequestFormat);
@@ -215,7 +216,7 @@ public String loadCache(String username,String password)throws Exception {
 
 		System.out.println("hi4");
 		
-		String cookiesURL = "https://login.microsoftonline.com/login.srf?wa=wsignin1.0&wreply=https://ts.accenture.com/sites/AlliancesWizard/myAlliance/Pages/default.aspx/_forms/default.aspx?wa-wsignin1.0";
+		String cookiesURL = "https://login.microsoftonline.com/login.srf?wa=wsignin1.0&wreply=https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/Pages/default.aspx/_forms/default.aspx?wa-wsignin1.0";
 		System.out.println("Cookies Service URL:::" + cookiesURL);
 		LaxRedirectStrategy redirectStrategy = new LaxRedirectStrategy();			
 		
@@ -226,7 +227,7 @@ public String loadCache(String username,String password)throws Exception {
 		CloseableHttpClient httpclient = HttpClients.custom().setRedirectStrategy(redirectStrategy).build();		
 		System.out.println("hi5");
 		
-		HttpGet getFedAuthRequest = new HttpGet("https://ts.accenture.com/sites/AlliancesWizard/myAlliance/_vti_bin/idcrl.svc");
+		HttpGet getFedAuthRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin/idcrl.svc");
 		getFedAuthRequest.addHeader("Authorization","BPOSIDCRL "+binaryToken);
 		HttpResponse responseFedAuth = httpclient.execute(getFedAuthRequest);
 		System.out.println("hi6");
@@ -244,7 +245,7 @@ public String loadCache(String username,String password)throws Exception {
 		System.out.println("hi7");
 		HttpResponse activeAllianceResponse=null;
 		HttpResponse nameChangedAllianceResponse=null;
-		String kxActiveResponse=null;
+		
 		String kxNameChangedResponse=null;
 		//Invoking service
 		CloseableHttpClient httpclientSP = HttpClients.createDefault();
@@ -293,7 +294,8 @@ public String loadCache(String username,String password)throws Exception {
 		 * catch block e.printStackTrace(); } catch (SAXException e) { //
 		 * TODO Auto-generated catch block e.printStackTrace(); }
 		 */
-	return jsonPrettyPrintString;
+	//return jsonPrettyPrintString;
+	return kxActiveResponse;
 }
 
 /*
