@@ -116,6 +116,7 @@ public boolean getEnableState() {
 
 public String loadCache(String username,String password)throws Exception {
 	String jsonPrettyPrintString = null;
+	JSONObject xmlJSONObj=null;
 	String kxActiveResponse=null;
 	HttpResponse responseSP = null;
 	String SOAP_ENV_TOKEN_REQUEST = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"
@@ -261,13 +262,13 @@ public String loadCache(String username,String password)throws Exception {
 		//System.out.println("Response:::A:"+activeAllianceResponse.toString());
 		InputStream inputStream1 =activeAllianceResponse.getEntity().getContent();	
 		//System.out.println("DATA__ "+inputStream1.toString());
-		kxActiveResponse = new String(IOUtils.toString(inputStream1, "UTF-8"));
+		//kxActiveResponse = new String(IOUtils.toString(inputStream1, "UTF-8"));
 		//System.out.println(" Sharepoint Res::"+kxActiveResponse);
-		InputStream instream = IOUtils.toInputStream(kxActiveResponse);
+		//InputStream instream = IOUtils.toInputStream(kxActiveResponse);
 		System.out.println("hi10");
 		
 		try {
-			JSONObject xmlJSONObj = XML.toJSONObject(IOUtils.toString(instream));
+			xmlJSONObj = XML.toJSONObject(IOUtils.toString(inputStream1));
 			System.out.println("xmlJSONObj::::"+xmlJSONObj);
 			//JSONObject xmlJSONObj = XML.toJSONObject(kxActiveResponse);
 			JsonArray contactListArray = new JsonArray();
@@ -295,7 +296,7 @@ public String loadCache(String username,String password)throws Exception {
 		 * TODO Auto-generated catch block e.printStackTrace(); }
 		 */
 	//return jsonPrettyPrintString;
-	return kxActiveResponse;
+	return xmlJSONObj.toString();
 }
 
 /*
