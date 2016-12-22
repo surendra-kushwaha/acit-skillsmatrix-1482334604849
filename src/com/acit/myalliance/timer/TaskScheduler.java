@@ -254,11 +254,14 @@ public String loadCache(String username,String password)throws Exception {
 		getActiveAllianceRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		getActiveAllianceRequest.addHeader("Cookie", fedAUth);
 		System.out.println("hi9");
-		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);		
+		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);
+		Thread.sleep(1000);
+		System.out.println("Response::::"+activeAllianceResponse.getEntity().toString());
+		System.out.println("Response:::A:"+activeAllianceResponse.toString());
 		InputStream inputStream1 =activeAllianceResponse.getEntity().getContent();	
 		System.out.println("DATA__ "+inputStream1.toString());
 		kxActiveResponse = new String(IOUtils.toString(inputStream1, "UTF-8"));
-		//System.out.println(" Sharepoint Res::"+kxActiveResponse);
+		System.out.println(" Sharepoint Res::"+kxActiveResponse);
 		InputStream instream = IOUtils.toInputStream(kxActiveResponse);
 		System.out.println("hi10");
 		
