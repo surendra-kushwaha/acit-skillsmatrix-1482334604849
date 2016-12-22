@@ -255,7 +255,8 @@ public String loadCache(String username,String password)throws Exception {
 		getActiveAllianceRequest.addHeader("Cookie", fedAUth);
 		System.out.println("hi9");
 		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);		
-		InputStream inputStream1 =activeAllianceResponse.getEntity().getContent();		
+		InputStream inputStream1 =activeAllianceResponse.getEntity().getContent();	
+		System.out.println("DATA__"+inputStream1.toString());
 		kxActiveResponse = new String(IOUtils.toString(inputStream1, "UTF-8"));
 		//System.out.println(" Sharepoint Res::"+kxActiveResponse);
 		InputStream instream = IOUtils.toInputStream(kxActiveResponse);
@@ -263,6 +264,7 @@ public String loadCache(String username,String password)throws Exception {
 		
 		try {
 			JSONObject xmlJSONObj = XML.toJSONObject(IOUtils.toString(instream));
+			System.out.println("xmlJSONObj::::"+xmlJSONObj);
 			//JSONObject xmlJSONObj = XML.toJSONObject(kxActiveResponse);
 			JsonArray contactListArray = new JsonArray();
 			System.out.println("hi11");
