@@ -8,9 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.TimeZone;
-import java.util.TimerTask;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,12 +33,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
-import com.acit.myalliance.util.AuthenticationUtil;
-import com.acit.myalliance.util.CacheUtil;
 import com.acit.myalliance.util.Utility;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.ibm.websphere.objectgrid.ObjectMap;
  
 /**
  * Class to extend and implement custom "Cron Job" equivalent because with
