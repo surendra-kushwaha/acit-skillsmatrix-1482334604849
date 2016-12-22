@@ -254,7 +254,8 @@ public String loadCache(String username,String password)throws Exception {
 		CloseableHttpClient httpclientSP = HttpClients.createDefault();
 		//Invoking active alliance service	
 		System.out.println("hi8");
-		HttpGet getActiveAllianceRequest = new HttpGet(Utility.getProperties("activeAllianceURL"));
+		//HttpGet getActiveAllianceRequest = new HttpGet(Utility.getProperties("activeAllianceURL"));
+		HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix(1)");
 		getActiveAllianceRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		getActiveAllianceRequest.addHeader("Cookie", fedAUth);
 		System.out.println("hia9");
