@@ -1,7 +1,9 @@
 package com.acit.myalliance.timer;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,13 +21,11 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
-import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCookieStore;
-import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
@@ -258,13 +258,26 @@ public String loadCache(String username,String password)throws Exception {
 		getActiveAllianceRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		getActiveAllianceRequest.addHeader("Cookie", fedAUth);
 		System.out.println("hi9");
-		ResponseHandler<String> responseHandler=new BasicResponseHandler();
-		//activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);
-		String ShareDate = httpclientSP.execute(getActiveAllianceRequest,responseHandler);
+		//ResponseHandler<String> responseHandler=new BasicResponseHandler();
+		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);
+		//String ShareDate = httpclientSP.execute(getActiveAllianceRequest,responseHandler);
 		Thread.sleep(1000);
 		//System.out.println("Response:-:::"+IOUtils.toString(activeAllianceResponse.getEntity().getContent(), "UTF-8"));
 		//System.out.println("Response:::A:"+activeAllianceResponse.toString());
 		InputStream inputStream1 =activeAllianceResponse.getEntity().getContent();	
+		
+		BufferedReader r = new BufferedReader(new InputStreamReader(inputStream1));
+
+		StringBuilder total = new StringBuilder();
+
+		String line = null;
+
+		while ((line = r.readLine()) != null) {
+			System.out.println(line);
+		   total.append(line);
+		}
+		r.close();
+		//return total.toString();
 		//System.out.println("DATA__ "+inputStream1.toString());
 		//kxActiveResponse = new String(IOUtils.toString(inputStream1, "UTF-8"));
 		//System.out.println(" Sharepoint Res::"+kxActiveResponse);
@@ -273,8 +286,8 @@ public String loadCache(String username,String password)throws Exception {
 		
 		try {
 			//xmlJSONObj = XML.toJSONObject(IOUtils.toString(inputStream1));
-			xmlJSONObj = XML.toJSONObject(ShareDate);
-			System.out.println("xmlJSONObj::::"+xmlJSONObj);
+			xmlJSONObj = XML.toJSONObject(total.toString());
+			System.out.println("xmlJSONObj:A:::"+xmlJSONObj);
 			//JSONObject xmlJSONObj = XML.toJSONObject(kxActiveResponse);
 			JsonArray contactListArray = new JsonArray();
 			System.out.println("hi11");
