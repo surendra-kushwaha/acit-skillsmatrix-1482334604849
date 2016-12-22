@@ -219,7 +219,7 @@ public String loadCache(String username,String password)throws Exception {
 
 		System.out.println("hi4");
 		
-		String cookiesURL = "https://login.microsoftonline.com/login.srf?wa=wsignin1.0&wreply=https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/Pages/default.aspx/_forms/default.aspx?wa-wsignin1.0";
+		String cookiesURL = "https://login.microsoftonline.com/login.srf?wa=wsignin1.0&wreply=https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/Lists/ACIT%20Skills%20Matrix/ACITSkillsMatrix.aspx?wa-wsignin1.0";
 		System.out.println("Cookies Service URL:::" + cookiesURL);
 		LaxRedirectStrategy redirectStrategy = new LaxRedirectStrategy();			
 		
@@ -257,7 +257,7 @@ public String loadCache(String username,String password)throws Exception {
 		HttpGet getActiveAllianceRequest = new HttpGet(Utility.getProperties("activeAllianceURL"));
 		getActiveAllianceRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		getActiveAllianceRequest.addHeader("Cookie", fedAUth);
-		System.out.println("hi9");
+		System.out.println("hia9");
 		//ResponseHandler<String> responseHandler=new BasicResponseHandler();
 		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);
 		//String ShareDate = httpclientSP.execute(getActiveAllianceRequest,responseHandler);
