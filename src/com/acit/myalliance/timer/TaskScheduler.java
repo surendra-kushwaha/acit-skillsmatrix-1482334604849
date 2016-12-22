@@ -255,8 +255,8 @@ public String loadCache(String username,String password)throws Exception {
 		getActiveAllianceRequest.addHeader("Cookie", fedAUth);
 		System.out.println("hi9");
 		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);		
-		InputStream inputStream =activeAllianceResponse.getEntity().getContent();		
-		kxActiveResponse = new String(IOUtils.toString(inputStream, "UTF-8"));
+		InputStream inputStream1 =activeAllianceResponse.getEntity().getContent();		
+		kxActiveResponse = new String(IOUtils.toString(inputStream1, "UTF-8"));
 		//System.out.println(" Sharepoint Res::"+kxActiveResponse);
 		InputStream instream = IOUtils.toInputStream(kxActiveResponse);
 		System.out.println("hi10");
@@ -267,8 +267,10 @@ public String loadCache(String username,String password)throws Exception {
 			JsonArray contactListArray = new JsonArray();
 			System.out.println("hi11");
 			String sharePointURL=Utility.getProperties("activeAllianceURL");
-			inputStream = convertToJSON(sharePointURL, inputStream, xmlJSONObj, contactListArray);
-			jsonPrettyPrintString = contactListArray.toString();
+			InputStream inputStream = convertToJSON(sharePointURL, inputStream1, xmlJSONObj, contactListArray);
+			//jsonPrettyPrintString = contactListArray.toString();
+			System.out.println("hi12");
+			jsonPrettyPrintString = new String(IOUtils.toString(inputStream, "UTF-8"));
 
 		} catch (JSONException je) {
 			LOG.error(je.toString());
@@ -294,6 +296,7 @@ public String loadCache(String username,String password)throws Exception {
  */
 private static InputStream convertToJSON(String sharepointURL, InputStream inputStream, JSONObject xmlJSONObj,
 		JsonArray contactListArray) throws JSONException, Exception, IOException {
+	System.out.println("convert to json method::");
 	String kxResponse;
 	InputStream instream;
 	JsonObject allianceJson;
