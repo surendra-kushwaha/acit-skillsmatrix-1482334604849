@@ -256,7 +256,7 @@ public String loadCache(String username,String password)throws Exception {
 		System.out.println("hi9");
 		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);		
 		InputStream inputStream1 =activeAllianceResponse.getEntity().getContent();	
-		System.out.println("DATA__"+inputStream1.toString());
+		System.out.println("DATA__ "+inputStream1.toString());
 		kxActiveResponse = new String(IOUtils.toString(inputStream1, "UTF-8"));
 		//System.out.println(" Sharepoint Res::"+kxActiveResponse);
 		InputStream instream = IOUtils.toInputStream(kxActiveResponse);
@@ -304,6 +304,7 @@ private static InputStream convertToJSON(String sharepointURL, InputStream input
 	JsonObject allianceJson;
 	JsonObject contactInArray;
 	JSONArray jsonarray;
+	System.out.println("sharepointURL:"+sharepointURL);
 	jsonarray = xmlJSONObj.getJSONObject("feed").getJSONArray("entry");
 	System.out.println("jsonarray:::"+jsonarray);
 	// Iterate through entry to get alliance details
