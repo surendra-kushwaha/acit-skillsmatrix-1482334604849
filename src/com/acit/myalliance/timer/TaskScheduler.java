@@ -247,9 +247,6 @@ public String loadCache(String username,String password)throws Exception {
 		}
 		System.out.println("hi7");
 		HttpResponse activeAllianceResponse=null;
-		HttpResponse nameChangedAllianceResponse=null;
-		
-		String kxNameChangedResponse=null;
 		//Invoking service
 		CloseableHttpClient httpclientSP = HttpClients.createDefault();
 		//Invoking active alliance service	
@@ -262,8 +259,29 @@ public String loadCache(String username,String password)throws Exception {
 		//ResponseHandler<String> responseHandler=new BasicResponseHandler();
 		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);
 		System.out.println("data chunked::"+activeAllianceResponse.getEntity().isChunked());
-		System.out.println("data content lenght::"+activeAllianceResponse.getEntity().getContentLength());
-		activeAllianceResponse.getEntity().consumeContent();
+		System.out.println("data content lenght::"+activeAllianceResponse.getEntity().getContent().available());
+		
+		System.out.println(activeAllianceResponse.getEntity().getContent().read());
+		System.out.println("data content type::"+activeAllianceResponse.getEntity().getContentType());
+		System.out.println("data content encoding::"+activeAllianceResponse.getEntity().getContentEncoding());
+		/*
+		 HttpEntity entity = response.getEntity();
+InputStream st = entity.getContent();
+StringWriter writer = new StringWriter();
+IOUtils.copy(st, writer);
+String content = writer.toString();
+
+response.getWriter().write(xml);
+response.getWriter().flush();
+
+final byte[] content = xml.getBytes("UTF-8");
+response.setContentLength(content.length);
+response.setContentType("text/xml"); // or "text/xml; charset=UTF-8"
+response.setCharacterEncoding("UTF-8");
+
+final OutputStream out = response.getOutputStream();
+out.write(content);
+		 */
 		//System.out.println("data content lenght::"+);
 		//String ShareDate = httpclientSP.execute(getActiveAllianceRequest,responseHandler);
 		Thread.sleep(1000);
