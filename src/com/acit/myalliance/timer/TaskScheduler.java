@@ -266,7 +266,7 @@ public String loadCache(String username,String password)throws Exception {
 		System.out.println("data content type::"+activeAllianceResponse.getEntity().getContentType());
 		System.out.println("data content encoding::"+activeAllianceResponse.getEntity().getContentEncoding());
 		
-		HttpUriRequest request = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
+		HttpPost request = new HttpPost("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
         request.addHeader("Accept", "application/json;odata=verbose");
         request.addHeader("Cookie", fedAUth);
         
@@ -298,7 +298,7 @@ out.write(content);
 		 */
 		//System.out.println("data content lenght::"+);
 		//String ShareDate = httpclientSP.execute(getActiveAllianceRequest,responseHandler);
-		Thread.sleep(1000);
+		//Thread.sleep(1000);
 		//System.out.println("Response:-:::"+IOUtils.toString(activeAllianceResponse.getEntity().getContent(), "UTF-8"));
 		//System.out.println("Response:::A:"+activeAllianceResponse.toString());
 		InputStream inputStream1 =response.getEntity().getContent();	
