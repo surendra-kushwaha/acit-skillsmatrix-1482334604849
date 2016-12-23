@@ -271,12 +271,12 @@ public String loadCache(String username,String password)throws Exception {
         request.addHeader("Cookie", fedAUth);
         
         HttpResponse response = httpclientSP.execute(request);
-        HttpEntity entity = response.getEntity();
+        /*HttpEntity entity = response.getEntity();
         String results = EntityUtils.toString(entity);
         System.out.println("Results from second call::"+results);
-        
+       
         System.out.println("data chunked:AA:"+response.getEntity().isChunked());
-		System.out.println("data content lenght::"+response.getEntity().getContent().available());
+		System.out.println("data content lenght::"+response.getEntity().getContent().available());*/
         
 		/*
 		 HttpEntity entity = response.getEntity();
@@ -301,7 +301,7 @@ out.write(content);
 		Thread.sleep(1000);
 		//System.out.println("Response:-:::"+IOUtils.toString(activeAllianceResponse.getEntity().getContent(), "UTF-8"));
 		//System.out.println("Response:::A:"+activeAllianceResponse.toString());
-		InputStream inputStream1 =activeAllianceResponse.getEntity().getContent();	
+		InputStream inputStream1 =response.getEntity().getContent();	
 		
 		BufferedReader r = new BufferedReader(new InputStreamReader(inputStream1));
 
