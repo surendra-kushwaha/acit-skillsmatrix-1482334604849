@@ -266,7 +266,7 @@ public String loadCache(String username,String password)throws Exception {
 		System.out.println("data content encoding::"+activeAllianceResponse.getEntity().getContentEncoding());
 		
 		HttpGet request = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
-        request.addHeader("Accept", "application/json;application/xml;odata=verbose");
+        request.addHeader("Accept", "application/json;odata=verbose");
         request.addHeader("Cookie", fedAUth);
         HttpClient httpclient1 = HttpClients.createDefault();
         HttpResponse response = httpclient1.execute(request);
