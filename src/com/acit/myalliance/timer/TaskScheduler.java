@@ -261,6 +261,10 @@ public String loadCache(String username,String password)throws Exception {
 		System.out.println("hia9");
 		//ResponseHandler<String> responseHandler=new BasicResponseHandler();
 		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);
+		System.out.println("data chunked::"+activeAllianceResponse.getEntity().isChunked());
+		System.out.println("data content lenght::"+activeAllianceResponse.getEntity().getContentLength());
+		activeAllianceResponse.getEntity().consumeContent();
+		//System.out.println("data content lenght::"+);
 		//String ShareDate = httpclientSP.execute(getActiveAllianceRequest,responseHandler);
 		Thread.sleep(1000);
 		//System.out.println("Response:-:::"+IOUtils.toString(activeAllianceResponse.getEntity().getContent(), "UTF-8"));
