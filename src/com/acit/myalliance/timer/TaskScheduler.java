@@ -19,12 +19,11 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCookieStore;
@@ -266,11 +265,12 @@ public String loadCache(String username,String password)throws Exception {
 		System.out.println("data content type::"+activeAllianceResponse.getEntity().getContentType());
 		System.out.println("data content encoding::"+activeAllianceResponse.getEntity().getContentEncoding());
 		
-		HttpPost request = new HttpPost("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
-        request.addHeader("Accept", "application/json;odata=verbose");
+		HttpGet request = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
+        request.addHeader("Accept", "application/json;application/xml;odata=verbose");
         request.addHeader("Cookie", fedAUth);
-        
-        HttpResponse response = httpclientSP.execute(request);
+        HttpClient httpclient1 = HttpClients.createDefault();
+        HttpResponse response = httpclient1.execute(request);
+        System.out.println("Response status::"+response.getStatusLine().getStatusCode());
         /*HttpEntity entity = response.getEntity();
         String results = EntityUtils.toString(entity);
         System.out.println("Results from second call::"+results);
