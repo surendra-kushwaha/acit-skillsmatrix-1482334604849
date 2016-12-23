@@ -19,10 +19,12 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicCookieStore;
@@ -252,7 +254,7 @@ public String loadCache(String username,String password)throws Exception {
 		//Invoking active alliance service	
 		System.out.println("hi8");
 		//HttpGet getActiveAllianceRequest = new HttpGet(Utility.getProperties("activeAllianceURL"));
-		HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix(1)");
+		HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
 		getActiveAllianceRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		getActiveAllianceRequest.addHeader("Cookie", fedAUth);
 		System.out.println("hia9");
@@ -263,6 +265,21 @@ public String loadCache(String username,String password)throws Exception {
 		System.out.println(activeAllianceResponse.getEntity().getContent().read());
 		System.out.println("data content type::"+activeAllianceResponse.getEntity().getContentType());
 		System.out.println("data content encoding::"+activeAllianceResponse.getEntity().getContentEncoding());
+		
+		HttpUriRequest request = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
+        request.addHeader("Accept", "application/json;odata=verbose");
+
+        HttpResponse response = httpclientSP.execute(request);
+        HttpEntity entity = response.getEntity();
+        String results = EntityUtils.toString(entity);
+        System.out.println("Results from second call::"+results);
+        
+        System.out.println("data chunked:AA:"+response.getEntity().isChunked());
+		System.out.println("data content lenght::"+response.getEntity().getContent().available());
+		System.out.println(response.getEntity().getContent().read());
+		System.out.println("data content type::"+response.getEntity().getContentType());
+		System.out.println("data content encoding::"+response.getEntity().getContentEncoding());
+        
 		/*
 		 HttpEntity entity = response.getEntity();
 InputStream st = entity.getContent();
