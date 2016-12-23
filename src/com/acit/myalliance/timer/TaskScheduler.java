@@ -252,7 +252,7 @@ public String loadCache(String username,String password)throws Exception {
 		//Invoking active alliance service	
 		System.out.println("hi8");
 		//HttpGet getActiveAllianceRequest = new HttpGet(Utility.getProperties("activeAllianceURL"));
-		HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
+		HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix(1)");
 		getActiveAllianceRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		getActiveAllianceRequest.addHeader("Cookie", fedAUth);
 		System.out.println("hia9");
@@ -260,7 +260,6 @@ public String loadCache(String username,String password)throws Exception {
 		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);
 		System.out.println("data chunked::"+activeAllianceResponse.getEntity().isChunked());
 		System.out.println("data content lenght::"+activeAllianceResponse.getEntity().getContent().available());
-		
 		System.out.println(activeAllianceResponse.getEntity().getContent().read());
 		System.out.println("data content type::"+activeAllianceResponse.getEntity().getContentType());
 		System.out.println("data content encoding::"+activeAllianceResponse.getEntity().getContentEncoding());
