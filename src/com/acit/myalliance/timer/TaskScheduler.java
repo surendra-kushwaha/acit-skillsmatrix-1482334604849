@@ -268,7 +268,8 @@ public String loadCache(String username,String password)throws Exception {
 		
 		HttpUriRequest request = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
         request.addHeader("Accept", "application/json;odata=verbose");
-
+        request.addHeader("Cookie", fedAUth);
+        
         HttpResponse response = httpclientSP.execute(request);
         HttpEntity entity = response.getEntity();
         String results = EntityUtils.toString(entity);
@@ -276,9 +277,6 @@ public String loadCache(String username,String password)throws Exception {
         
         System.out.println("data chunked:AA:"+response.getEntity().isChunked());
 		System.out.println("data content lenght::"+response.getEntity().getContent().available());
-		System.out.println(response.getEntity().getContent().read());
-		System.out.println("data content type::"+response.getEntity().getContentType());
-		System.out.println("data content encoding::"+response.getEntity().getContentEncoding());
         
 		/*
 		 HttpEntity entity = response.getEntity();
