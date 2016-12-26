@@ -51,10 +51,10 @@ public class HttpClient {
 			//String URL="https://ts.accenture.com/sites/AlliancesWizard/myAlliance/_vti_bin//ListData.svc/ActiveAlliances";//"https://ts.accenture.com/sites/AlliancesWizard/myAlliance/_vti_bin/ListData.svc";//"https://ts.accenture.com/sites/AlliancesWizard/_api/Web/Lists%28guid'edeaadb5-f131-4afe-bf04-c046186ba873'%29/items";
 			//URL=url;
 			HttpGet request = new HttpGet(url);
-			NTCredentials ntCredentials = new NTCredentials("acit.demo.ldap",
-					"iA2aG1u0Vv34nM6o5",  "10.108.92.184","DIR");
-			/*NTCredentials ntCredentials = new NTCredentials("surendra.kushwaha@accenture.com",
-					"1@May2016",  "10.108.92.184","DIR");*/
+			/*NTCredentials ntCredentials = new NTCredentials("acit.demo.ldap",
+					"iA2aG1u0Vv34nM6o5",  "10.108.92.184","DIR");*/
+			NTCredentials ntCredentials = new NTCredentials("surendra.kushwaha@accenture.com",
+					"Dec@2016",  "10.108.92.184","DIR");
 			
 			final CredentialsProvider cprovider = new BasicCredentialsProvider();
 			cprovider.setCredentials(AuthScope.ANY, ntCredentials);
