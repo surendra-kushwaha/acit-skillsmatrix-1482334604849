@@ -40,6 +40,7 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.XML;
 
 import com.acit.myalliance.util.Main;
 import com.acit.myalliance.util.Utility;
@@ -120,9 +121,10 @@ public class SkillsService extends HttpServlet {
 			String password = "Dec@2016";		
 			Main amian=new Main();
 			String responseText = amian.getAuthenticatedResponse(urlStr, domain1, userName, password);
-	    	
+			JSONObject xmlJSONObj=null;
+			xmlJSONObj = XML.toJSONObject(responseText);
 			System.out.println("String sharedata + "+responseText);
-			response.getWriter().append(responseText);
+			response.getWriter().append(xmlJSONObj.toString());
 			//out.write("user authenticated");
 			
 		} catch (Exception e) {
