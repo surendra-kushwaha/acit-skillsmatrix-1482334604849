@@ -1,9 +1,7 @@
 package com.acit.myalliance.service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URI;
 import java.text.ParseException;
@@ -42,10 +40,8 @@ import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.XML;
 
-import com.acit.myalliance.sharepoint.client.HttpClient;
-import com.acit.myalliance.util.AuthenticationUtil;
+import com.acit.myalliance.util.Main;
 import com.acit.myalliance.util.Utility;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -116,9 +112,17 @@ public class SkillsService extends HttpServlet {
 	    	String tokenid=Utility.getProperties("GenericPassword");
 	    	System.out.println("user defined env data::"+genericpwd);
 			
-			String outStr=loadCache(username,tokenid);
-			System.out.println("String sharedata + "+outStr);
-			response.getWriter().append(outStr);
+			//String outStr=loadCache(username,tokenid);
+	    	
+	    	String urlStr = "https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix";
+			String domain1 = "dir"; // May also be referred as realm
+			String userName = "surendra.kushwaha@accenture.com";
+			String password = "Dec@2016";		
+			Main amian=new Main();
+			String responseText = amian.getAuthenticatedResponse(urlStr, domain1, userName, password);
+	    	
+			System.out.println("String sharedata + "+responseText);
+			response.getWriter().append(responseText);
 			//out.write("user authenticated");
 			
 		} catch (Exception e) {
