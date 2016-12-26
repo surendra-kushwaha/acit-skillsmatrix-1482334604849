@@ -279,7 +279,7 @@ public String loadCache(String username,String password)throws Exception {
 		System.out.println("hi8");
 		//HttpGet getActiveAllianceRequest = new HttpGet(Utility.getProperties("activeAllianceURL"));
 		//HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/AlliancesWizard/myAlliance/_vti_bin//ListData.svc/IndexOfAllianceNameChanges");
-		HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc");
+		HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/AIBGProgram");
 		getActiveAllianceRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		getActiveAllianceRequest.addHeader("Cookie", fedAUth);
 		HttpResponse response = httpclientSP.execute(getActiveAllianceRequest);
