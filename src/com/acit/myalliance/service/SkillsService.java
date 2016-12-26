@@ -145,6 +145,7 @@ public String loadCache(String username,String password)throws Exception {
 	String jsonPrettyPrintString = null;
 	JSONObject xmlJSONObj=null;
 	String kxActiveResponse=null;
+	String sharePointData="";
 	HttpResponse responseSP = null;
 	String SOAP_ENV_TOKEN_REQUEST = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"
 			+ "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:saml=\"urn:oasis:names:tc:SAML:1.0:assertion\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wssc=\"http://schemas.xmlsoap.org/ws/2005/02/sc\" xmlns:wst=\"http://schemas.xmlsoap.org/ws/2005/02/trust\">\r\n"
@@ -280,85 +281,23 @@ public String loadCache(String username,String password)throws Exception {
 		HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
 		getActiveAllianceRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		getActiveAllianceRequest.addHeader("Cookie", fedAUth);
-		System.out.println("hia9");
-		//ResponseHandler<String> responseHandler=new BasicResponseHandler();
-		activeAllianceResponse = httpclientSP.execute(getActiveAllianceRequest);
-		System.out.println("data chunked::"+activeAllianceResponse.getEntity().isChunked());
-		System.out.println("data content lenght::"+activeAllianceResponse.getEntity().getContent().available());
-		System.out.println(activeAllianceResponse.getEntity().getContent().read());
-		System.out.println("data content type::"+activeAllianceResponse.getEntity().getContentType());
-		System.out.println("data content encoding::"+activeAllianceResponse.getEntity().getContentEncoding());
+		HttpResponse response = httpclientSP.execute(getActiveAllianceRequest);
 		
-		HttpGet request = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
-        request.addHeader("Accept", "application/json;odata=verbose");
-        request.addHeader("Cookie", fedAUth);
-        CloseableHttpClient httpclient1 = HttpClients.createDefault();
-        HttpResponse response = httpclient1.execute(request);
-        System.out.println("Response status::"+response.getStatusLine().getStatusCode());
-        /*HttpEntity entity = response.getEntity();
-        String results = EntityUtils.toString(entity);
-        System.out.println("Results from second call::"+results);
-       
-        System.out.println("data chunked:AA:"+response.getEntity().isChunked());
-		System.out.println("data content lenght::"+response.getEntity().getContent().available());*/
-        
-		/*
-		 HttpEntity entity = response.getEntity();
-InputStream st = entity.getContent();
-StringWriter writer = new StringWriter();
-IOUtils.copy(st, writer);
-String content = writer.toString();
-
-response.getWriter().write(xml);
-response.getWriter().flush();
-
-final byte[] content = xml.getBytes("UTF-8");
-response.setContentLength(content.length);
-response.setContentType("text/xml"); // or "text/xml; charset=UTF-8"
-response.setCharacterEncoding("UTF-8");
-
-final OutputStream out = response.getOutputStream();
-out.write(content);
-		 */
-		//System.out.println("data content lenght::"+);
-		//String ShareDate = httpclientSP.execute(getActiveAllianceRequest,responseHandler);
-		//Thread.sleep(1000);
-		//System.out.println("Response:-:::"+IOUtils.toString(activeAllianceResponse.getEntity().getContent(), "UTF-8"));
-		//System.out.println("Response:::A:"+activeAllianceResponse.toString());
-		InputStream inputStream1 =response.getEntity().getContent();	
-		
-		BufferedReader r = new BufferedReader(new InputStreamReader(inputStream1));
-
-		StringBuilder total = new StringBuilder();
-
-		String line = null;
-
-		while ((line = r.readLine()) != null) {
-			System.out.println(line);
-		   total.append(line);
-		}
-		r.close();
-		//return total.toString();
-		//System.out.println("DATA__ "+inputStream1.toString());
-		//kxActiveResponse = new String(IOUtils.toString(inputStream1, "UTF-8"));
-		//System.out.println(" Sharepoint Res::"+kxActiveResponse);
-		//InputStream instream = IOUtils.toInputStream(kxActiveResponse);
-		System.out.println("hi10");
-		
+		 sharePointData=IOUtils.toString(response.getEntity().getContent());
 		try {
 			//xmlJSONObj = XML.toJSONObject(IOUtils.toString(inputStream1));
-			xmlJSONObj = XML.toJSONObject(total.toString());
+			//xmlJSONObj = XML.toJSONObject(total.toString());
 			System.out.println("xmlJSONObj:A:::"+xmlJSONObj);
 			//JSONObject xmlJSONObj = XML.toJSONObject(kxActiveResponse);
 			JsonArray contactListArray = new JsonArray();
 			System.out.println("hi11");
 			String sharePointURL=Utility.getProperties("activeAllianceURL");
-			InputStream inputStream = convertToJSON(sharePointURL, inputStream1, xmlJSONObj, contactListArray);
+			//InputStream inputStream = convertToJSON(sharePointURL, inputStream1, xmlJSONObj, contactListArray);
 			//jsonPrettyPrintString = contactListArray.toString();
 			System.out.println("hi12");
-			jsonPrettyPrintString = new String(IOUtils.toString(inputStream, "UTF-8"));
+			//jsonPrettyPrintString = new String(IOUtils.toString(inputStream, "UTF-8"));
 
-		} catch (JSONException je) {
+		} catch (Exception je) {
 			//LOG.error(je.toString());
 		}
 		System.out.println("Active alliance loaded to cache");
@@ -375,7 +314,7 @@ out.write(content);
 		 * TODO Auto-generated catch block e.printStackTrace(); }
 		 */
 	//return jsonPrettyPrintString;
-	return xmlJSONObj.toString();
+	return sharePointData;
 }
 
 /*
