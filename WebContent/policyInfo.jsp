@@ -191,10 +191,8 @@
                 <tfoot>
 		<tr>
 			<th class="clum-hide" style="width:3%;"></th>
-			<th style="width:11%;">Form No
-			<span class="filter_column filter_text"><input type="text" class="text_filter form-control search_init" value="Form No" rel="1"></span>
-			</th>
-			<th style="width:14%;" rowspan="1" colspan="1"><span class="filter_column filter_text"><input type="text" class="search_init text_filter form-control" value="Description" rel="2"></span></th>
+			<th style="width:11%;">Form No</th>
+			<th style="width:14%;">Description</th>
 			<th style="width:7%;">LOB</th>
 			<th style="width:9%;">Form Type</th>
 			<th style="width:15%;">State</th>

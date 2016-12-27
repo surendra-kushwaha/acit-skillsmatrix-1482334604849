@@ -2,6 +2,7 @@ package com.acit.multiskilling.controller.search;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -22,14 +23,16 @@ import com.acit.multiskilling.dao.MultiSkillDao;
 import com.acit.multiskilling.model.SkillInfo;
 import com.acit.multiskilling.util.Main;
 import com.acit.multiskilling.util.Utility;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 @WebServlet("/SearchSkillController")  
 public class SearchSkillController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    //private static String LIST_USER = "/multiSkillInfo.jsp";
-    private static String LIST_USER = "/policyInfo.jsp";
+    private static String LIST_USER = "/multiSkillInfo.jsp";
+    //private static String LIST_USER = "/policyInfo.jsp";
     private MultiSkillDao dao;
       
     public SearchSkillController() {
@@ -72,7 +75,10 @@ public class SearchSkillController extends HttpServlet {
 		JsonArray contactListArray = new JsonArray();
 		String sharePointURL=Utility.getProperties("activeAllianceURL");
 		String sharePointJsonData = convertToJSON(sharePointURL, xmlJSONObj, contactListArray);
-    	
+		
+		Type listType = new TypeToken<List<String>>() {}.getType();
+		List<String> yourList = new Gson().fromJson(sharePointJsonData, listType);
+    	System.out.println("List from JSON  "+yourList);
        // List<SkillInfo> policyList=dao.getFormDataBySearch(skillInfo);
     	SkillInfo sInfo=new SkillInfo();
     	sInfo.setEnterprizeId("surendra.kushwaha");
