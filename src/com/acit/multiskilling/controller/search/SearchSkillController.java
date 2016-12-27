@@ -77,7 +77,7 @@ public class SearchSkillController extends HttpServlet {
 		//String sharePointJsonData = convertToJSON(sharePointURL, xmlJSONObj, contactListArray);
 		
 		List sharePointJsonData1 = convertToJSONList(sharePointURL, xmlJSONObj, contactListArray);
-		System.out.println("sharePointJsonData1  "+sharePointJsonData1);
+		System.out.println("sharePointJsonData1 ## "+sharePointJsonData1);
 		
 		/*Type listType = new TypeToken<List<String>>() {}.getType();
 		List<String> yourList = new Gson().fromJson(sharePointJsonData, listType);
@@ -153,7 +153,7 @@ public class SearchSkillController extends HttpServlet {
     /*
      * Convert XML to JSON
      */
-    private static List<String> convertToJSONList(String sharepointURL,JSONObject xmlJSONObj,
+    private static List<SkillInfo> convertToJSONList(String sharepointURL,JSONObject xmlJSONObj,
     		JsonArray contactListArray) throws JSONException, Exception, IOException {
     	System.out.println("convert to json method::");
     	String kxResponse;
@@ -162,7 +162,7 @@ public class SearchSkillController extends HttpServlet {
     	JsonObject allianceJson;
     	JsonObject contactInArray;
     	JSONArray jsonarray;
-    	List<String> skillList=new ArrayList<String>();
+    	List<SkillInfo> skillList=new ArrayList<SkillInfo>();
     	//System.out.println("sharepointURL:"+sharepointURL);
     	jsonarray = xmlJSONObj.getJSONObject("feed").getJSONArray("entry");
     	//System.out.println("jsonarray:::"+jsonarray);
@@ -194,9 +194,15 @@ public class SearchSkillController extends HttpServlet {
     			}
     		}
     		System.out.println("allianceJson   "+allianceJson);
+    		
+    		Gson gson = new Gson();
+    		 
+    		System.out.println(
+    		    gson.fromJson(allianceJson, SkillInfo.class));
+    		SkillInfo skillInfo=gson.fromJson(allianceJson, SkillInfo.class);
     		//contactInArray = new JsonObject();
     		//contactInArray.add("properties", allianceJson);
-    		skillList.add(allianceJson.toString());
+    		skillList.add(skillInfo);
     	}
     	return skillList;
     }
