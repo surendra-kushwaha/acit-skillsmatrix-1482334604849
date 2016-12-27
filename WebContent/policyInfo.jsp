@@ -65,8 +65,8 @@
                                         <h4 class="proj-name">Forms Explorer</h4>
                                     </div>
                                     <div class="col col-md-4 col-sm-4 col-xs-4">
-                                    	<span class="proj-name loggedin-label">Logged in : <b><%=userName %></b></span>                               	
-                                    	<a href="LogoutController" class="logouts">Logout</a>
+                                    	<span class="proj-name loggedin-label">Logged in : <b></b></span>                               	
+                                    	<a href="#" class="logouts">Logout</a>
                                     </div>
                                 </div>
                             </div>

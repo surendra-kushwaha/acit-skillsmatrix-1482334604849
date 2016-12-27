@@ -28,7 +28,8 @@ import com.google.gson.JsonObject;
 @WebServlet("/SearchSkillController")  
 public class SearchSkillController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static String LIST_USER = "/multiSkillInfo.jsp";
+    //private static String LIST_USER = "/multiSkillInfo.jsp";
+    private static String LIST_USER = "/policyInfo.jsp";
     private MultiSkillDao dao;
       
     public SearchSkillController() {
