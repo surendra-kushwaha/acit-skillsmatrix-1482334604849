@@ -33,13 +33,13 @@
             String err="";
             String updateSucc = (String)request.getAttribute("updateFlag") == null ? "" : (String)request.getAttribute("updateFlag");
 			
-            String userName=null;
+            String userName="";
             
-            if(request.getSession().getAttribute("userName")!=null){
+            /*if(request.getSession().getAttribute("userName")!=null){
             	userName =request.getSession().getAttribute("userName").toString();
             }else{
             	response.sendRedirect("LogoutController");
-            }
+            }*/
             
             /*if(request.getSession().getAttribute("userName")==null){
             	request.getRequestDispatcher("LogoutController").forward(request,response);
@@ -75,12 +75,9 @@
                                 	<img src="images/sub_title.png" />
                                 </div>
 						<div class="container">
-<div class="success-msg">Form added Successfully.</div>
-<div class="success-msg1">Multiple forms are uploaded successfully.</div>
 <div class="success-msg2">Form Successfully Updated.</div>
     <ul class="nav nav-tabs">
         <li class="active"><a href="policyInfo.jsp">Search Forms</a></li>
-        <li><a href="policyAddForms.jsp">Add Forms</a></li>
     </ul>
               <div id="formHome">
             <form method="POST" action='SearchSkillController' id="searchForm" name="frmSearchForm" onsubmit="return lStorage()">
