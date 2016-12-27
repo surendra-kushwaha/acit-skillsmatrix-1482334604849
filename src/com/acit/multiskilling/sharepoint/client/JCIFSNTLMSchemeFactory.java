@@ -1,4 +1,4 @@
-package com.acit.myalliance.sharepoint.client;
+package com.acit.multiskilling.sharepoint.client;
 
 import org.apache.http.auth.AuthScheme;
 import org.apache.http.auth.AuthSchemeProvider;

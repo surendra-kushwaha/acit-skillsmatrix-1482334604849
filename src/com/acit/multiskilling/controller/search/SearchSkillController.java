@@ -30,8 +30,8 @@ public class SearchSkillController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	//SkillInfo policyInfo = new SkillInfo();
     	String enterprizeId=request.getParameter("enterprizeId");
-    	String clreadFlag=request.getParameter("clear");
-    	String skillRole=request.getParameter("skillRole");
+    	String clreadFlag=request.getParameter("ExpertSkill");
+    	String skillRole=request.getParameter("SupSkill");
     	String location=request.getParameter("workLocation");
     	SkillInfo skillInfo=new SkillInfo();
     	skillInfo.setEnterprizeId(enterprizeId);

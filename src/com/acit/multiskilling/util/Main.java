@@ -1,19 +1,18 @@
-package com.acit.myalliance.util;
-
+package com.acit.multiskilling.util;
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.UUID;
-import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
@@ -26,17 +25,38 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
-public class AuthenticationUtil {
-	
+public class Main {
 	static String fedAUth = null;
-	
-	public static int authenticateUser(String username,String password)throws Exception {
+	public static void main(String[] args) throws Exception {
+
+		String urlStr = "https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix";
+		String domain = "dir"; // May also be referred as realm
+		String userName = "surendra.kushwaha@accenture.com";
+		String password = "Dec@2016";		
+
+		String responseText = getAuthenticatedResponse(urlStr, domain, userName, password);
+
+	    System.out.println("response: " + responseText);
+	}
+
+	public static String getAuthenticatedResponse(final String urlStr, final String domain, final String username, final String password) throws IOException {
+
+	    StringBuilder response = new StringBuilder();
+
+		Authenticator.setDefault(new Authenticator() {
+	        @Override
+	        public PasswordAuthentication getPasswordAuthentication() {
+	            return new PasswordAuthentication("surendra.kushwaha@accenture.com", "Dec@2016".toCharArray());
+	        }
+	    });
+		
+		String jsonPrettyPrintString = null;
+		JSONObject xmlJSONObj=null;
+		String kxActiveResponse=null;
+		String sharePointData="";
 		HttpResponse responseSP = null;
-		System.out.println(" username:"+(username));
-		System.out.println(" pwd:"+(password));
-		System.out.println("html username:"+stringToHtmlString(username));
-		System.out.println("html pwd:"+stringToHtmlString(password));
 		String SOAP_ENV_TOKEN_REQUEST = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"
 				+ "<s:Envelope xmlns:s=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:wsse=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd\" xmlns:saml=\"urn:oasis:names:tc:SAML:1.0:assertion\" xmlns:wsp=\"http://schemas.xmlsoap.org/ws/2004/09/policy\" xmlns:wsu=\"http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd\" xmlns:wsa=\"http://www.w3.org/2005/08/addressing\" xmlns:wssc=\"http://schemas.xmlsoap.org/ws/2005/02/sc\" xmlns:wst=\"http://schemas.xmlsoap.org/ws/2005/02/trust\">\r\n"
 				+ "     <s:Header>\r\n"
@@ -80,7 +100,7 @@ public class AuthenticationUtil {
 				+ "      </wsp:AppliesTo>\r\n" + "       <wsp:PolicyReference URI=\"MBI\"/>\r\n"
 				+ "    </wst:RequestSecurityToken>\r\n" + "  </S:Body>\r\n" + "</S:Envelope>\r\n";
 
-		
+		System.out.println("hi1");
 		String paramMessageId = UUID.randomUUID().toString();
 		TimeZone gmtTZ = TimeZone.getTimeZone("GMT");
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
@@ -97,7 +117,7 @@ public class AuthenticationUtil {
 				paramTokenId
 
 		);
-
+		System.out.println("hi2");
 		try {
 			HttpResponse samlResponse = postRequest(
 					new URI("https://federation-sts.accenture.com/adfs/services/trust/2005/usernamemixed"),
@@ -117,14 +137,14 @@ public class AuthenticationUtil {
 				//Authentication Failed
 			}
 			
+			System.out.println("hi3");
 			
-			
-			String serviceURL = "https://ts.accenture.com/sites/AlliancesWizard/myAlliance/Pages/default.aspx";
+			String serviceURL = "https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/Pages/default.aspx";
 			String serviceTokenRequestFormat = String.format(SERVICE_TOKEN_REQUEST, codeGroup, serviceURL);
 			HttpResponse serviceTokenResponse = postRequest(new URI("https://login.microsoftonline.com/extSTS.srf"),
 					serviceTokenRequestFormat);
 			String serviceTokenResponseVal = EntityUtils.toString(serviceTokenResponse.getEntity());
-			System.out.println("Service token response::: " + serviceTokenResponseVal);
+			//System.out.println("Service token response::: " + serviceTokenResponseVal);
 			p = Pattern.compile("<wsse:BinarySecurityToken Id=\"Compact0\">(.*?)</wsse:BinarySecurityToken>");
 			m = p.matcher(serviceTokenResponseVal);
 			String binaryToken = null;
@@ -133,9 +153,9 @@ public class AuthenticationUtil {
 				binaryToken = m.group(1);				
 			}
 
+			System.out.println("hi4");
 			
-			
-			String cookiesURL = "https://login.microsoftonline.com/login.srf?wa=wsignin1.0&wreply=https://ts.accenture.com/sites/AlliancesWizard/myAlliance/Pages/default.aspx/_forms/default.aspx?wa-wsignin1.0";
+			String cookiesURL = "https://login.microsoftonline.com/login.srf?wa=wsignin1.0&wreply=https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/Lists/ACIT%20Skills%20Matrix/ACITSkillsMatrix.aspx?wa-wsignin1.0";
 			System.out.println("Cookies Service URL:::" + cookiesURL);
 			LaxRedirectStrategy redirectStrategy = new LaxRedirectStrategy();			
 			
@@ -144,12 +164,12 @@ public class AuthenticationUtil {
 	        cookiesContext.setAttribute(HttpClientContext.COOKIE_STORE, cookieStore);
 	       
 			CloseableHttpClient httpclient = HttpClients.custom().setRedirectStrategy(redirectStrategy).build();		
+			System.out.println("hi5");
 			
-			
-			HttpGet getFedAuthRequest = new HttpGet("https://ts.accenture.com/sites/AlliancesWizard/myAlliance/_vti_bin/idcrl.svc");
+			HttpGet getFedAuthRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin/idcrl.svc");
 			getFedAuthRequest.addHeader("Authorization","BPOSIDCRL "+binaryToken);
 			HttpResponse responseFedAuth = httpclient.execute(getFedAuthRequest);
-			
+			System.out.println("hi6");
 			Header[] headers = responseFedAuth.getAllHeaders();
 			//fedAUth = null;
 			for (Header header : headers) {
@@ -161,108 +181,52 @@ public class AuthenticationUtil {
 				}
 
 			}
-			return responseFedAuth.getStatusLine().getStatusCode();
-
-		}catch (Exception e) {
-			// TODO Auto-generated catch block
-			throw new Exception(e);
-		} /*
-			 * catch (ParserConfigurationException e) { // TODO Auto-generated
-			 * catch block e.printStackTrace(); } catch (SAXException e) { //
-			 * TODO Auto-generated catch block e.printStackTrace(); }
-			 */
-		//return responseSP.getEntity().getContent();
+			
+			System.out.println("hi7");
+			HttpResponse activeAllianceResponse=null;
+			//Invoking service
+			CloseableHttpClient httpclientSP = HttpClients.createDefault();
+			//Invoking active alliance service	
+			System.out.println("hi8");
+			//HttpGet getActiveAllianceRequest = new HttpGet(Utility.getProperties("activeAllianceURL"));
+			//HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/AlliancesWizard/myAlliance/_vti_bin//ListData.svc/IndexOfAllianceNameChanges");
+			HttpGet getActiveAllianceRequest = new HttpGet("https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix");
+			getActiveAllianceRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+			getActiveAllianceRequest.addHeader("Cookie", fedAUth);
+			HttpResponse response1 = httpclientSP.execute(getActiveAllianceRequest);			
+			sharePointData=IOUtils.toString(response1.getEntity().getContent());	
+	    return sharePointData;
+	}catch(Exception e){
+		System.out.println(e);
+		return "";
+	}
 	}
 		
-	public static InputStream getSharePointData(String sharePointUrl)throws Exception {
-		HttpResponse responseSP = null;
-		//Invoking service
-		//Invoking service
-		CloseableHttpClient httpclientSP = HttpClients.createDefault();
-		//HttpGet getSPRequest = new HttpGet("https://ts.accenture.com/sites/AlliancesWizard/myAlliance/_vti_bin/ListData.svc/ActiveAlliances(20)/TEPRelationshipLead");
-		HttpGet getSPRequest = new HttpGet(sharePointUrl);
-		getSPRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-		//getSPRequest.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0");
-		getSPRequest.addHeader("Cookie", fedAUth);
-		
-		responseSP = httpclientSP.execute(getSPRequest);
-		Thread.sleep(1000);
-		System.out.println("Response Code SP:: " 
-                + responseSP.getStatusLine().getStatusCode());
-		//spResponseVal = EntityUtils.toString(responseSP.getEntity());
-		//System.out.println("SP Service response::: " + spResponseVal);
-		if (responseSP.getStatusLine().getStatusCode() != 200) {
-			String requestStatusLine = responseSP.getStatusLine() + " "
-					+ responseSP.getStatusLine().getStatusCode();
-			System.out.println( "HttpClient:" + responseSP.toString());
-			throw new Exception(requestStatusLine + " ");
-		} else {
-			return responseSP.getEntity().getContent();
+		public static HttpResponse postRequest(URI serviceUri, String requestMessage) throws ParseException, IOException {
+
+			HttpResponse response = null;
+			CloseableHttpClient httpclient = HttpClients.createDefault();
+			HttpPost post = new HttpPost(serviceUri);
+			StringEntity entity = new StringEntity(requestMessage);
+			post.setHeader("Content-Type", "application/soap+xml; charset=UTF-8");
+			post.setEntity(entity);
+			response = httpclient.execute(post);		
+			return response;		
+
 		}
-	}
-	
-	public static InputStream getSharePointTEPData(int id)throws Exception {
-		HttpResponse responseSP = null;
-		//Invoking service
-		CloseableHttpClient httpclientSP = HttpClients.createDefault();
-		HttpGet getSPRequest = new HttpGet("https://ts.accenture.com/sites/AlliancesWizard/myAlliance/_vti_bin/ListData.svc/ActiveAlliances("+id+")/TEPRelationshipLead");
-		getSPRequest.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-		//getSPRequest.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0");
-		getSPRequest.addHeader("Cookie", fedAUth);
-		
-		responseSP = httpclientSP.execute(getSPRequest);
-		if (responseSP.getStatusLine().getStatusCode() != 200) {
-			String requestStatusLine = responseSP.getStatusLine() + " "
-					+ responseSP.getStatusLine().getStatusCode();
-			System.out.println( "HttpClient:" + responseSP.toString());
-			throw new Exception(requestStatusLine + " ");
-		} else {
-			return responseSP.getEntity().getContent();
+
+		public static HttpResponse getRequest(URI serviceUri, String requestMessage) throws ParseException, IOException {
+
+			HttpResponse response = null;
+			CloseableHttpClient httpclient = HttpClients.createDefault();
+			HttpPost post = new HttpPost(serviceUri);
+			StringEntity entity = new StringEntity(requestMessage);
+			post.setHeader("Content-Type", "application/soap+xml; charset=UTF-8");
+			post.setEntity(entity);
+			response = httpclient.execute(post);		
+			return response;		
+
 		}
-}
-
-
-	public static HttpResponse postRequest(URI serviceUri, String requestMessage) throws ParseException, IOException {
-
-		HttpResponse response = null;
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-		HttpPost post = new HttpPost(serviceUri);
-		StringEntity entity = new StringEntity(requestMessage);
-		post.setHeader("Content-Type", "application/soap+xml; charset=UTF-8");
-		post.setEntity(entity);
-		response = httpclient.execute(post);		
-		return response;		
-
-	}
-	
-	public static HttpResponse getRequest(URI serviceUri, String requestMessage) throws ParseException, IOException {
-
-		HttpResponse response = null;
-		CloseableHttpClient httpclient = HttpClients.createDefault();
-		HttpPost post = new HttpPost(serviceUri);
-		StringEntity entity = new StringEntity(requestMessage);
-		post.setHeader("Content-Type", "application/soap+xml; charset=UTF-8");
-		post.setEntity(entity);
-		response = httpclient.execute(post);		
-		return response;		
-
-	}
-	
-	public static final String stringToHtmlString(String s){
-	       StringBuffer sb = new StringBuffer();
-	       int n = s.length();
-	       for (int i = 0; i < n; i++) {
-	          char c = s.charAt(i);
-	          switch (c) {
-	             case '<': sb.append("&lt;"); break;
-	             case '>': sb.append("&gt;"); break;
-	             case '&': sb.append("&amp;"); break;
-	             case '"': sb.append("&quot;"); break;
-	             default:  sb.append(c); break;
-	          }
-	       }
-	       return sb.toString();
-	    }
-	
+		
 
 }

@@ -1,4 +1,4 @@
-package com.acit.myalliance.util;
+package com.acit.multiskilling.util;
 
 import java.security.spec.AlgorithmParameterSpec;
 import java.text.SimpleDateFormat;

@@ -1,19 +1,12 @@
-package com.acit.myalliance.service;
+package com.acit.multiskilling.service;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.TimeZone;
-import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -22,19 +15,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.http.Header;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.CookieStore;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.client.LaxRedirectStrategy;
-import org.apache.http.util.EntityUtils;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -42,8 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
-import com.acit.myalliance.util.Main;
-import com.acit.myalliance.util.Utility;
+import com.acit.multiskilling.util.Main;
+import com.acit.multiskilling.util.Utility;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 

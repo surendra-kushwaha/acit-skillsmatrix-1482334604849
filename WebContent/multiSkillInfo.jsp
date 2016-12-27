@@ -87,7 +87,7 @@
                         <div><span class="form-lables">Enterprise ID</span>
                             <span><input type="text" name="enterprizeId" /></span>
                         </div>
-                        <div class="form-group clr-both"><span class="form-lables">Primary Skill<span class="mant-symbol"></span></span>                       
+                        <div class="form-group clr-both"><span class="form-lables">Expert Skill<span class="mant-symbol"></span></span>                       
                         	<!--<select id="skillRole" name="skillRole">
                             	<option value="" selected>Select Skill</option>
                                 <option value="Integration Developer">Integration Developer</option>

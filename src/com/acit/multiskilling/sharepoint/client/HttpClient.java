@@ -1,4 +1,4 @@
-package com.acit.myalliance.sharepoint.client;
+package com.acit.multiskilling.sharepoint.client;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -32,8 +32,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.cookie.DefaultCookieSpecProvider;
 import org.apache.http.impl.cookie.RFC6265CookieSpecProvider;
 import org.apache.http.message.BasicHeader;
-
-import com.acit.myalliance.util.Utility;
 
 public class HttpClient {
 	private static final Logger LOGGER = Logger.getLogger(HttpClient.class
