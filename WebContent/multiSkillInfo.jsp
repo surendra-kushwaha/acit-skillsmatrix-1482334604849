@@ -199,9 +199,7 @@
             <td><%=skillInfo.getSection1Score() %></td>
             <td><%=skillInfo.getSection2Score() %></td>
             <td><%=skillInfo.getSection3Score() %></td>
-            <td><%=skillInfo.getSection4Score() %></td>
-            <td><%=skillInfo.getSection5Score() %></td>
-            <td><%=skillInfo.getSection6Score() %></td>           
+            <td><%=skillInfo.getSection4Score() %></td>          
        </tr>
           <%}
    } %>
