@@ -74,11 +74,14 @@ public class SearchSkillController extends HttpServlet {
 		
 		JsonArray contactListArray = new JsonArray();
 		String sharePointURL=Utility.getProperties("activeAllianceURL");
-		String sharePointJsonData = convertToJSON(sharePointURL, xmlJSONObj, contactListArray);
+		//String sharePointJsonData = convertToJSON(sharePointURL, xmlJSONObj, contactListArray);
 		
-		Type listType = new TypeToken<List<String>>() {}.getType();
+		List sharePointJsonData1 = convertToJSONList(sharePointURL, xmlJSONObj, contactListArray);
+		System.out.println("sharePointJsonData1  "+sharePointJsonData1);
+		
+		/*Type listType = new TypeToken<List<String>>() {}.getType();
 		List<String> yourList = new Gson().fromJson(sharePointJsonData, listType);
-    	System.out.println("List from JSON  "+yourList);
+    	System.out.println("List from JSON  "+yourList);*/
        // List<SkillInfo> policyList=dao.getFormDataBySearch(skillInfo);
     	SkillInfo sInfo=new SkillInfo();
     	sInfo.setEnterprizeId("surendra.kushwaha");
@@ -110,9 +113,9 @@ public class SearchSkillController extends HttpServlet {
     	JsonObject allianceJson;
     	JsonObject contactInArray;
     	JSONArray jsonarray;
-    	System.out.println("sharepointURL:"+sharepointURL);
+    	//System.out.println("sharepointURL:"+sharepointURL);
     	jsonarray = xmlJSONObj.getJSONObject("feed").getJSONArray("entry");
-    	System.out.println("jsonarray:::"+jsonarray);
+    	//System.out.println("jsonarray:::"+jsonarray);
     	// Iterate through entry to get alliance details
     	for (int i = 0; i < jsonarray.length(); i++) {
     		JSONObject jsonobject = jsonarray.getJSONObject(i);
@@ -145,6 +148,57 @@ public class SearchSkillController extends HttpServlet {
     		contactListArray.add(contactInArray);
     	}
     	return contactListArray.toString();
+    }
+    
+    /*
+     * Convert XML to JSON
+     */
+    private static List<String> convertToJSONList(String sharepointURL,JSONObject xmlJSONObj,
+    		JsonArray contactListArray) throws JSONException, Exception, IOException {
+    	System.out.println("convert to json method::");
+    	String kxResponse;
+    	InputStream instream;
+    	InputStream inputStream;
+    	JsonObject allianceJson;
+    	JsonObject contactInArray;
+    	JSONArray jsonarray;
+    	List<String> skillList=new ArrayList<String>();
+    	//System.out.println("sharepointURL:"+sharepointURL);
+    	jsonarray = xmlJSONObj.getJSONObject("feed").getJSONArray("entry");
+    	//System.out.println("jsonarray:::"+jsonarray);
+    	// Iterate through entry to get alliance details
+    	for (int i = 0; i < jsonarray.length(); i++) {
+    		JSONObject jsonobject = jsonarray.getJSONObject(i);
+    		allianceJson = new JsonObject();
+    		JSONObject propertiesJson = jsonobject.getJSONObject("content").getJSONObject("m:properties");
+    		//System.out.println("propertiesJson::"+propertiesJson);
+    		Iterator keyIterator = propertiesJson.keys();
+    		while (keyIterator.hasNext()) {
+    			String ele = (String) keyIterator.next();
+    			if (!isValidJson(propertiesJson, ele)) {
+    				if (ele.equalsIgnoreCase("d:Version")) {
+    					allianceJson.addProperty(ele.substring(2),
+    							jsonobject.getJSONObject("content").getJSONObject("m:properties").getDouble(ele));
+    				} else {
+    					allianceJson.addProperty(ele.substring(2),
+    							jsonobject.getJSONObject("content").getJSONObject("m:properties").getString(ele));
+    				}
+    			} else {
+    				if (ele.equalsIgnoreCase("d:Version")) {
+    					allianceJson.addProperty(ele.substring(2), jsonobject.getJSONObject("content")
+    							.getJSONObject("m:properties").getJSONObject(ele).getDouble("content"));
+    				} else {
+    					allianceJson.addProperty(ele.substring(2), jsonobject.getJSONObject("content")
+    							.getJSONObject("m:properties").getJSONObject(ele).optString("content", ""));
+    				}
+    			}
+    		}
+    		System.out.println("allianceJson   "+allianceJson);
+    		//contactInArray = new JsonObject();
+    		//contactInArray.add("properties", allianceJson);
+    		skillList.add(allianceJson.toString());
+    	}
+    	return skillList;
     }
     
     private static boolean isValidJson(JSONObject jsonStr, String element) {
