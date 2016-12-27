@@ -164,19 +164,19 @@
                     </tr>
                 </thead>
                 <tfoot>
-		<!--<tr>
+		<tr>
 			<th class="clum-hide" style="width:4%;"></th>
 			<th style="width:11%;">Enterprize ID</th>
-			<th style="width:11%;">Employee ID</th>
-			<th style="width:14%;">Name</th>
-			<th style="width:10%;">Role</th>
-			<th style="width:10%;">Location</th>
-			<th style="width:11%;">Certificate Name</th>
-			<th style="width:11%;">Certificate Date</th>
-			<th style="width:7%;">Cleared</th>
-			<th style="width:10%;">Score(%)</th>			
+			<th style="width:11%;">Employee Name</th>
+			<th style="width:14%;">Team</th>
+			<th style="width:10%;">Country</th>
+			<th style="width:10%;">Expert Skill</th>
+			<th style="width:11%;">Supporting Skills</th>
+			<th style="width:11%;">Certifications Obtained</th>
+			<th style="width:7%;">Certifications Planned-FY17</th>
+			<th style="width:10%;">Point of Contact</th>			
 			<th class="clum-hide" style="width:7%;"></th>
-		</tr>  -->
+		</tr>
 	</tfoot>
    <tbody>
 <%
