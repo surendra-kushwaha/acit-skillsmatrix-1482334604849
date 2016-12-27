@@ -78,8 +78,8 @@ public class SearchSkillController extends HttpServlet {
     	sInfo.setEmployeeName("surendra kushwaha");
     	
     	SkillInfo sInfo1=new SkillInfo();
-    	sInfo.setEnterprizeId("sridhar.kunchala");
-    	sInfo.setEmployeeName("sridhar kunchala");
+    	sInfo1.setEnterprizeId("sridhar.kunchala");
+    	sInfo1.setEmployeeName("sridhar kunchala");
     	 List<SkillInfo> policyList=new ArrayList<SkillInfo>();
     	 policyList.add(sInfo);
     	 policyList.add(sInfo1);

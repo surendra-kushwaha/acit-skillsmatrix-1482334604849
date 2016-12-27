@@ -148,7 +148,7 @@
             <h3 class="form-title">Skill Details</h3>
              <button class="dwn-btns" id="expExcel">Export All</button>
             <hr size="4" color="gray" />
-            <table id="skillDetails" style="width:100%">
+            <table  id="policyDetails" style="width:100%">
                 <thead>
                     <tr>
                         <th style="width:9%;">Enterprise ID</th>                      
@@ -201,13 +201,7 @@
             <td><%=skillInfo.getSection3Score() %></td>
             <td><%=skillInfo.getSection4Score() %></td>
             <td><%=skillInfo.getSection5Score() %></td>
-            <td><%=skillInfo.getSection6Score() %></td>
-            <td><%=skillInfo.getClear() %></td>
-            <td nowrap><%=skillInfo.getUploadDate() %></td>
-            <td><%if(skillInfo.isCertificateAvailable()) {%>
-            	<a style="cursor: pointer;" href="downLoadFile?docType=pdf&enterprizeId=<%=skillInfo.getEnterprizeId() %>" target="new"><img src="images/icon_PDF.png" width="21"></a>
-            	<%}%>
-            </td>            
+            <td><%=skillInfo.getSection6Score() %></td>           
        </tr>
           <%}
    } %>
