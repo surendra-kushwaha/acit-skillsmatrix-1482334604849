@@ -26,7 +26,7 @@
 					
 					%>
             <% 
-            String err="";
+           /* String err="";
             String updateSucc = (String)request.getAttribute("updateFlag") == null ? "" : (String)request.getAttribute("updateFlag");
 			
             String userName=null;
@@ -40,7 +40,7 @@
             if(request.getAttribute("uploadFlag")!=null){
             	uploadFlag=(String)request.getAttribute("uploadFlag");
             	//request.getRequestDispatcher("LogoutController").forward(request,response);
-            }
+            }*/
 			%>
                 <html>
                 <head>
