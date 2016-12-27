@@ -191,15 +191,7 @@
 
       <tr>      	        	    
             <td style="text-align:left;"><%=skillInfo.getEnterpriseId() %></td>
-            <td><%=skillInfo.getTitle() %></td>
-            <!--<td><%=skillInfo.getSkillRole() %></td>
-            <td><%=skillInfo.getWorkLocation() %></td>
-            <td><%=skillInfo.getCertDate() %></td>
-            <td><%=skillInfo.getScore() %></td>            
-            <td><%=skillInfo.getSection1Score() %></td>
-            <td><%=skillInfo.getSection2Score() %></td>
-            <td><%=skillInfo.getSection3Score() %></td>
-            <td><%=skillInfo.getSection4Score() %></td>-->          
+            <td><%=skillInfo.getTitle() %></td>       
        </tr>
           <%}
    } %>
