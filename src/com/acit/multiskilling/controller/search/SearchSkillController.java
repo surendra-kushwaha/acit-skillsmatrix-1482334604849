@@ -2,7 +2,6 @@ package com.acit.multiskilling.controller.search;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,12 +20,12 @@ import org.json.XML;
 
 import com.acit.multiskilling.dao.MultiSkillDao;
 import com.acit.multiskilling.model.SkillInfo;
+import com.acit.multiskilling.model.SkillsMatrix;
 import com.acit.multiskilling.util.Main;
 import com.acit.multiskilling.util.Utility;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 
 @WebServlet("/SearchSkillController")  
 public class SearchSkillController extends HttpServlet {
@@ -76,7 +75,7 @@ public class SearchSkillController extends HttpServlet {
 		String sharePointURL=Utility.getProperties("activeAllianceURL");
 		//String sharePointJsonData = convertToJSON(sharePointURL, xmlJSONObj, contactListArray);
 		
-		List sharePointJsonData1 = convertToJSONList(sharePointURL, xmlJSONObj, contactListArray);
+		List<SkillsMatrix> sharePointJsonData1 = convertToJSONList(sharePointURL, xmlJSONObj, contactListArray);
 		System.out.println("sharePointJsonData1 ## "+sharePointJsonData1);
 		
 		/*Type listType = new TypeToken<List<String>>() {}.getType();
@@ -94,7 +93,7 @@ public class SearchSkillController extends HttpServlet {
     	 policyList.add(sInfo);
     	 policyList.add(sInfo1);
         RequestDispatcher view = request.getRequestDispatcher(LIST_USER);
-        request.setAttribute("skillList", policyList);
+        request.setAttribute("skillList", sharePointJsonData1);
         view.forward(request, response);
     	}catch(Exception e){
     		
@@ -153,7 +152,7 @@ public class SearchSkillController extends HttpServlet {
     /*
      * Convert XML to JSON
      */
-    private static List<SkillInfo> convertToJSONList(String sharepointURL,JSONObject xmlJSONObj,
+    private static List<SkillsMatrix> convertToJSONList(String sharepointURL,JSONObject xmlJSONObj,
     		JsonArray contactListArray) throws JSONException, Exception, IOException {
     	System.out.println("convert to json method::");
     	String kxResponse;
@@ -162,7 +161,7 @@ public class SearchSkillController extends HttpServlet {
     	JsonObject allianceJson;
     	JsonObject contactInArray;
     	JSONArray jsonarray;
-    	List<SkillInfo> skillList=new ArrayList<SkillInfo>();
+    	List<SkillsMatrix> skillList=new ArrayList<SkillsMatrix>();
     	//System.out.println("sharepointURL:"+sharepointURL);
     	jsonarray = xmlJSONObj.getJSONObject("feed").getJSONArray("entry");
     	//System.out.println("jsonarray:::"+jsonarray);
@@ -198,8 +197,8 @@ public class SearchSkillController extends HttpServlet {
     		Gson gson = new Gson();
     		 
     		System.out.println(
-    		    gson.fromJson(allianceJson, SkillInfo.class));
-    		SkillInfo skillInfo=gson.fromJson(allianceJson, SkillInfo.class);
+    		    gson.fromJson(allianceJson, SkillsMatrix.class));
+    		SkillsMatrix skillInfo=gson.fromJson(allianceJson, SkillsMatrix.class);
     		//contactInArray = new JsonObject();
     		//contactInArray.add("properties", allianceJson);
     		skillList.add(skillInfo);

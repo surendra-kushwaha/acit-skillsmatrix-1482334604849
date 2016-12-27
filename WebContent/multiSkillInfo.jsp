@@ -1,7 +1,7 @@
 <%@page import="com.ibm.json.java.*,java.util.Collection, java.util.Iterator, java.math.BigDecimal"%>
 <%@ page language="java" pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.*"%>
-        <%@ page import="com.acit.multiskilling.model.SkillInfo"%>
+        <%@ page import="com.acit.multiskilling.model.SkillsMatrix"%>
             <!DOCTYPE html>
             <%					 
 					 String vcap = System.getenv("VCAP_APPLICATION");	
@@ -186,20 +186,20 @@
 	   session.setAttribute("exportList",skillList);
    Iterator itr=skillList.iterator();
    while(itr.hasNext()){
-   SkillInfo skillInfo=(SkillInfo)itr.next();
+   SkillsMatrix skillInfo=(SkillsMatrix)itr.next();
    %>
 
       <tr>      	        	    
-            <td style="text-align:left;"><%=skillInfo.getEnterprizeId() %></td>
-            <td><%=skillInfo.getEmployeeId() %></td>
-            <td><%=skillInfo.getSkillRole() %></td>
+            <td style="text-align:left;"><%=skillInfo.getEnterpriseId() %></td>
+            <td><%=skillInfo.getTitle() %></td>
+            <!--<td><%=skillInfo.getSkillRole() %></td>
             <td><%=skillInfo.getWorkLocation() %></td>
             <td><%=skillInfo.getCertDate() %></td>
             <td><%=skillInfo.getScore() %></td>            
             <td><%=skillInfo.getSection1Score() %></td>
             <td><%=skillInfo.getSection2Score() %></td>
             <td><%=skillInfo.getSection3Score() %></td>
-            <td><%=skillInfo.getSection4Score() %></td>          
+            <td><%=skillInfo.getSection4Score() %></td>-->          
        </tr>
           <%}
    } %>
