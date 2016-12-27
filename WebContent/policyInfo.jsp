@@ -1,7 +1,7 @@
 <%@page import="com.ibm.json.java.*,java.util.Collection, java.util.Iterator, java.math.BigDecimal"%>
 <%@ page language="java" pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.*"%>
-        <%@ page import="com.acit.formsexplorer.model.PolicyInfo"%>
+        <%@ page import="com.acit.multiskilling.model.SkillInfo"%>
             <!DOCTYPE html>
             <%					 
 					 String vcap = System.getenv("VCAP_APPLICATION");	
@@ -256,9 +256,7 @@
    %>
 
       <tr>
-      	  <td><input type="checkbox" name="formSel" class="checkboxs" id="formSel" value="<%=policyInfo.getFormNo() %>" /></td>
-      	    <td><a class="edit-box" data-target="#myModal" data-toggle="modal" data-formno="<%=policyInfo.getFormNo() %>" data-desc=" <%=policyInfo.getDescription() %>" data-btype="<%=policyInfo.getBusinessType() %>" data-lob="<%=policyInfo.getLob() %>" data-ftype="<%=policyInfo.getFormType() %>" data-mand="<%=policyInfo.getMandatory() %>" data-state="<%=policyInfo.getState() %>" data-prof="<%=policyInfo.getPortfolio() %>" data-source="<%=policyInfo.getSource() %>" href="#"><%=policyInfo.getFormNo() %></a></td>
-            <td> <%=policyInfo.getEnterprizeId() %></td>
+      	 <td> <%=policyInfo.getEnterprizeId() %></td>
             <td class="state-titles"><%=policyInfo.getEmployeeName() %></td>
             
       </tr>
