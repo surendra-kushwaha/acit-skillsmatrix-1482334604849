@@ -273,9 +273,9 @@ public class MultiSkillDao {
 
 			queryString.append("select * FROM \"MULTI_SKILLING_DATA\" where CERT_UPLOAD_FLAG='YES' ");
 
-			if (skillDetails.getEnterprizeId() != null && !skillDetails.getEnterprizeId().equals("")) {
+			if (skillDetails.getEnterpriseId() != null && !skillDetails.getEnterpriseId().equals("")) {
 				queryString.append(" and \"ENTERPRIZE_ID\"=?");
-				bindVariables.add(skillDetails.getEnterprizeId());
+				bindVariables.add(skillDetails.getEnterpriseId());
 			}
 			
 			if (skillDetails.getExpertSkills() != null && !skillDetails.getExpertSkills().equals("")) {
@@ -309,7 +309,7 @@ public class MultiSkillDao {
 			while (rs.next()) {
 				SkillsInfo skillInfo = new SkillsInfo();
 				skillInfo.setEmployeeName(rs.getString("EMPLOYEE_NAME"));
-				skillInfo.setEnterprizeId(rs.getString("ENTERPRIZE_ID"));
+				skillInfo.setEnterpriseId(rs.getString("ENTERPRIZE_ID"));
 				skillInfo.setExpertSkills(rs.getString("EXPERT_SKILLS"));
 				skillInfo.setSupSkills(rs.getString("SUPPLIMENTORY_SKILLS"));
 				skillInfo.setCountry(rs.getString("COUNTRY"));
