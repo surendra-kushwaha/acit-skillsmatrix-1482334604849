@@ -271,7 +271,7 @@ public class MultiSkillDao {
 			
 			List<String> bindVariables = new ArrayList<>();
 
-			queryString.append("select * FROM \"MULTI_SKILLING_DATA\" where CERT_UPLOAD_FLAG='YES' ");
+			queryString.append("select * FROM \"SKILLS_MATRIX_DATA\" where 1=1 ");
 
 			if (skillDetails.getEnterpriseId() != null && !skillDetails.getEnterpriseId().equals("")) {
 				queryString.append(" and \"ENTERPRIZE_ID\"=?");
