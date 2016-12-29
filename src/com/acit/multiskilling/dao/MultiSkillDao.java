@@ -273,7 +273,7 @@ public class MultiSkillDao {
 
 			queryString.append("select * FROM \"SKILLS_MATRIX_DATA\" where 1=1 ");
 
-			if (skillDetails.getEnterpriseId() != null && !skillDetails.getEnterpriseId().equals("")) {
+			/*if (skillDetails.getEnterpriseId() != null && !skillDetails.getEnterpriseId().equals("")) {
 				queryString.append(" and \"ENTERPRISE_ID\"=?");
 				bindVariables.add(skillDetails.getEnterpriseId());
 			}
@@ -292,11 +292,32 @@ public class MultiSkillDao {
 					&& !skillDetails.getWorkLocation().equals("")) {
 				queryString.append(" and \"COUNTRY\"=?");
 				bindVariables.add(skillDetails.getWorkLocation());
+			}*/
+			
+			if (skillDetails.getEnterpriseId() != null && !skillDetails.getEnterpriseId().equals("")) {
+				queryString.append(" AND \"ENTERPRIZE_ID\" like '%"+skillDetails.getEnterpriseId()+"%'");
+				//bindVariables.add(skillDetails.getEnterpriseId());
+			}
+			
+			if (skillDetails.getExpertSkills() != null && !skillDetails.getExpertSkills().equals("")) {
+				queryString.append(" and \"EXPERT_SKILLS\" like '%"+skillDetails.getExpertSkills()+"%'");
+				//bindVariables.add(skillDetails.getExpertSkills());
+			}
+
+			if (skillDetails.getSupSkills() != null && !skillDetails.getSupSkills().equals("")) {
+				queryString.append(" and \"SUPPLIMENTORY_SKILLS\" like '%"+skillDetails.getSupSkills()+"%'");
+				//bindVariables.add(skillDetails.getSupSkills());
+			}
+
+			if (skillDetails.getWorkLocation() != null
+					&& !skillDetails.getWorkLocation().equals("")) {
+				queryString.append(" and \"COUNTRY\" like '%"+skillDetails.getWorkLocation()+"%'");
+				//bindVariables.add(skillDetails.getWorkLocation());
 			}
 			
 			ps = connection.prepareStatement(queryString
 					.toString());
-			//System.out.println("queryString.toString()##"+ queryString.toString());
+			System.out.println("queryString.toString()##"+ queryString.toString());
 
 			for (int i = 0; i < bindVariables.size(); i++) {
 				// variables are indexed from 1 in JDBC
@@ -308,7 +329,7 @@ public class MultiSkillDao {
 			System.out.println("DAO Query String "+queryString.toString());
 			while (rs.next()) {
 				SkillsInfo skillInfo = new SkillsInfo();
-				skillInfo.setEmployeeName(rs.getString("EMPLOYEE_NAME"));
+				skillInfo.setTeamName(rs.getString("EMPLOYEE_NAME")!=null?rs.getString("EMPLOYEE_NAME"):"");
 				skillInfo.setEnterpriseId(rs.getString("ENTERPRISE_ID"));
 				skillInfo.setExpertSkills(rs.getString("EXPERT_SKILLS"));
 				skillInfo.setSupSkills(rs.getString("SUPPLIMENTORY_SKILLS"));
