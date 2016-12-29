@@ -12,6 +12,7 @@ import java.util.List;
 
 import com.acit.multiskilling.exception.MultiSkillException;
 import com.acit.multiskilling.model.SkillInfo;
+import com.acit.multiskilling.model.SkillsInfo;
 import com.acit.multiskilling.util.DataBase;
 
 public class MultiSkillDao {
@@ -251,8 +252,8 @@ public class MultiSkillDao {
 		return policyInfoDoc;
 	}
 	
-	public List<SkillInfo> getFormDataBySearch(SkillInfo skillDetails) {
-		List<SkillInfo> skills = new ArrayList<SkillInfo>();
+	public List<SkillsInfo> getFormDataBySearch(SkillsInfo skillDetails) {
+		List<SkillsInfo> skills = new ArrayList<SkillsInfo>();
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		try {
@@ -277,19 +278,19 @@ public class MultiSkillDao {
 				bindVariables.add(skillDetails.getEnterprizeId());
 			}
 			
-			if (skillDetails.getClear() != null && !skillDetails.getClear().equals("")) {
-				queryString.append(" and \"CLEARED_FLAG\"=?");
-				bindVariables.add(skillDetails.getClear());
+			if (skillDetails.getExpertSkills() != null && !skillDetails.getExpertSkills().equals("")) {
+				queryString.append(" and \"EXPERT_SKILLS\"=?");
+				bindVariables.add(skillDetails.getExpertSkills());
 			}
 
-			if (skillDetails.getSkillRole() != null && !skillDetails.getSkillRole().equals("")) {
-				queryString.append(" and \"SKILL_ROLE\"=?");
-				bindVariables.add(skillDetails.getSkillRole());
+			if (skillDetails.getSupSkills() != null && !skillDetails.getSupSkills().equals("")) {
+				queryString.append(" and \"SUPPLIMENTORY_SKILLS\"=?");
+				bindVariables.add(skillDetails.getSupSkills());
 			}
 
 			if (skillDetails.getWorkLocation() != null
 					&& !skillDetails.getWorkLocation().equals("")) {
-				queryString.append(" and \"WORK_LOCATION\"=?");
+				queryString.append(" and \"COUNTRY\"=?");
 				bindVariables.add(skillDetails.getWorkLocation());
 			}
 			
@@ -306,51 +307,20 @@ public class MultiSkillDao {
 			
 			System.out.println("DAO Query String "+queryString.toString());
 			while (rs.next()) {
-				SkillInfo skillInfo = new SkillInfo();
+				SkillsInfo skillInfo = new SkillsInfo();
 				skillInfo.setEmployeeName(rs.getString("EMPLOYEE_NAME"));
 				skillInfo.setEnterprizeId(rs.getString("ENTERPRIZE_ID"));
-				skillInfo.setEmployeeId(rs.getString("EMPLOYEE_ID"));
-				skillInfo.setSkillRole(rs.getString("SKILL_ROLE"));
-				skillInfo.setEmployeeRole(rs.getString("EMPLOYEE_ROLE"));
-				//if(rs.getString("CERTIFICATE_NAME")!=null){
-					skillInfo.setCertificateName(rs.getString("CERTIFICATE_NAME")!=null?rs.getString("CERTIFICATE_NAME"):"");
-				//}else{
-					//skillInfo.setCertificateName("");
-				//}
-				//if(rs.getString("SCORE")!=null){
-					skillInfo.setScore(rs.getString("SCORE")!=null?rs.getString("SCORE"):"");
-				//}else{
-				//	skillInfo.setScore("");
-				//}
+				skillInfo.setExpertSkills(rs.getString("EXPERT_SKILLS"));
+				skillInfo.setSupSkills(rs.getString("SUPPLIMENTORY_SKILLS"));
+				skillInfo.setCountry(rs.getString("COUNTRY"));
 				skillInfo.setWorkLocation(rs.getString("WORK_LOCATION")!=null?rs.getString("WORK_LOCATION"):"");
-				skillInfo.setCertDate(rs.getString("CERTIFICATION_DATE")!=null?rs.getString("CERTIFICATION_DATE"):"");
-				skillInfo.setClear(rs.getString("CLEARED_FLAG")!=null?rs.getString("CLEARED_FLAG"):"");
-				skillInfo.setSection1Score(rs.getString("SECTION1_SCORE")!=null?rs.getString("SECTION1_SCORE"):"");
-				skillInfo.setSection2Score(rs.getString("SECTION2_SCORE")!=null?rs.getString("SECTION2_SCORE"):"");
-				skillInfo.setSection3Score(rs.getString("SECTION3_SCORE")!=null?rs.getString("SECTION3_SCORE"):"");
-				skillInfo.setSection4Score(rs.getString("SECTION4_SCORE")!=null?rs.getString("SECTION4_SCORE"):"");
-				skillInfo.setSection5Score(rs.getString("SECTION5_SCORE")!=null?rs.getString("SECTION5_SCORE"):"");
-				skillInfo.setSection6Score(rs.getString("SECTION6_SCORE")!=null?rs.getString("SECTION6_SCORE"):"");
-				skillInfo.setUploadDate(rs.getString("UPLOAD_DATE")!=null?rs.getString("UPLOAD_DATE"):"");	
-				boolean isPdfAvailable = true;
-				java.sql.Blob blobPdf=null;
-				if(rs.getBlob("CERTIFICATE")!=null){
-					blobPdf = rs.getBlob("CERTIFICATE");
-					InputStream inputStreamPdf = blobPdf.getBinaryStream();
-					if (inputStreamPdf == null) {
-						//System.out.println("Pdf is Null");
-						isPdfAvailable = false;
-					} else if (inputStreamPdf != null
-							&& inputStreamPdf.available() <= 0) {
-						//System.out.println("inputStreamPdf.available() "+ inputStreamPdf.available());
-						isPdfAvailable = false;
-					} else {
-						isPdfAvailable = true;
-					}
-					//System.out.println("isPdfAvailable " + isPdfAvailable);
-					skillInfo.setCertificateAvailable(isPdfAvailable);
-					inputStreamPdf.close();
-				}
+				skillInfo.setCertificationObtained(rs.getString("CERTIFICATION_OBTAINED")!=null?rs.getString("CERTIFICATION_OBTAINED"):"");
+				skillInfo.setCertificationPlanned(rs.getString("CERTIFICATION_PLANNED")!=null?rs.getString("CERTIFICATION_PLANNED"):"");
+				skillInfo.setTeamName(rs.getString("TEAM_NAME")!=null?rs.getString("TEAM_NAME"):"");
+				skillInfo.setMentorEntId(rs.getString("MENTOR_ENT_ID")!=null?rs.getString("MENTOR_ENT_ID"):"");
+				skillInfo.setPointOfContact(rs.getString("POINT_OF_CONTACT")!=null?rs.getString("POINT_OF_CONTACT"):"");
+				skillInfo.setComments(rs.getString("COMMENTS")!=null?rs.getString("COMMENTS"):"");
+				
 				skills.add(skillInfo);
 			}
 			rs.close();

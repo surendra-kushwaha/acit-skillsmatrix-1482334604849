@@ -6,5 +6,3 @@ applications:
   name: acit-skillsmatrix
   host: acit-skillsmatrix
   disk_quota: 1024M
-  services:
-  - acit-skillsmatrix-cloudantNoSQLDB

@@ -1,4 +1,4 @@
-package com.acit.multiskilling.controller.search;
+package com.acit.multiskilling.service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,14 +27,14 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-@WebServlet("/SearchSkillController_OLD")  
-public class SearchSkillController extends HttpServlet {
+@WebServlet("/SearchSkillDBController")  
+public class SkillsDBService extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static String LIST_USER = "/multiSkillInfo.jsp";
     //private static String LIST_USER = "/policyInfo.jsp";
     private MultiSkillDao dao;
       
-    public SearchSkillController() {
+    public SkillsDBService() {
         super();
         dao = new MultiSkillDao();
     }

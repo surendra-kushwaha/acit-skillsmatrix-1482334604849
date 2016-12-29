@@ -1,7 +1,7 @@
 <%@page import="com.ibm.json.java.*,java.util.Collection, java.util.Iterator, java.math.BigDecimal"%>
 <%@ page language="java" pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.*"%>
-        <%@ page import="com.acit.multiskilling.model.SkillsMatrix"%>
+        <%@ page import="com.acit.multiskilling.model.SkillsInfo"%>
             <!DOCTYPE html>
             <%					 
 					 String vcap = System.getenv("VCAP_APPLICATION");	
@@ -94,7 +94,7 @@
                                 <option value="Integration Architect">Integration Architect</option>
                                 <option value="PaaS Developer">PaaS Developer</option>                               
                         	</select>-->
-                        	<span><input type="text" name="ExpertSkill" /></span>
+                        	<span><input type="text" name="expertSkills" /></span>
                         </div>                       
                     </div>                    
                     <div class="col col-md-4">                                            
@@ -105,7 +105,7 @@
                                 <option value="Integration Architect">Integration Architect</option>
                                 <option value="PaaS Developer">PaaS Developer</option> 	                                
 	                        </select>-->
-	                        <span><input type="text" name="SupSkill" /></span>
+	                        <span><input type="text" name="supSkills" /></span>
                        </div>
                       
                       <div class="form-group clr-both"><span class="form-lables">Work Location<span class="mant-symbol"></span></span>
@@ -186,18 +186,18 @@
 	   session.setAttribute("exportList",skillList);
    Iterator itr=skillList.iterator();
    while(itr.hasNext()){
-   SkillsMatrix skillInfo=(SkillsMatrix)itr.next();
+   SkillsInfo skillInfo=(SkillsInfo)itr.next();
    %>
 
       <tr>      	        	    
             <td style="text-align:left;"><%=skillInfo.getEnterpriseId() %></td>
             <td><%=skillInfo.getTitle() %></td>  
-            <td><%=skillInfo.getTeamNameId() %></td> 
-            <td><%=skillInfo.getCountryValue() %></td> 
-            <td>NA</td> 
-            <td>NA</td>  
+            <td><%=skillInfo.getTeamName() %></td> 
+            <td><%=skillInfo.getCountry() %></td> 
+            <td><%=skillInfo.getExpertSkills() %></td> 
+            <td><%=skillInfo.getSupSkills() %></td>  
             <td><%=skillInfo.getCertificationsObtained() %></td>
-            <td><%=skillInfo.getCertificationsPlannedForTheYear() %></td> 
+            <td><%=skillInfo.getCertificationsPlanned() %></td> 
             <td>NA</td> 
             <td>NA</td>    
        </tr>
