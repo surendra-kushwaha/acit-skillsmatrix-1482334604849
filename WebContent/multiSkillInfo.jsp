@@ -191,13 +191,13 @@
 
       <tr>      	        	    
             <td style="text-align:left;"><%=skillInfo.getEnterpriseId() %></td>
-            <td><%=skillInfo.getTitle() %></td>  
+            <td><%=skillInfo.getEmployeeName() %></td>  
             <td><%=skillInfo.getTeamName() %></td> 
             <td><%=skillInfo.getCountry() %></td> 
             <td><%=skillInfo.getExpertSkills() %></td> 
             <td><%=skillInfo.getSupSkills() %></td>  
-            <td><%=skillInfo.getCertificationsObtained() %></td>
-            <td><%=skillInfo.getCertificationsPlanned() %></td> 
+            <td><%=skillInfo.getCertificationObtained() %></td>
+            <td><%=skillInfo.getCertificationPlanned() %></td> 
             <td>NA</td> 
             <td>NA</td>    
        </tr>

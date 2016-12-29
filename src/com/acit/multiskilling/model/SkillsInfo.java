@@ -4,7 +4,7 @@ import java.io.InputStream;
 
 public class SkillsInfo {
 	
-	String enterprizeId;
+	String enterpriseId;
 	String employeeName;
 	String expertSkills;
 	String supSkills;
@@ -23,15 +23,15 @@ public class SkillsInfo {
 	/**
 	 * @return the enterprizeId
 	 */
-	public String getEnterprizeId() {
-		return enterprizeId;
+	public String getEnterpriseId() {
+		return enterpriseId;
 	}
 
 	/**
 	 * @param enterprizeId the enterprizeId to set
 	 */
-	public void setEnterprizeId(String enterprizeId) {
-		this.enterprizeId = enterprizeId;
+	public void setEnterpriseId(String enterpriseId) {
+		this.enterpriseId = enterpriseId;
 	}
 
 	public String getEmployeeName() {

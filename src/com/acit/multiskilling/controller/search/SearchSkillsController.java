@@ -35,7 +35,7 @@ public class SearchSkillsController extends HttpServlet {
     	String skillRole=request.getParameter("supSkills");
     	String location=request.getParameter("workLocation");
     	SkillsInfo skillInfo=new SkillsInfo();
-    	skillInfo.setEnterprizeId(enterprizeId);
+    	skillInfo.setEnterpriseId(enterprizeId);
     	skillInfo.setExpertSkills(clreadFlag);
     	skillInfo.setSupSkills(skillRole);
     	skillInfo.setWorkLocation(location);
