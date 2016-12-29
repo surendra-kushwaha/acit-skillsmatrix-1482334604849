@@ -295,7 +295,7 @@ public class MultiSkillDao {
 			}*/
 			
 			if (skillDetails.getEnterpriseId() != null && !skillDetails.getEnterpriseId().equals("")) {
-				queryString.append(" AND \"ENTERPRIZE_ID\" like '%"+skillDetails.getEnterpriseId()+"%'");
+				queryString.append(" AND \"ENTERPRISE_ID\" like '%"+skillDetails.getEnterpriseId()+"%'");
 				//bindVariables.add(skillDetails.getEnterpriseId());
 			}
 			
@@ -329,7 +329,7 @@ public class MultiSkillDao {
 			System.out.println("DAO Query String "+queryString.toString());
 			while (rs.next()) {
 				SkillsInfo skillInfo = new SkillsInfo();
-				skillInfo.setTeamName(rs.getString("EMPLOYEE_NAME")!=null?rs.getString("EMPLOYEE_NAME"):"");
+				skillInfo.setEmployeeName(rs.getString("EMPLOYEE_NAME")!=null?rs.getString("EMPLOYEE_NAME"):"");
 				skillInfo.setEnterpriseId(rs.getString("ENTERPRISE_ID"));
 				skillInfo.setExpertSkills(rs.getString("EXPERT_SKILLS"));
 				skillInfo.setSupSkills(rs.getString("SUPPLIMENTORY_SKILLS"));
