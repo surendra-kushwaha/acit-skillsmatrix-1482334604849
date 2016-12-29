@@ -309,11 +309,11 @@ public class MultiSkillDao {
 			while (rs.next()) {
 				SkillsInfo skillInfo = new SkillsInfo();
 				skillInfo.setEmployeeName(rs.getString("EMPLOYEE_NAME"));
-				skillInfo.setEnterpriseId(rs.getString("ENTERPRIZE_ID"));
+				skillInfo.setEnterpriseId(rs.getString("ENTERPRISE_ID"));
 				skillInfo.setExpertSkills(rs.getString("EXPERT_SKILLS"));
 				skillInfo.setSupSkills(rs.getString("SUPPLIMENTORY_SKILLS"));
 				skillInfo.setCountry(rs.getString("COUNTRY"));
-				skillInfo.setWorkLocation(rs.getString("WORK_LOCATION")!=null?rs.getString("WORK_LOCATION"):"");
+				//skillInfo.setWorkLocation(rs.getString("WORK_LOCATION")!=null?rs.getString("WORK_LOCATION"):"");
 				skillInfo.setCertificationObtained(rs.getString("CERTIFICATION_OBTAINED")!=null?rs.getString("CERTIFICATION_OBTAINED"):"");
 				skillInfo.setCertificationPlanned(rs.getString("CERTIFICATION_PLANNED")!=null?rs.getString("CERTIFICATION_PLANNED"):"");
 				skillInfo.setTeamName(rs.getString("TEAM_NAME")!=null?rs.getString("TEAM_NAME"):"");
