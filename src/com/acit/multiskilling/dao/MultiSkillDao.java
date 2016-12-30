@@ -40,7 +40,7 @@ public class MultiSkillDao {
     				//con.DriverManager.getConnection(...);
     				connection =  DataBase.getInstance().getConnection();
     		    }
-	    		if(validateUser("enterpriseID")){
+	    		if(validateUser(skillInfo.getEnterpriseId())){
 	    		System.out.println("Inside Update");
 	    		//List<InputStream> bindVariables = new ArrayList<InputStream>();
 	    		StringBuffer queryString = new StringBuffer();

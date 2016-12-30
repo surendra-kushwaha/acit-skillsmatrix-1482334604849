@@ -111,15 +111,13 @@
                       <div class="form-group clr-both"><span class="form-lables">Work Location<span class="mant-symbol"></span></span>
 	                        <select id="workLocation" name="workLocation">
 	                            	<option value="" selected>Select Work Location</option>
-	                                <option value="Bangalore">Bangalore</option>
-	                                <option value="Chennai">Chennai</option>
-	                                <option value="Delhi">Delhi</option>
-	                                <option value="Gurgaon">Gurgaon</option>
-	                                <option value="Hyderabad">Hyderabad</option>
-	                                <option value="Kolkata">Kolkata</option>
-	                                <option value="Mumbai">Mumbai</option>
-	                                <option value="Pune">Pune</option>
-	                                <option value="Onshore">Onshore</option>
+	                                <option value="India">India</option>
+	                                <option value="Finland">Finland</option>
+	                                <option value="Maxico">Maxico</option>
+	                                <option value="Spain">Spain</option>
+	                                <option value="UK">UK</option>
+	                                <option value="Norway">Norway</option>
+	                                <option value="US">US</option>
 	                        </select>
                        </div>                    	
                     </div>
@@ -189,14 +187,14 @@
    %>
 
       <tr>      	        	    
-            <td style="text-align:left;"><%=skillInfo.getEnterpriseId() %></td> 
+            <td style="text-align:left;"><a href="mailto:someone@example.com?Subject=Re:Certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
             <td><%=skillInfo.getTeamName() %></td> 
             <td><%=skillInfo.getCountry() %></td> 
             <td><%=skillInfo.getExpertSkills() %></td> 
             <td><%=skillInfo.getSupSkills() %></td>  
             <td><%=skillInfo.getCertificationObtained() %></td>
             <td><%=skillInfo.getCertificationPlanned() %></td> 
-            <td>NA</td> 
+            <td><a href="mailto:someone@example.com?Subject=Re:Certification" target="_top">NA</a></td> 
             <td>NA</td>    
        </tr>
           <%}
