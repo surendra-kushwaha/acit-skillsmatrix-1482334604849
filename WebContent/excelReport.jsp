@@ -24,6 +24,7 @@
 		</tr>
 		<%  MultiSkillDao dao= new MultiSkillDao(); 
 			List<SkillsInfo> skillInfoList  = (List<SkillsInfo>)dao.getAllSkillData();
+			System.out.println("skillInfoList size $$"+skillInfoList.size());
 	        if (skillInfoList != null) {
     	        response.setContentType("application/vnd.ms-excel");
     	        //response.setContentType("application/vnd.openxml");

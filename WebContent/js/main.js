@@ -282,23 +282,9 @@ $(function() {
         delete foo[vall];
     });
 
-    $(".resetbtn").click(function(e) {
+    $(".resetbtn").click(function(e) {alert("reset button called");
         $("form").find("input[type=text], input[type=password], textarea").val(null);
         $("form").find("select").selectedIndex = 0;
-        $("select option").prop("selected", false);
-        $('#lob option, .lob option').remove();
-        $(".selections .selector-multiple").attr("disabled", true);
-        $("#lob").append($('<option>').text('Select Business Type First').attr('value', ''));
-        $('input[type=radio]:eq(0)').click();
-        $(".searched-items").hide();
-        $('#remDetails').prop('checked', false);
-        $("input[type=file]").val("");
-        $(".searched-items ul li").remove();
-        localStorage.clear();
-        delete foo;
-        if ($(this).hasClass("tab3")) {
-            $("#singleUpload").click();
-        }
         e.preventDefault();
         return false;
     });
