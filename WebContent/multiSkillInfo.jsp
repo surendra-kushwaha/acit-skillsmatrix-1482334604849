@@ -151,8 +151,7 @@
             <table  id="policyDetails" style="width:100%">
                 <thead>
                     <tr>
-                        <th style="width:9%;">Enterprise ID</th>                      
-                        <th style="width:9%;">Employee Name</th>                                                
+                        <th style="width:9%;">Enterprise ID</th>                                                                     
                         <th style="width:7%;">Team</th>
                         <th style="width:7%;">Country</th>
                         <th style="width:12%;">Expert Skills</th>
@@ -190,8 +189,7 @@
    %>
 
       <tr>      	        	    
-            <td style="text-align:left;"><%=skillInfo.getEnterpriseId() %></td>
-            <td><%=skillInfo.getEmployeeName() %></td>  
+            <td style="text-align:left;"><%=skillInfo.getEnterpriseId() %></td> 
             <td><%=skillInfo.getTeamName() %></td> 
             <td><%=skillInfo.getCountry() %></td> 
             <td><%=skillInfo.getExpertSkills() %></td> 

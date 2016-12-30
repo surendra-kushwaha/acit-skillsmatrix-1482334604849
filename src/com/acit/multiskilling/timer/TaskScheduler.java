@@ -23,10 +23,10 @@ import org.json.JSONObject;
 import org.json.XML;
 
 import com.acit.multiskilling.dao.MultiSkillDao;
+import com.acit.multiskilling.model.SkillsInfo;
 import com.acit.multiskilling.model.SkillsMatrix;
 import com.acit.multiskilling.util.Main;
 import com.acit.multiskilling.util.Utility;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
  
@@ -90,11 +90,11 @@ public String runSharePoint() {
 		
 		JsonArray contactListArray = new JsonArray();
 		String sharePointURL=Utility.getProperties("activeAllianceURL");
-		List<SkillsMatrix> sharePointJsonData1 = convertToJSONList(sharePointURL, xmlJSONObj, contactListArray);
+		List<SkillsInfo> sharePointJsonData1 = convertToJSONList(sharePointURL, xmlJSONObj, contactListArray);
 		System.out.println("sharePointJsonData1 ## "+sharePointJsonData1);
 		
 		//Update DB with sharepoint data
-		//dao.updateSkill(null);
+		dao.updateSkill(sharePointJsonData1);
 		
 		
 		
@@ -136,7 +136,7 @@ public boolean getEnableState() {
 /*
  * Convert XML to JSON
  */
-private static List<SkillsMatrix> convertToJSONList(String sharepointURL,JSONObject xmlJSONObj,
+private static List<SkillsInfo> convertToJSONList(String sharepointURL,JSONObject xmlJSONObj,
 		JsonArray contactListArray) throws JSONException, Exception, IOException {
 	System.out.println("convert to json method::");
 	String kxResponse;
@@ -145,7 +145,7 @@ private static List<SkillsMatrix> convertToJSONList(String sharepointURL,JSONObj
 	JsonObject allianceJson;
 	JsonObject contactInArray;
 	JSONArray jsonarray;
-	List<SkillsMatrix> skillList=new ArrayList<SkillsMatrix>();
+	List<SkillsInfo> skillList=new ArrayList<SkillsInfo>();
 	//System.out.println("sharepointURL:"+sharepointURL);
 	jsonarray = xmlJSONObj.getJSONObject("feed").getJSONArray("entry");
 	//System.out.println("jsonarray:::"+jsonarray);
@@ -179,13 +179,13 @@ private static List<SkillsMatrix> convertToJSONList(String sharepointURL,JSONObj
 		
 		String teamName=getTeamName(propertiesJson,sharepointURL);
 		String expertSkills=getExpertSkills(propertiesJson,sharepointURL);
-		//String supSkills=getSupSkills(propertiesJson,sharepointURL);
-		//String mentorId=getMentorEntId(propertiesJson,sharepointURL);
+		String supSkills=getSupSkills(propertiesJson,sharepointURL);
+		String mentorId=getMentorEntId(propertiesJson,sharepointURL);
 		
 		System.out.println("Team Name  "+teamName);
 		System.out.println("Expert Skills "+expertSkills);
-		//System.out.println("Sup Skills  "+supSkills);
-		//System.out.println("Mentor ID  "+mentorId);
+		System.out.println("Sup Skills  "+supSkills);
+		System.out.println("Mentor ID  "+mentorId);
 		System.out.println("EnterpriseID  "+allianceJson.get("EnterpriseId").toString());
 		System.out.println("Country  "+allianceJson.get("CountryValue").toString());
 		System.out.println("Certification Obtained  "+allianceJson.get("CertificationsObtained").toString());
@@ -193,11 +193,21 @@ private static List<SkillsMatrix> convertToJSONList(String sharepointURL,JSONObj
 		
 		System.out.println("allianceJson   "+allianceJson);
 		
+		SkillsInfo skillInfo=new SkillsInfo();
+		skillInfo.setEnterpriseId(allianceJson.get("EnterpriseId").toString());
+		skillInfo.setTeamName(teamName);
+		skillInfo.setExpertSkills(expertSkills);
+		skillInfo.setSupSkills(supSkills);
+		skillInfo.setMentorEntId(mentorId);
+		skillInfo.setCountry(allianceJson.get("CountryValue").toString());
+		skillInfo.setCertificationObtained(allianceJson.get("CertificationsObtained").toString());
+		skillInfo.setCertificationPlanned(allianceJson.get("CertificationsPlannedForTheYear").toString());
+		/*
 		Gson gson = new Gson();
 		 
 		System.out.println(
 		    gson.fromJson(allianceJson, SkillsMatrix.class));
-		SkillsMatrix skillInfo=gson.fromJson(allianceJson, SkillsMatrix.class);
+		SkillsMatrix skillInfo=gson.fromJson(allianceJson, SkillsMatrix.class);*/
 		//contactInArray = new JsonObject();
 		//contactInArray.add("properties", allianceJson);
 		skillList.add(skillInfo);
