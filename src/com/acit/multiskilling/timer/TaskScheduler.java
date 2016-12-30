@@ -178,8 +178,18 @@ private static List<SkillsMatrix> convertToJSONList(String sharepointURL,JSONObj
 		}
 		
 		String teamName=getTeamName(propertiesJson,sharepointURL);
+		String expertSkills=getExpertSkills(propertiesJson,sharepointURL);
+		String supSkills=getSupSkills(propertiesJson,sharepointURL);
+		String mentorId=getMentorEntId(propertiesJson,sharepointURL);
 		
 		System.out.println("Team Name  "+teamName);
+		System.out.println("Expert Skills "+expertSkills);
+		System.out.println("Sup Skills  "+supSkills);
+		System.out.println("Mentor ID  "+mentorId);
+		System.out.println("EnterpriseID  "+allianceJson.get("EnterpriseId").toString());
+		System.out.println("Country  "+allianceJson.get("CountryValue").toString());
+		System.out.println("Certification Obtained  "+allianceJson.get("CertificationsObtained").toString());
+		System.out.println("Certification Planned  "+allianceJson.get("CertificationsPlannedForTheYear").toString());
 		
 		System.out.println("allianceJson   "+allianceJson);
 		
@@ -258,52 +268,195 @@ private static boolean isValidJson(JSONObject jsonStr, String element) {
 public static String getTeamName(JSONObject propertiesJson,String sharepointUrl){
 	System.out.println(" in side getTeam NAme");
 	String teamName = "";
-	try{
-	int Id = 0;
-	if (isValidJson(propertiesJson, "d:Id")) {
-		Id = propertiesJson.getJSONObject("d:Id").getInt("content");
-		//System.out.println("d:Id@@"+Id);
-	}
-	
-	System.out.println(" in side getTeam NAme1");
-	//System.out.println("d:Id###"+Id);
-	// TEP Start
-	String teamUrl = sharepointUrl + "(" + Id + ")" + "/TeamName";
-	//String TEPRSUrl = sharepointURL + "(6)" + "/TEPRelationshipLead";
-	//inputStream = HttpClient.get(TEPRSUrl, ntCredentials);
-	//inputStream = AuthenticationUtil.getSharePointTEPData(Id);
-	System.out.println(" in side getTeam NAme2"+teamUrl);
-	//System.out.println("TEPRS ID@@"+Id);
-	//System.out.println("serviceUser@@"+serviceUser);
-	//System.out.println("servicePwd@@"+servicePwd);
-	
-	String username=Utility.getProperties("GenericUserName");
-	String tokenid=Utility.getProperties("GenericPassword");
-	 //data=loadCache(username,tokenid);
-	String urlStr = "https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix";
-	String domain1 = "dir"; // May also be referred as realm
-	String userName = "surendra.kushwaha@accenture.com";
-	String password = "Dec@2016";		
-	Main amian=new Main();
-	String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, userName, password);
-	JSONObject xmlJSONObj=null;
-	xmlJSONObj = XML.toJSONObject(responseText);
-	System.out.println("String sharedata get Team Name+ "+responseText);
-	
-	
-	JSONObject jsonTEParray;
-	jsonTEParray = xmlJSONObj.getJSONObject("entry");
-	
-	System.out.println(" Team Json##"+jsonTEParray);
-	//System.out.println("jsonTEParray@@"+jsonTEParray);
-	
-	System.out.println(" in side getTeam NAme6");
+		try{
+		int Id = 0;
+		if (isValidJson(propertiesJson, "d:Id")) {
+			Id = propertiesJson.getJSONObject("d:Id").getInt("content");
+		}
+		String teamUrl = sharepointUrl + "(" + Id + ")" + "/TeamName";		
+		String username=Utility.getProperties("GenericUserName");
+		String tokenid=Utility.getProperties("GenericPassword");
+		String domain1 = "dir"; // May also be referred as realm
+		//String userName = "surendra.kushwaha@accenture.com";
+		//String password = "Dec@2016";		
+		Main amian=new Main();
+		String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, username, tokenid);
+		JSONObject xmlJSONObj=null;
+		xmlJSONObj = XML.toJSONObject(responseText);
+		System.out.println("String sharedata get Team Name+ "+responseText);		
+		JSONObject jsonTEParray;
+		jsonTEParray = xmlJSONObj.getJSONObject("entry");
 		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
-				.getJSONObject("m:properties").getString("d:TeamName");
+					.getJSONObject("m:properties").getString("d:TeamName");
+			
+			System.out.println("Team Name Recieved::"+teamName);		
+			
+		}catch(Exception e){
 		
-		System.out.println("Team Name Recieved::"+teamName);		
+	}
+	return teamName;
+
+}
+
+public static String getExpertSkills(JSONObject propertiesJson,String sharepointUrl){
+	System.out.println(" in side getTeam NAme");
+	String expertSkills = "";
+		try{
+		int Id = 0;
+		if (isValidJson(propertiesJson, "d:Id")) {
+			Id = propertiesJson.getJSONObject("d:Id").getInt("content");
+		}
+		String teamUrl = sharepointUrl + "(" + Id + ")" + "/SkillsAsAnExpert";		
+		String username=Utility.getProperties("GenericUserName");
+		String tokenid=Utility.getProperties("GenericPassword");
+		String domain1 = "dir"; // May also be referred as realm
+		//String userName = "surendra.kushwaha@accenture.com";
+		//String password = "Dec@2016";		
+		Main amian=new Main();
+		String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, username, tokenid);
+		JSONObject xmlJSONObj=null;
+		xmlJSONObj = XML.toJSONObject(responseText);
+		System.out.println("String sharedata get Team Name+ "+responseText);		
+		/*JSONObject jsonTEParray;
+		jsonTEParray = xmlJSONObj.getJSONObject("entry");
+		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
+					.getJSONObject("m:properties").getString("d:TeamName");
+			
+			System.out.println("Team Name Recieved::"+teamName);*/
 		
-	}catch(Exception e){
+		//log.info("Get TEP Relationship lead name and email");
+		JSONArray jsonTEParray;
+		jsonTEParray = xmlJSONObj.getJSONObject("feed").optJSONArray("entry");
+		//System.out.println("jsonTEParray@@"+jsonTEParray);
+		
+		if (jsonTEParray instanceof JSONArray) {
+			for (int j = 0; j < jsonTEParray.length(); j++) {
+				JSONObject jsonTEParray1 = jsonTEParray.optJSONObject(j);
+				if (jsonTEParray1 != null) {
+					JSONObject propertiesTEPJson = jsonTEParray1.getJSONObject("content")
+							.getJSONObject("m:properties");
+					expertSkills += propertiesTEPJson.getString("d:Value") + ";";
+					//tepRelLeadEmail += propertiesTEPJson.getString("d:WorkEmail") + ";";
+				}
+			}
+			//allianceJson.addProperty("TEPRSLeadName", tepRelLeadName);
+			//allianceJson.addProperty("TEPRSLeadEmail", tepRelLeadEmail);
+		} else {
+			if (xmlJSONObj.getJSONObject("feed").optJSONObject("entry") != null) {
+				/*allianceJson.addProperty("TEPRSLeadName",
+						xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
+								.getJSONObject("m:properties").getString("d:Name"));
+				allianceJson.addProperty("TEPRSLeadEmail",
+						xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
+								.getJSONObject("m:properties").getString("d:WorkEmail"));*/
+				expertSkills=xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
+						.getJSONObject("m:properties").getString("d:Value");
+			} else {
+				//allianceJson.addProperty("TEPRSLeadName", "");
+				//allianceJson.addProperty("TEPRSLeadEmail", "");
+			}
+		}
+			
+		}catch(Exception e){
+		
+	}
+	return expertSkills;
+
+}
+
+public static String getSupSkills(JSONObject propertiesJson,String sharepointUrl){
+	System.out.println(" in side getTeam NAme");
+	String expertSkills = "";
+		try{
+		int Id = 0;
+		if (isValidJson(propertiesJson, "d:Id")) {
+			Id = propertiesJson.getJSONObject("d:Id").getInt("content");
+		}
+		String teamUrl = sharepointUrl + "(" + Id + ")" + "/SkillsAsAnExpert";		
+		String username=Utility.getProperties("GenericUserName");
+		String tokenid=Utility.getProperties("GenericPassword");
+		String domain1 = "dir"; // May also be referred as realm
+		//String userName = "surendra.kushwaha@accenture.com";
+		//String password = "Dec@2016";		
+		Main amian=new Main();
+		String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, username, tokenid);
+		JSONObject xmlJSONObj=null;
+		xmlJSONObj = XML.toJSONObject(responseText);
+		System.out.println("String sharedata get Team Name+ "+responseText);		
+		/*JSONObject jsonTEParray;
+		jsonTEParray = xmlJSONObj.getJSONObject("entry");
+		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
+					.getJSONObject("m:properties").getString("d:TeamName");
+			
+			System.out.println("Team Name Recieved::"+teamName);*/
+		
+		//log.info("Get TEP Relationship lead name and email");
+		JSONArray jsonTEParray;
+		jsonTEParray = xmlJSONObj.getJSONObject("feed").optJSONArray("entry");
+		//System.out.println("jsonTEParray@@"+jsonTEParray);
+		
+		if (jsonTEParray instanceof JSONArray) {
+			for (int j = 0; j < jsonTEParray.length(); j++) {
+				JSONObject jsonTEParray1 = jsonTEParray.optJSONObject(j);
+				if (jsonTEParray1 != null) {
+					JSONObject propertiesTEPJson = jsonTEParray1.getJSONObject("content")
+							.getJSONObject("m:properties");
+					expertSkills += propertiesTEPJson.getString("d:Value") + ";";
+					//tepRelLeadEmail += propertiesTEPJson.getString("d:WorkEmail") + ";";
+				}
+			}
+			//allianceJson.addProperty("TEPRSLeadName", tepRelLeadName);
+			//allianceJson.addProperty("TEPRSLeadEmail", tepRelLeadEmail);
+		} else {
+			if (xmlJSONObj.getJSONObject("feed").optJSONObject("entry") != null) {
+				/*allianceJson.addProperty("TEPRSLeadName",
+						xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
+								.getJSONObject("m:properties").getString("d:Name"));
+				allianceJson.addProperty("TEPRSLeadEmail",
+						xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
+								.getJSONObject("m:properties").getString("d:WorkEmail"));*/
+				expertSkills=xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
+						.getJSONObject("m:properties").getString("d:Value");
+			} else {
+				//allianceJson.addProperty("TEPRSLeadName", "");
+				//allianceJson.addProperty("TEPRSLeadEmail", "");
+			}
+		}
+			
+		}catch(Exception e){
+		
+	}
+	return expertSkills;
+
+}
+
+public static String getMentorEntId(JSONObject propertiesJson,String sharepointUrl){
+	System.out.println(" in side getTeam NAme");
+	String teamName = "";
+		try{
+		int Id = 0;
+		if (isValidJson(propertiesJson, "d:Id")) {
+			Id = propertiesJson.getJSONObject("d:Id").getInt("content");
+		}
+		String teamUrl = sharepointUrl + "(" + Id + ")" + "/TeamName";		
+		String username=Utility.getProperties("GenericUserName");
+		String tokenid=Utility.getProperties("GenericPassword");
+		String domain1 = "dir"; // May also be referred as realm
+		//String userName = "surendra.kushwaha@accenture.com";
+		//String password = "Dec@2016";		
+		Main amian=new Main();
+		String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, username, tokenid);
+		JSONObject xmlJSONObj=null;
+		xmlJSONObj = XML.toJSONObject(responseText);
+		System.out.println("String sharedata get Team Name+ "+responseText);		
+		JSONObject jsonTEParray;
+		jsonTEParray = xmlJSONObj.getJSONObject("entry");
+		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
+					.getJSONObject("m:properties").getString("d:WorkEmail");
+			
+			System.out.println("Team Name Recieved::"+teamName);		
+			
+		}catch(Exception e){
 		
 	}
 	return teamName;
