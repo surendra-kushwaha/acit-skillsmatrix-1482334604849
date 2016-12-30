@@ -94,7 +94,7 @@ public String runSharePoint() {
 		System.out.println("sharePointJsonData1 ## "+sharePointJsonData1);
 		
 		//Update DB with sharepoint data
-		dao.updateSkill(null);
+		//dao.updateSkill(null);
 		
 		
 		
