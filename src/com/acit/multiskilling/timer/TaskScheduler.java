@@ -376,7 +376,7 @@ public static String getExpertSkills(JSONObject propertiesJson,String sharepoint
 
 public static String getSupSkills(JSONObject propertiesJson,String sharepointUrl){
 	System.out.println(" in side getTeam NAme");
-	String expertSkills = "";
+	String supSkills = "";
 		try{
 		int Id = 0;
 		if (isValidJson(propertiesJson, "d:Id")) {
@@ -411,7 +411,7 @@ public static String getSupSkills(JSONObject propertiesJson,String sharepointUrl
 				if (jsonTEParray1 != null) {
 					JSONObject propertiesTEPJson = jsonTEParray1.getJSONObject("content")
 							.getJSONObject("m:properties");
-					expertSkills += propertiesTEPJson.getString("d:Value") + ";";
+					supSkills += propertiesTEPJson.getString("d:Value") + ";";
 					//tepRelLeadEmail += propertiesTEPJson.getString("d:WorkEmail") + ";";
 				}
 			}
@@ -425,7 +425,7 @@ public static String getSupSkills(JSONObject propertiesJson,String sharepointUrl
 				allianceJson.addProperty("TEPRSLeadEmail",
 						xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
 								.getJSONObject("m:properties").getString("d:WorkEmail"));*/
-				expertSkills=xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
+				supSkills=xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
 						.getJSONObject("m:properties").getString("d:Value");
 			} else {
 				//allianceJson.addProperty("TEPRSLeadName", "");
@@ -436,7 +436,7 @@ public static String getSupSkills(JSONObject propertiesJson,String sharepointUrl
 		}catch(Exception e){
 		
 	}
-	return expertSkills;
+	return supSkills;
 
 }
 
