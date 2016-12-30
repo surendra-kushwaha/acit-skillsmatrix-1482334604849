@@ -33,13 +33,13 @@ public class MultiSkillDao {
 				//con.DriverManager.getConnection(...);
 				connection =  DataBase.getInstance().getConnection();
 		    }
+    		
+    		if(validateUser("enterpriseID")){
+    		
     		//List<InputStream> bindVariables = new ArrayList<InputStream>();
     		StringBuffer queryString = new StringBuffer();
-			queryString.append("UPDATE MULTI_SKILLING_DATA set \"SKILL_ROLE\"=?,\"SCORE\"=?, \"CERTIFICATE_NAME\"=?,  \"CERT_UPLOAD_FLAG\"=?,  \"CERTIFICATE_EXTN\"=?, \"CERTIFICATE\"=?"
-            		+", \"WORK_LOCATION\"=?,  \"CERTIFICATION_DATE\"=?,  \"CLEARED_FLAG\"=?, \"SECTION1_SCORE\"=?, \"SECTION2_SCORE\"=?, \"SECTION3_SCORE\"=?,"
-            		+ " \"SECTION4_SCORE\"=?, \"SECTION5_SCORE\"=?, \"SECTION6_SCORE\"=?,\"UPLOAD_DATE\"=? where \"ENTERPRIZE_ID\"=?");
-
-			
+			queryString.append("UPDATE SKILLS_MATRIX_DATA set \"EXPERT_SKILLS\"=?,\"SUPPLIMENTORY_SKILLS\"=?, \"COUNTRY\"=?,  \"CERTIFICATION_OBTAINED\"=?,  \"CERTIFICATION_PLANNED\"=?, \"MENTOR_ENT_ID\"=?"
+            		+", \"TEAM_NAME\"=?,  \"POINT_OF_CONTACT\"=?,  \"COMMENTS\"=?,\"UPDATED_DATE\"=? where \"ENTERPRISE_ID\"=?");
 			
 			preparedStatement = connection.prepareStatement(queryString.toString());
 			//System.out.println("update query String ##"+queryString.toString());
@@ -48,42 +48,53 @@ public class MultiSkillDao {
 			preparedStatement.setString(3, skillInfo.getCertificateName());
             preparedStatement.setString(4, "YES");
             preparedStatement.setString(5,skillInfo.getCertificateExtn());
-            preparedStatement.setBinaryStream(6, skillInfo.getCertificate(),skillInfo.getCertificate().available());
+            preparedStatement.setString(6, "");
             
             preparedStatement.setString(7, skillInfo.getWorkLocation());
 			preparedStatement.setString(8, skillInfo.getCertDate());
             preparedStatement.setString(9, skillInfo.getClear());
             preparedStatement.setString(10,skillInfo.getSection1Score());
             preparedStatement.setString(11, skillInfo.getSection2Score());
-            preparedStatement.setString(12, skillInfo.getSection3Score());
-			preparedStatement.setString(13, skillInfo.getSection4Score());
-            preparedStatement.setString(14, skillInfo.getSection5Score());
-            preparedStatement.setString(15,skillInfo.getSection6Score());
-            
-            String PATTERN="dd-MMM-YYYY";
-            SimpleDateFormat dateFormat=new SimpleDateFormat();
-            dateFormat.applyPattern(PATTERN);
-            String uploadDate=dateFormat.format(Calendar.getInstance().getTime());
-            System.out.println("uploadDate##"+uploadDate);
-            preparedStatement.setString(16,uploadDate);
-            
-            preparedStatement.setString(17, skillInfo.getEnterprizeId());
-    		/*for (int i = 0; i < bindVariables.size(); i++) {
-				// variables are indexed from 1 in JDBC
-    			int index=9;
-    			preparedStatement.setBinaryStream(index+i + 1, bindVariables.get(i),bindVariables.get(i).available());
-			}  */  		
-            System.out.println("DAO addskillInfo"+skillInfo);
-            System.out.println("Controller addskillInfo entID"+skillInfo.getEnterprizeId());
-            System.out.println("Controller addskillInfo score"+skillInfo.getScore());
-            System.out.println("Controller addskillInfo certificateName"+skillInfo.getCertificateName());
-            
-            
             int updateflag=preparedStatement.executeUpdate();
             if(updateflag>0){
             	System.out.println("updateFlag"+updateflag);
             	updateSuccessFlag=true;
             }
+    		}else{
+    			//Insert data
+    			
+
+        		
+        		//List<InputStream> bindVariables = new ArrayList<InputStream>();
+        		StringBuffer queryString = new StringBuffer();
+    			queryString.append("insert into SKILLS_MATRIX_DATA(ENTERPRISE_ID,EXPERT_SKILLS,SUPPLIMENTORY_SKILLS,COUNTRY,CERTIFICATION_OBTAINED,CERTIFICATION_PLANNED,MENTOR_ENT_ID,TEAM_NAME)"
+    					+ " VALUES(?,?,?,?,?,?,?,?)");
+
+    			
+    			
+    			preparedStatement = connection.prepareStatement(queryString.toString());
+    			//System.out.println("update query String ##"+queryString.toString());
+    			preparedStatement.setString(1, skillInfo.getSkillRole());
+    			preparedStatement.setString(2, skillInfo.getScore());
+    			preparedStatement.setString(3, skillInfo.getCertificateName());
+                preparedStatement.setString(4, "YES");
+                preparedStatement.setString(5,skillInfo.getCertificateExtn());
+                preparedStatement.setString(6, "");
+                
+                preparedStatement.setString(7, skillInfo.getWorkLocation());
+    			preparedStatement.setString(8, skillInfo.getCertDate());
+                preparedStatement.setString(9, skillInfo.getClear());
+            
+                
+                
+                int updateflag=preparedStatement.executeUpdate();
+                if(updateflag>0){
+                	System.out.println("updateFlag"+updateflag);
+                	updateSuccessFlag=true;
+                }
+        		
+    			
+    		}
             //connection.commit();            
         }catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -494,7 +505,7 @@ public class MultiSkillDao {
 		//return successFlag;
 	}*/
 
-	public boolean validateUser(String userId, String password) throws MultiSkillException  {
+	public boolean validateUser(String userId) throws MultiSkillException  {
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		try {
@@ -503,9 +514,9 @@ public class MultiSkillDao {
 				connection =  DataBase.getInstance().getConnection();
 		    }
 			ps = connection
-					.prepareStatement("select * from MULTI_SKILLING_DATA where ENTERPRIZE_ID=? and EMPLOYEE_ID=? ");
+					.prepareStatement("select * from SKILLS_MATRIX_DATA where ENTERPRISE_ID=?");
 			ps.setString(1, userId);
-			ps.setString(2, password);
+			//ps.setString(2, password);
 			rs = ps.executeQuery();
 			if (rs.next()){
 				return true;
