@@ -194,14 +194,14 @@ private static List<SkillsInfo> convertToJSONList(String sharepointURL,JSONObjec
 		System.out.println("allianceJson   "+allianceJson);
 		
 		SkillsInfo skillInfo=new SkillsInfo();
-		skillInfo.setEnterpriseId(allianceJson.get("EnterpriseId").toString());
+		skillInfo.setEnterpriseId(allianceJson.get("EnterpriseId").toString().replace("\"", ""));
 		skillInfo.setTeamName(teamName);
 		skillInfo.setExpertSkills(expertSkills);
 		skillInfo.setSupSkills(supSkills);
 		skillInfo.setMentorEntId(mentorId);
-		skillInfo.setCountry(allianceJson.get("CountryValue").toString());
-		skillInfo.setCertificationObtained(allianceJson.get("CertificationsObtained").toString());
-		skillInfo.setCertificationPlanned(allianceJson.get("CertificationsPlannedForTheYear").toString());
+		skillInfo.setCountry(allianceJson.get("CountryValue").toString().replace("\"", ""));
+		skillInfo.setCertificationObtained(allianceJson.get("CertificationsObtained").toString().replace("\"", ""));
+		skillInfo.setCertificationPlanned(allianceJson.get("CertificationsPlannedForTheYear").toString().replace("\"", ""));
 		/*
 		Gson gson = new Gson();
 		 
@@ -382,7 +382,7 @@ public static String getSupSkills(JSONObject propertiesJson,String sharepointUrl
 		if (isValidJson(propertiesJson, "d:Id")) {
 			Id = propertiesJson.getJSONObject("d:Id").getInt("content");
 		}
-		String teamUrl = sharepointUrl + "(" + Id + ")" + "/SkillsAsAnExpert";		
+		String teamUrl = sharepointUrl + "(" + Id + ")" + "/SupplimentrySkills";		
 		String username=Utility.getProperties("GenericUserName");
 		String tokenid=Utility.getProperties("GenericPassword");
 		String domain1 = "dir"; // May also be referred as realm
