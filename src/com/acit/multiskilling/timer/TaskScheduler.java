@@ -177,7 +177,10 @@ private static List<SkillsMatrix> convertToJSONList(String sharepointURL,JSONObj
 			}
 		}
 		
-		getTeamName(propertiesJson,sharepointURL);
+		String teamName=getTeamName(propertiesJson,sharepointURL);
+		
+		System.out.println("Team Name  "+teamName);
+		
 		System.out.println("allianceJson   "+allianceJson);
 		
 		Gson gson = new Gson();
@@ -288,37 +291,18 @@ public static String getTeamName(JSONObject propertiesJson,String sharepointUrl)
 	System.out.println("String sharedata get Team Name+ "+responseText);
 	
 	
-	JSONArray jsonTEParray;
-	jsonTEParray = xmlJSONObj.getJSONObject("feed").optJSONArray("entry");
+	JSONObject jsonTEParray;
+	jsonTEParray = xmlJSONObj.getJSONObject("entry");
+	
+	System.out.println(" Team Json##"+jsonTEParray);
 	//System.out.println("jsonTEParray@@"+jsonTEParray);
 	
-	if (jsonTEParray instanceof JSONArray) {System.out.println(" in side getTeam NAme3");
-		for (int j = 0; j < jsonTEParray.length(); j++) {System.out.println(" in side getTeam NAme4");
-			JSONObject jsonTEParray1 = jsonTEParray.optJSONObject(j);
-			if (jsonTEParray1 != null) {System.out.println(" in side getTeam NAme5");
-				JSONObject propertiesTEPJson = jsonTEParray1.getJSONObject("content")
-						.getJSONObject("m:properties");
-				//tepRelLeadName += propertiesTEPJson.getString("d:Name") + ";";
-				//tepRelLeadEmail += propertiesTEPJson.getString("d:WorkEmail") + ";";
-				 teamName=propertiesTEPJson.getString("d:TeamName");
-			}
-		}
-		//allianceJson.addProperty("TEPRSLeadName", tepRelLeadName);
-		//allianceJson.addProperty("TEPRSLeadEmail", tepRelLeadEmail);
-	} else {System.out.println(" in side getTeam NAme6");
+	System.out.println(" in side getTeam NAme6");
 		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
 				.getJSONObject("m:properties").getString("d:TeamName");
 		
-		System.out.println("Team Name Recieved::"+teamName);
+		System.out.println("Team Name Recieved::"+teamName);		
 		
-		if (xmlJSONObj.getJSONObject("feed").optJSONObject("entry") != null) {System.out.println(" in side getTeam NAme7");
-			 teamName=xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
-					.getJSONObject("m:properties").getString("d:TeamName");
-		} else {System.out.println(" in side getTeam NAme9");
-			//allianceJson.addProperty("TEPRSLeadName", "");
-			//.addProperty("TEPRSLeadEmail", "");
-		}
-	}
 	}catch(Exception e){
 		
 	}
