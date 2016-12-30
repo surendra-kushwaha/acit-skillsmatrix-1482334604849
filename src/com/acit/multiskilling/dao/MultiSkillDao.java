@@ -36,7 +36,10 @@ public class MultiSkillDao {
     		Iterator<SkillsInfo> listItr=skillsInfo.iterator();
     		while(listItr.hasNext()){
     			SkillsInfo skillInfo=listItr.next();
-    			
+    			if ((connection == null) || connection.isClosed() ) {
+    				//con.DriverManager.getConnection(...);
+    				connection =  DataBase.getInstance().getConnection();
+    		    }
 	    		if(validateUser("enterpriseID")){
 	    		System.out.println("Inside Update");
 	    		//List<InputStream> bindVariables = new ArrayList<InputStream>();
@@ -65,7 +68,10 @@ public class MultiSkillDao {
 	            }
 	    		}else{
 	    			//Insert data
-	    			
+	    			if ((connection == null) || connection.isClosed() ) {
+	    				//con.DriverManager.getConnection(...);
+	    				connection =  DataBase.getInstance().getConnection();
+	    		    }
 	    			System.out.println("Inside insert data");
 	        		
 	        		//List<InputStream> bindVariables = new ArrayList<InputStream>();
