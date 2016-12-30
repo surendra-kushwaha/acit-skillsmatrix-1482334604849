@@ -91,7 +91,7 @@ public String runSharePoint() {
 		JsonArray contactListArray = new JsonArray();
 		String sharePointURL=Utility.getProperties("activeAllianceURL");
 		List<SkillsInfo> sharePointJsonData1 = convertToJSONList(sharePointURL, xmlJSONObj, contactListArray);
-		System.out.println("sharePointJsonData1 ## "+sharePointJsonData1);
+		System.out.println("sharePointJsonData1 ## "+sharePointJsonData1.toString());
 		
 		//Update DB with sharepoint data
 		dao.updateSkill(sharePointJsonData1);

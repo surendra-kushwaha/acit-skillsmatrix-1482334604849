@@ -74,23 +74,26 @@ public class MultiSkillDao {
 	    					+ " VALUES(?,?,?,?,?,?,?,?,?)");
 	
 	    			
-	    			
+	    			System.out.println("Inside insert data1");
 	    			preparedStatement = connection.prepareStatement(queryString.toString());
+	    			System.out.println("Inside insert data2");
 	    			//System.out.println("update query String ##"+queryString.toString());
 	    			preparedStatement.setString(1, skillInfo.getEnterpriseId());
 	    			preparedStatement.setString(2, skillInfo.getExpertSkills());
 					preparedStatement.setString(3, skillInfo.getSupSkills());
+					System.out.println("Inside insert data3");
 					preparedStatement.setString(4, skillInfo.getCountry());
 		            preparedStatement.setString(5, skillInfo.getCertificationObtained());
 		            preparedStatement.setString(6,skillInfo.getCertificationPlanned());
 		            preparedStatement.setString(7, skillInfo.getMentorEntId());
-		            
+		            System.out.println("Inside insert data4");
 		            preparedStatement.setString(8, skillInfo.getTeamName());
 					preparedStatement.setString(9, new Date().toString());
 	            
-	                
+					System.out.println("Inside insert data5");
 	                
 	                int updateflag=preparedStatement.executeUpdate();
+	                System.out.println("Inside insert data6");
 	                if(updateflag>0){
 	                	System.out.println("updateFlag"+updateflag);
 	                	updateSuccessFlag=true;
@@ -101,8 +104,8 @@ public class MultiSkillDao {
     		}
             //connection.commit();            
         }catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new MultiSkillException(e.getErrorCode());
+			System.out.println("DB Exception "+e.getMessage());
+			//throw new MultiSkillException(e.getErrorCode());
 			
 		}  catch (Exception e) {
             e.printStackTrace();
