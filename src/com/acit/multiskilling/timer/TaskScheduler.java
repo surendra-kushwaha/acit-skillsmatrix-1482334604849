@@ -176,6 +176,8 @@ private static List<SkillsMatrix> convertToJSONList(String sharepointURL,JSONObj
 				}
 			}
 		}
+		
+		getTeamName(propertiesJson,sharepointURL);
 		System.out.println("allianceJson   "+allianceJson);
 		
 		Gson gson = new Gson();
@@ -248,6 +250,80 @@ private static boolean isValidJson(JSONObject jsonStr, String element) {
 		isValid = false;
 	}
 	return isValid;
+}
+
+public static String getTeamName(JSONObject propertiesJson,String sharepointUrl){
+	System.out.println(" in side getTeam NAme");
+	String teamName = "";
+	try{
+	int Id = 0;
+	if (isValidJson(propertiesJson, "d:Id")) {
+		Id = propertiesJson.getJSONObject("d:Id").getInt("content");
+		//System.out.println("d:Id@@"+Id);
+	}
+	
+	System.out.println(" in side getTeam NAme1");
+	//System.out.println("d:Id###"+Id);
+	// TEP Start
+	String teamUrl = sharepointUrl + "(" + Id + ")" + "/TeamName";
+	//String TEPRSUrl = sharepointURL + "(6)" + "/TEPRelationshipLead";
+	//inputStream = HttpClient.get(TEPRSUrl, ntCredentials);
+	//inputStream = AuthenticationUtil.getSharePointTEPData(Id);
+	System.out.println(" in side getTeam NAme2"+teamUrl);
+	//System.out.println("TEPRS ID@@"+Id);
+	//System.out.println("serviceUser@@"+serviceUser);
+	//System.out.println("servicePwd@@"+servicePwd);
+	
+	String username=Utility.getProperties("GenericUserName");
+	String tokenid=Utility.getProperties("GenericPassword");
+	 //data=loadCache(username,tokenid);
+	String urlStr = "https://ts.accenture.com/sites/Accenture%20Innovation%20Center%20for%20IBM%20Technologies/_vti_bin//ListData.svc/ACITSkillsMatrix";
+	String domain1 = "dir"; // May also be referred as realm
+	String userName = "surendra.kushwaha@accenture.com";
+	String password = "Dec@2016";		
+	Main amian=new Main();
+	String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, userName, password);
+	JSONObject xmlJSONObj=null;
+	xmlJSONObj = XML.toJSONObject(responseText);
+	System.out.println("String sharedata get Team Name+ "+responseText);
+	
+	
+	JSONArray jsonTEParray;
+	jsonTEParray = xmlJSONObj.getJSONObject("feed").optJSONArray("entry");
+	//System.out.println("jsonTEParray@@"+jsonTEParray);
+	
+	if (jsonTEParray instanceof JSONArray) {System.out.println(" in side getTeam NAme3");
+		for (int j = 0; j < jsonTEParray.length(); j++) {System.out.println(" in side getTeam NAme4");
+			JSONObject jsonTEParray1 = jsonTEParray.optJSONObject(j);
+			if (jsonTEParray1 != null) {System.out.println(" in side getTeam NAme5");
+				JSONObject propertiesTEPJson = jsonTEParray1.getJSONObject("content")
+						.getJSONObject("m:properties");
+				//tepRelLeadName += propertiesTEPJson.getString("d:Name") + ";";
+				//tepRelLeadEmail += propertiesTEPJson.getString("d:WorkEmail") + ";";
+				 teamName=propertiesTEPJson.getString("d:TeamName");
+			}
+		}
+		//allianceJson.addProperty("TEPRSLeadName", tepRelLeadName);
+		//allianceJson.addProperty("TEPRSLeadEmail", tepRelLeadEmail);
+	} else {System.out.println(" in side getTeam NAme6");
+		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
+				.getJSONObject("m:properties").getString("d:TeamName");
+		
+		System.out.println("Team Name Recieved::"+teamName);
+		
+		if (xmlJSONObj.getJSONObject("feed").optJSONObject("entry") != null) {System.out.println(" in side getTeam NAme7");
+			 teamName=xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
+					.getJSONObject("m:properties").getString("d:TeamName");
+		} else {System.out.println(" in side getTeam NAme9");
+			//allianceJson.addProperty("TEPRSLeadName", "");
+			//.addProperty("TEPRSLeadEmail", "");
+		}
+	}
+	}catch(Exception e){
+		
+	}
+	return teamName;
+
 }
 
 public static HttpResponse postRequest(URI serviceUri, String requestMessage) throws ParseException, IOException {
