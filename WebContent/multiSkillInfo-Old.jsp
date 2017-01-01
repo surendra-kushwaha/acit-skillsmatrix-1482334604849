@@ -1,0 +1,178 @@
+<%@page import="com.ibm.json.java.*,java.util.Collection, java.util.Iterator, java.math.BigDecimal"%>
+<%@ page language="java" pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.util.*"%>
+        <%@ page import="com.acit.multiskilling.model.SkillsInfo"%>
+            <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                    <title>Skill Details</title>
+                    <link href="css/jquery.dataTables.min.css" rel="stylesheet">
+                    <link href="css/dataTables.tableTools.css" rel="stylesheet">
+                    <link href="css/bootstrap.css" rel="stylesheet">
+                    <link rel="stylesheet" href="css/main.css">
+                    
+                </head>				
+                <body>
+                    <div class="main-p-container">
+                        <header>
+                            <div class="container">
+                                <div class="row top-header-row">
+                                    <div class="col col-md-8 col-sm-8 col-xs-8">
+                                    	<img class="acc-login" src="images/logo.png" >
+                                        <h4 class="proj-name">Skills Matrix</h4>
+                                    </div>
+                                    <div class="col col-md-4 col-sm-4 col-xs-4">
+                                    	<span>Accenture Center for IBM Technologies</span><br>
+                                    	<span>Smarter Selling, Smarter Delivery.</span>
+                                    	<span class="proj-name loggedin-label">Logged in : <b></b></span>                               	
+                                    	<a href="login.jsp" class="logouts">Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+						<div class="container">
+                                	<img src="images/sub_title.png" />
+                                </div>
+						<div class="container">
+			<div class="success-msg">Skill added Successfully.</div>
+			<ul class="nav nav-tabs">
+		        <li class="active"><a href="multiSkilling.jsp">Search</a></li>
+		    </ul>   
+              <div id="formHome">
+            <form method="POST" action='SearchSkillController' id="searchForm" name="frmSearchForm" onsubmit="return lStorage()">
+                <div class="top-search-items row">
+                    <div class="col col-md-4">
+                        <div><span class="form-lables">Enterprise ID</span>
+                            <span><input type="text" name="enterprizeId" /></span>
+                        </div>
+                        <div class="form-group clr-both"><span class="form-lables">Expert Skill<span class="mant-symbol"></span></span>                       
+                        	<!--<select id="skillRole" name="skillRole">
+                            	<option value="" selected>Select Skill</option>
+                                <option value="Integration Developer">Integration Developer</option>
+                                <option value="Integration Architect">Integration Architect</option>
+                                <option value="PaaS Developer">PaaS Developer</option>                               
+                        	</select>-->
+                        	<span><input type="text" name="expertSkills" /></span>
+                        </div>                       
+                    </div>                    
+                    <div class="col col-md-4">                                            
+                      <div class="form-group clr-both"><span class="form-lables">Supporting Skill<span class="mant-symbol"></span></span>
+	                        <!--<select id="clear" name="clear">
+	                            <option value="" selected>Select Skill</option>
+                                <option value="Integration Developer">Integration Developer</option>
+                                <option value="Integration Architect">Integration Architect</option>
+                                <option value="PaaS Developer">PaaS Developer</option> 	                                
+	                        </select>-->
+	                        <span><input type="text" name="supSkills" /></span>
+                       </div>
+                      
+                      <div class="form-group clr-both"><span class="form-lables">Work Location<span class="mant-symbol"></span></span>
+	                        <select id="workLocation" name="workLocation">
+	                            	<option value="" selected>Select Work Location</option>
+	                                <option value="India">India</option>
+	                                <option value="Finland">Finland</option>
+	                                <option value="Maxico">Maxico</option>
+	                                <option value="Spain">Spain</option>
+	                                <option value="UK">UK</option>
+	                                <option value="Norway">Norway</option>
+	                                <option value="US">US</option>
+	                        </select>
+                       </div>                    	
+                    </div>
+                
+                <div class="search-btns row">
+                        <div class="col col-md-6" style="text-align: center">
+                        	<!--<button type="button" class="btn btns">Search</button>-->
+                        	 <input type="button" value="Reset"  class="btn btns resetbtn" id="reset">							
+                        </div>
+                        <div class="col col-md-6" style="text-align: left">
+                            <input type="submit" value="Search" id="searchbtn" class="btn btns" />
+                        </div>
+                 </div>
+                    
+            </form>
+			<form method="post" id="downloadForm">
+            <h3 class="form-title">Skill Details</h3>
+             <button class="dwn-btns" id="expExcel">Export All</button>
+            <hr size="4" color="gray" />
+            <table  id="policyDetails" style="width:100%">
+                <thead>
+                    <tr>
+                        <th style="width:9%;">Enterprise ID</th>                                                                     
+                        <th style="width:7%;">Team</th>
+                        <th style="width:7%;">Country</th>
+                        <th style="width:12%;">Expert Skills</th>
+                        <th style="width:12%;">Supporting Skills</th>
+                        <th style="width:15%;">Certifications Obtained</th>
+                        <th style="width:15%;">Certifications Planned-FY17</th>
+                        <th style="width:10%;">Point of Contact</th> 
+                        <th style="width:10%;">Comments</th>                
+                    </tr>
+                </thead>
+                <tfoot>
+		<tr>
+			<th class="clum-hide" style="width:4%;"></th>
+			<th style="width:11%;">Enterprize ID</th>
+			<th style="width:11%;">Employee Name</th>
+			<th style="width:14%;">Team</th>
+			<th style="width:10%;">Country</th>
+			<th style="width:10%;">Expert Skill</th>
+			<th style="width:11%;">Supporting Skills</th>
+			<th style="width:11%;">Certifications Obtained</th>
+			<th style="width:7%;">Certifications Planned-FY17</th>
+			<th style="width:10%;">Point of Contact</th>			
+			<th class="clum-hide" style="width:7%;"></th>
+		</tr>
+	</tfoot>
+   <tbody>
+<%
+   List skillList=null;
+   if(request.getAttribute("skillList")!=null){
+	   skillList = (List)request.getAttribute("skillList");
+	   session.setAttribute("exportList",skillList);
+   Iterator itr=skillList.iterator();
+   while(itr.hasNext()){
+   SkillsInfo skillInfo=(SkillsInfo)itr.next();
+   %>
+
+      <tr>      	        	    
+            <td style="text-align:left;"><a href="mailto:someone@example.com?Subject=Re:Certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
+            <td><%=skillInfo.getTeamName() %></td> 
+            <td><%=skillInfo.getCountry() %></td> 
+            <td><%=skillInfo.getExpertSkills() %></td> 
+            <td><%=skillInfo.getSupSkills() %></td>  
+            <td><%=skillInfo.getCertificationObtained() %></td>
+            <td><%=skillInfo.getCertificationPlanned() %></td> 
+            <td><a href="mailto:someone@example.com?Subject=Re:Certification" target="_top">NA</a></td> 
+            <td>NA</td>    
+       </tr>
+          <%}
+   } %>
+   </tbody>
+</table>
+        </div>
+        
+               
+    </div>   
+     </form>
+						
+                            <footer class="navbar-fixed-bottom">
+                                <div class="small container">
+                                    <div class="copy-rights">
+                                        Copyright &#169; 2004 - 2015. All rights reserved.
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>                              
+                </body>
+                 <script>
+    			 </script>
+                <script src="js/jquery-1.11.3.min.js"></script>
+                <script src="js/bootstrap.min.js"></script>
+                <script src="js/jquery.dataTables.js"></script>
+                <script src="js/dataTables.tableTools.js"></script>
+                <script src="js/jquery.dataTables.columnFilter.js"></script>
+                <script src="js/main.js"></script>
+                </html>

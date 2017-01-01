@@ -51,7 +51,6 @@
                     <link href="css/dataTables.tableTools.css" rel="stylesheet">
                     <link href="css/bootstrap.css" rel="stylesheet">
                     <link rel="stylesheet" href="css/main.css">
-                    
                 </head>				
                 <body>
                     <div class="main-p-container">
@@ -75,76 +74,9 @@
                                 	<img src="images/sub_title.png" />
                                 </div>
 						<div class="container">
-			<div class="success-msg">Skill added Successfully.</div>
-			<ul class="nav nav-tabs">
-		        <li class="active"><a href="#">Search</a></li>
-		        <li class="active"><a href="skillUpdateForm.jsp">Update</a></li>
-		    </ul>   
-              <div id="formHome">
-              <%if(!uploadFlag.equalsIgnoreCase("YES")){ %>
-            <form method="POST" action='SearchSkillController' id="searchForm" name="frmSearchForm" onsubmit="return lStorage()">
-                <div class="top-search-items row">
-                    <div class="col col-md-4">
-                        <div><span class="form-lables">Enterprise ID</span>
-                            <span><input type="text" name="enterprizeId" /></span>
-                        </div>
-                        <div class="form-group clr-both"><span class="form-lables">Role<span class="mant-symbol"></span></span>                       
-                        	<select id="skillRole" name="skillRole">
-                            	<option value="" selected>Select Role</option>
-                                <option value="Integration Developer">Integration Developer</option>
-                                <option value="Integration Architect">Integration Architect</option>
-                                <option value="PaaS Developer">PaaS Developer</option>                               
-                        	</select>
-                        </div>                       
-                    </div>                    
-                    <div class="col col-md-4">                                            
-                      <div class="form-group clr-both"><span class="form-lables">Cleared<span class="mant-symbol"></span></span>
-	                        <select id="clear" name="clear">
-	                            	<option value="" selected>All</option>
-	                                <option value="Yes">Yes</option>
-	                                <option value="No">No</option>	                                
-	                        </select>
-                       </div>
-                      
-                      <div class="form-group clr-both"><span class="form-lables">Work Location<span class="mant-symbol"></span></span>
-	                        <select id="workLocation" name="workLocation">
-	                            	<option value="" selected>Select Work Location</option>
-	                                <option value="Bangalore">Bangalore</option>
-	                                <option value="Chennai">Chennai</option>
-	                                <option value="Delhi">Delhi</option>
-	                                <option value="Gurgaon">Gurgaon</option>
-	                                <option value="Hyderabad">Hyderabad</option>
-	                                <option value="Kolkata">Kolkata</option>
-	                                <option value="Mumbai">Mumbai</option>
-	                                <option value="Pune">Pune</option>
-	                                <option value="Onshore">Onshore</option>
-	                        </select>
-                       </div>                    	
-                    </div>
-                <!--<div class="search-btns row">                       
-                        <div class="col col-md-6" style="text-align: left;width: 41%">
-                        <br/>
-                            <input type="submit" value="Search" id="searchbtn" class="btn btns" />
-                        </div>
-                </div>  -->
-                
-                <div class="search-btns row">
-                        <div class="col col-md-6" style="text-align: center">
-                        	<!--<button type="button" class="btn btns">Search</button>-->
-                        	 <input type="button" value="Reset"  class="btn btns resetbtn" id="reset">							
-                        </div>
-                        <div class="col col-md-6" style="text-align: left">
-                            <input type="submit" value="Search" id="searchbtn" class="btn btns" />
-                        </div>
-                 </div>
-                    
-            </form>
-            <%} else if(uploadFlag.equalsIgnoreCase("YES")){ %>
-            	<div style="font-weight: bold;">If the information updated is not correct, Please contact administrator.</div>
-            <%} %>
-			<form method="post" id="downloadForm">
-            <h3 class="form-title">Skill Details</h3>
-             <button class="dwn-btns" id="expExcel">Export All</button>
+			<div class="success-msg">Skill added Successfully.</div>   
+              <div id="formHome">                          	
+            <h3 class="form-title">Skill Details</h3>           
             <hr size="4" color="gray" />
             <table id="skillDetails" style="width:100%">
                 <thead>
@@ -166,33 +98,20 @@
                         <th style="width:10%;" class="no-sort">View PDF</th>                 
                     </tr>
                 </thead>
-                <tfoot>
-		<!--<tr>
-			<th class="clum-hide" style="width:4%;"></th>
-			<th style="width:11%;">Enterprize ID</th>
-			<th style="width:11%;">Employee ID</th>
-			<th style="width:14%;">Name</th>
-			<th style="width:10%;">Role</th>
-			<th style="width:10%;">Location</th>
-			<th style="width:11%;">Certificate Name</th>
-			<th style="width:11%;">Certificate Date</th>
-			<th style="width:7%;">Cleared</th>
-			<th style="width:10%;">Score(%)</th>			
-			<th class="clum-hide" style="width:7%;"></th>
-		</tr>  -->
+                <tfoot>		
 	</tfoot>
    <tbody>
 <%
    List skillList=null;
    if(request.getAttribute("skillList")!=null){
 	   skillList = (List)request.getAttribute("skillList");
-	   session.setAttribute("exportList",skillList);
+	   //session.setAttribute("exportList",skillList);
    Iterator itr=skillList.iterator();
    while(itr.hasNext()){
    SkillInfo skillInfo=(SkillInfo)itr.next();
    %>
 
-      <tr>      	        	    
+      <tr>     	    
             <td style="text-align:left;"><%=skillInfo.getEnterprizeId() %></td>
             <td><%=skillInfo.getEmployeeId() %></td>
             <td><%=skillInfo.getSkillRole() %></td>
@@ -214,10 +133,10 @@
        </tr>
           <%}
    } %>
-   </tbody>
+  </tbody>
 </table>
-        </div>
-        
+	<div style="padding-bottom:1px;">&nbsp;</div>
+	<div style="font-weight: bold;"><span style="color: red;">Note:</span><span style="padding-left:4px;">If the information updated is not correct, Please email to <a href="mailto:soabpm.multiskill.support@accenture.com" target="_top">soabpm.multiskill.support@accenture.com</a></span></div>    
     <div>Legends:</div>
     <div>Section 1: Hosting Cloud Applications</div>
     <div>Section 2: Planning Cloud Applications</div>
@@ -225,9 +144,9 @@
     <div>Section 4: Enhancing Cloud Applications Using Managed Services</div>
     <div>Section 5: Using DevOps Services & Tools to Manage Cloud Applications</div>
     <div>Section 6: Using Data Services</div>
-               
-    </div>   
-     </form>
+    
+    </div>     
+    </div>
 						
                             <footer class="navbar-fixed-bottom">
                                 <div class="small container">
@@ -236,16 +155,10 @@
                                     </div>
                                 </div>
                             </footer>
-                        </div>                              
-                </body>
-                 <script>
-   					var errormsgs="<%=err%>";
-   					var updateErr = "<%=updateSucc%>";
-    			 </script>
+                        </div>                                                 
+</div>
+</body>
                 <script src="js/jquery-1.11.3.min.js"></script>
-                <script src="js/bootstrap.min.js"></script>
-                <script src="js/jquery.dataTables.js"></script>
-                <script src="js/dataTables.tableTools.js"></script>
-                <script src="js/jquery.dataTables.columnFilter.js"></script>
+                <script src="js/bootstrap.min.js"></script>           
                 <script src="js/main.js"></script>
                 </html>
