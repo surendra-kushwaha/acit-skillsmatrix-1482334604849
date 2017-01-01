@@ -44,7 +44,6 @@
                                     	<span>Accenture Center for IBM Technologies</span><br>
                                     	<span>Smarter Selling, Smarter Delivery.</span>
                                     	<span class="proj-name loggedin-label">Logged in : <b><%=userName %></b></span>                               	
-                                    	<a href="login.jsp" class="logouts">Logout</a>
                                     </div>
                                 </div>
                             </div>
