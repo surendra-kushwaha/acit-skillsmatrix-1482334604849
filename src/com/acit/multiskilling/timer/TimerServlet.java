@@ -37,8 +37,9 @@ void add(HttpServletRequest request, HttpServletResponse response) throws IOExce
         //String jobName = request.getParameter(CRON_NAME);
 		System.out.println("cron add method called");
 		String jobName =Utility.getProperties("BatchJobName"); 
-       // int interval = Integer.parseInt(Utility.getProperties("SchedulerInterval"));
-		 int interval = 86400;
+         int interval = Integer.parseInt(Utility.getProperties("SchedulerInterval"));
+         System.out.println("Interval @@"+interval);
+		 //int interval = 1440;//cron job everyday
         boolean state=Boolean.parseBoolean(Utility.getProperties("EnableBatchJob"));
  
         schedulerJobs = new TaskScheduler();
@@ -53,7 +54,7 @@ void add(HttpServletRequest request, HttpServletResponse response) throws IOExce
         // return
         PrintWriter out = response.getWriter();
         //String theString = IOUtils.toString(data, "utf-8"); 
-        //out.println("Data from sharepoint ::"+data);
+        out.println("SharePoint data imported to DB.");
         //System.out.println("inside add  added successfully");
         response.setContentType("text/html");
         response.setStatus(HttpServletResponse.SC_OK);
