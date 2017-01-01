@@ -26,7 +26,7 @@
                                     <div class="col col-md-4 col-sm-4 col-xs-4">
                                     	<span>Accenture Center for IBM Technologies</span><br>
                                     	<span>Smarter Selling, Smarter Delivery.</span>
-                                    	<span class="proj-name loggedin-label">Logged in : <b><%=userName %></b></span>                               	
+                                    	<span class="proj-name loggedin-label">Logged in : <b></b></span>                               	
                                     	<a href="login.jsp" class="logouts">Logout</a>
                                     </div>
                                 </div>
