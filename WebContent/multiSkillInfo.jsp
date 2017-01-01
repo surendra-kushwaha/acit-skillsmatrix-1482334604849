@@ -3,45 +3,6 @@
     <%@ page import="java.util.*"%>
         <%@ page import="com.acit.multiskilling.model.SkillsInfo"%>
             <!DOCTYPE html>
-            <%					 
-					 String vcap = System.getenv("VCAP_APPLICATION");	
-					 String instance_id = "unknown";
-					 String port = "unknown";
-
-					  if (vcap == null) {
-					   System.out.println("No VCAP_SERVICES found");
-					  }    
-					  else {
-						try {
-							JSONObject obj = (JSONObject)JSON.parse(vcap);
-							//System.out.println(obj.toString());
-							port = ((Long)obj.get("port")).toString();
-							instance_id = obj.get("instance_id").toString();
-
-					      } catch (Exception e) {
-					    	  e.printStackTrace();
-					    	  
-					   }
-					 }		
-					
-					%>
-            <% 
-            String err="";
-            String updateSucc = (String)request.getAttribute("updateFlag") == null ? "" : (String)request.getAttribute("updateFlag");
-			
-            String userName=null;
-            
-            if(request.getSession().getAttribute("userName")!=null){
-            	userName =request.getSession().getAttribute("userName").toString();
-            }else{
-            	response.sendRedirect("LogoutController");
-            }
-            String uploadFlag="";
-            if(request.getAttribute("uploadFlag")!=null){
-            	uploadFlag=(String)request.getAttribute("uploadFlag");
-            	//request.getRequestDispatcher("LogoutController").forward(request,response);
-            }
-			%>
                 <html>
                 <head>
                     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -80,7 +41,6 @@
 		        <li class="active"><a href="multiSkilling.jsp">Search</a></li>
 		    </ul>   
               <div id="formHome">
-              <%if(!uploadFlag.equalsIgnoreCase("YES")){ %>
             <form method="POST" action='SearchSkillController' id="searchForm" name="frmSearchForm" onsubmit="return lStorage()">
                 <div class="top-search-items row">
                     <div class="col col-md-4">
@@ -121,12 +81,6 @@
 	                        </select>
                        </div>                    	
                     </div>
-                <!--<div class="search-btns row">                       
-                        <div class="col col-md-6" style="text-align: left;width: 41%">
-                        <br/>
-                            <input type="submit" value="Search" id="searchbtn" class="btn btns" />
-                        </div>
-                </div>  -->
                 
                 <div class="search-btns row">
                         <div class="col col-md-6" style="text-align: center">
@@ -139,9 +93,6 @@
                  </div>
                     
             </form>
-            <%} else if(uploadFlag.equalsIgnoreCase("YES")){ %>
-            	<div style="font-weight: bold;">If the information updated is not correct, Please contact administrator.</div>
-            <%} %>
 			<form method="post" id="downloadForm">
             <h3 class="form-title">Skill Details</h3>
              <button class="dwn-btns" id="expExcel">Export All</button>
@@ -217,8 +168,6 @@
                         </div>                              
                 </body>
                  <script>
-   					var errormsgs="<%=err%>";
-   					var updateErr = "<%=updateSucc%>";
     			 </script>
                 <script src="js/jquery-1.11.3.min.js"></script>
                 <script src="js/bootstrap.min.js"></script>
