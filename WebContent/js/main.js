@@ -117,8 +117,8 @@ $(function() {
         $(this).blur();
     });
 
-    $(".resetbtn").click(function(e) {
-        $("searchForm").find("input[name='enterprizeId'], input[name='skillRole']").val(null);        
+    $(".resetbtn").click(function(e) {alert("reset buttn called@@");
+        $("searchForm").find("input[name='enterprizeId'], input[name='expertSkills'], input[name='supSkills']").val(null);        
         e.preventDefault();
         return false;
     });

@@ -52,12 +52,7 @@
 						<div class="container">
                                 	<img src="images/sub_title.png" />
                                 </div>
-						<div class="container">
-			<div class="success-msg">Skill added Successfully.</div>
-			<ul class="nav nav-tabs">
-		        <li class="active"><a href="#">Search</a></li>
-		        <li class="active"><a href="skillUpdateForm.jsp">Update</a></li>
-		    </ul>   
+						<div class="container">  
               <div id="formHome">
               <%if(!uploadFlag.equalsIgnoreCase("YES")){ %>
             <form method="POST" action='SearchSkillController' id="searchForm" name="frmSearchForm" onsubmit="return lStorage()">
@@ -66,46 +61,40 @@
                         <div><span class="form-lables">Enterprise ID</span>
                             <span><input type="text" name="enterprizeId" /></span>
                         </div>
-                        <div class="form-group clr-both"><span class="form-lables">Role<span class="mant-symbol"></span></span>                       
-                        	<select id="skillRole" name="skillRole">
-                            	<option value="" selected>Select Role</option>
+                        <div class="form-group clr-both"><span class="form-lables">Expert Skill<span class="mant-symbol"></span></span>                       
+                        	<!--<select id="skillRole" name="skillRole">
+                            	<option value="" selected>Select Skill</option>
                                 <option value="Integration Developer">Integration Developer</option>
                                 <option value="Integration Architect">Integration Architect</option>
                                 <option value="PaaS Developer">PaaS Developer</option>                               
-                        	</select>
+                        	</select>-->
+                        	<span><input type="text" name="expertSkills" /></span>
                         </div>                       
                     </div>                    
                     <div class="col col-md-4">                                            
-                      <div class="form-group clr-both"><span class="form-lables">Cleared<span class="mant-symbol"></span></span>
-	                        <select id="clear" name="clear">
-	                            	<option value="" selected>All</option>
-	                                <option value="Yes">Yes</option>
-	                                <option value="No">No</option>	                                
-	                        </select>
+                      <div class="form-group clr-both"><span class="form-lables">Supporting Skill<span class="mant-symbol"></span></span>
+	                        <!--<select id="clear" name="clear">
+	                            <option value="" selected>Select Skill</option>
+                                <option value="Integration Developer">Integration Developer</option>
+                                <option value="Integration Architect">Integration Architect</option>
+                                <option value="PaaS Developer">PaaS Developer</option> 	                                
+	                        </select>-->
+	                        <span><input type="text" name="supSkills" /></span>
                        </div>
                       
                       <div class="form-group clr-both"><span class="form-lables">Work Location<span class="mant-symbol"></span></span>
 	                        <select id="workLocation" name="workLocation">
 	                            	<option value="" selected>Select Work Location</option>
-	                                <option value="Bangalore">Bangalore</option>
-	                                <option value="Chennai">Chennai</option>
-	                                <option value="Delhi">Delhi</option>
-	                                <option value="Gurgaon">Gurgaon</option>
-	                                <option value="Hyderabad">Hyderabad</option>
-	                                <option value="Kolkata">Kolkata</option>
-	                                <option value="Mumbai">Mumbai</option>
-	                                <option value="Pune">Pune</option>
-	                                <option value="Onshore">Onshore</option>
+	                                <option value="India">India</option>
+	                                <option value="Finland">Finland</option>
+	                                <option value="Maxico">Maxico</option>
+	                                <option value="Spain">Spain</option>
+	                                <option value="UK">UK</option>
+	                                <option value="Norway">Norway</option>
+	                                <option value="US">US</option>
 	                        </select>
                        </div>                    	
                     </div>
-                <!--<div class="search-btns row">                       
-                        <div class="col col-md-6" style="text-align: left;width: 41%">
-                        <br/>
-                            <input type="submit" value="Search" id="searchbtn" class="btn btns" />
-                        </div>
-                </div>  -->
-                
                 <div class="search-btns row">
                         <div class="col col-md-6" style="text-align: center">
                         	<!--<button type="button" class="btn btns">Search</button>-->
