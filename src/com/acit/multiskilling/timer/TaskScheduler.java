@@ -392,7 +392,7 @@ public static String getSupSkills(JSONObject propertiesJson,String sharepointUrl
 		String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, username, tokenid);
 		JSONObject xmlJSONObj=null;
 		xmlJSONObj = XML.toJSONObject(responseText);
-		System.out.println("String sharedata get Team Name+ "+responseText);		
+		System.out.println("String sharedata get Supplimentory Skills "+responseText);		
 		/*JSONObject jsonTEParray;
 		jsonTEParray = xmlJSONObj.getJSONObject("entry");
 		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
@@ -412,11 +412,11 @@ public static String getSupSkills(JSONObject propertiesJson,String sharepointUrl
 					JSONObject propertiesTEPJson = jsonTEParray1.getJSONObject("content")
 							.getJSONObject("m:properties");
 					supSkills += propertiesTEPJson.getString("d:Value") + ";";
+					System.out.println("Suppliemtory Skill@@"+supSkills);
 					//tepRelLeadEmail += propertiesTEPJson.getString("d:WorkEmail") + ";";
 				}
 			}
-			//allianceJson.addProperty("TEPRSLeadName", tepRelLeadName);
-			//allianceJson.addProperty("TEPRSLeadEmail", tepRelLeadEmail);
+			System.out.println("Suppliemtory Skill@@##"+supSkills);
 		} else {
 			if (xmlJSONObj.getJSONObject("feed").optJSONObject("entry") != null) {
 				/*allianceJson.addProperty("TEPRSLeadName",
@@ -427,6 +427,7 @@ public static String getSupSkills(JSONObject propertiesJson,String sharepointUrl
 								.getJSONObject("m:properties").getString("d:WorkEmail"));*/
 				supSkills=xmlJSONObj.getJSONObject("feed").getJSONObject("entry").getJSONObject("content")
 						.getJSONObject("m:properties").getString("d:Value");
+				System.out.println("Suppliemtory Skill@@AA:"+supSkills);
 			} else {
 				//allianceJson.addProperty("TEPRSLeadName", "");
 				//allianceJson.addProperty("TEPRSLeadEmail", "");

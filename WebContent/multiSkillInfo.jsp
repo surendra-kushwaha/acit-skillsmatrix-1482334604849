@@ -152,14 +152,14 @@
    %>
 
       <tr>      	        	    
-            <td style="text-align:left;"><a href="mailto:someone@example.com?Subject=Re:Certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
+            <td style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
             <td><%=skillInfo.getTeamName() %></td> 
             <td><%=skillInfo.getCountry() %></td> 
             <td><%=skillInfo.getExpertSkills() %></td> 
             <td><%=skillInfo.getSupSkills() %></td>  
             <td><%=skillInfo.getCertificationObtained() %></td>
             <td><%=skillInfo.getCertificationPlanned() %></td> 
-            <td><a href="mailto:someone@example.com?Subject=Re:Certification" target="_top">NA</a></td> 
+            <td><a href="mailto:someone@accenture.com?Subject=Re:Certification" target="_top">NA</a></td> 
             <td>NA</td>    
        </tr>
           <%}
