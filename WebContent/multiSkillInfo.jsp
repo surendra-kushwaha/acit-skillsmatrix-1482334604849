@@ -98,7 +98,7 @@
                 <div class="search-btns row">
                         <div class="col col-md-6" style="text-align: center">
                         	<!--<button type="button" class="btn btns">Search</button>-->
-                        	 <input type="button" value="Reset"  class="btn btns resetbtn" id="reset">							
+                        	 <input type="button" value="Reset"  class="btn btns resetbtn" id="reset"/>							
                         </div>
                         <div class="col col-md-6" style="text-align: left">
                             <input type="submit" value="Search" id="searchbtn" class="btn btns" />
