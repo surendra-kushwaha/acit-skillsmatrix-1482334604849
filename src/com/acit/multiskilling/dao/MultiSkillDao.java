@@ -42,6 +42,10 @@ public class MultiSkillDao {
     		    }
 	    		if(validateUser(skillInfo.getEnterpriseId())){
 	    		System.out.println("Inside Update");
+	    		if ((connection == null) || connection.isClosed() ) {
+    				//con.DriverManager.getConnection(...);
+    				connection =  DataBase.getInstance().getConnection();
+    		    }
 	    		//List<InputStream> bindVariables = new ArrayList<InputStream>();
 	    		StringBuffer queryString = new StringBuffer();
 				queryString.append("UPDATE SKILLS_MATRIX_DATA set \"EXPERT_SKILLS\"=?,\"SUPPLIMENTORY_SKILLS\"=?, \"COUNTRY\"=?,  \"CERTIFICATION_OBTAINED\"=?,  \"CERTIFICATION_PLANNED\"=?, \"MENTOR_ENT_ID\"=?"
