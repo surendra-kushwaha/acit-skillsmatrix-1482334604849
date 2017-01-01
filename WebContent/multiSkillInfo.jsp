@@ -1,40 +1,18 @@
 <%@page import="com.ibm.json.java.*,java.util.Collection, java.util.Iterator, java.math.BigDecimal"%>
 <%@ page language="java" pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.*"%>
-        <%@ page import="com.acit.multiskilling.model.SkillInfo"%>
+        <%@ page import="com.acit.multiskilling.model.SkillsInfo"%>
             <!DOCTYPE html>
-            <%					 
-					 String vcap = System.getenv("VCAP_APPLICATION");	
-					 String instance_id = "unknown";
-					 String port = "unknown";
-
-					  if (vcap == null) {
-					   System.out.println("No VCAP_SERVICES found");
-					  }    
-					  else {
-						try {
-							JSONObject obj = (JSONObject)JSON.parse(vcap);
-							//System.out.println(obj.toString());
-							port = ((Long)obj.get("port")).toString();
-							instance_id = obj.get("instance_id").toString();
-
-					      } catch (Exception e) {
-					    	  e.printStackTrace();
-					    	  
-					   }
-					 }		
-					
-					%>
             <% 
             String err="";
             String updateSucc = (String)request.getAttribute("updateFlag") == null ? "" : (String)request.getAttribute("updateFlag");
 			
-            String userName=null;
+            String userName="";
             
             if(request.getSession().getAttribute("userName")!=null){
             	userName =request.getSession().getAttribute("userName").toString();
             }else{
-            	response.sendRedirect("LogoutController");
+            	//response.sendRedirect("LogoutController");
             }
             String uploadFlag="";
             if(request.getAttribute("uploadFlag")!=null){
@@ -149,21 +127,15 @@
             <table id="skillDetails" style="width:100%">
                 <thead>
                     <tr>
-                        <th style="width:9%;">Enterprise ID</th>
-                        <th style="width:9%;">Employee ID</th>                       
-                        <th style="width:9%;">Role</th>
-                        <th style="width:9%;">Location</th>                        
-                        <th style="width:9%;">Certification Date</th>
-                        <th style="width:8%;">Overall Score</th>
-                        <th style="width:7%;">Section 1</th>
-                        <th style="width:7%;">Section 2</th>
-                        <th style="width:7%;">Section 3</th>
-                        <th style="width:7%;">Section 4</th>
-                        <th style="width:7%;">Section 5</th>                      
-                        <th style="width:8%;">Section 6</th>
-                        <th style="width:7%;">Cleared</th>
-                        <th style="width:9%;">Upload Date</th>
-                        <th style="width:10%;" class="no-sort">View PDF</th>                 
+                        <th style="width:9%;">Enterprise ID</th>                                                                     
+                        <th style="width:7%;">Team</th>
+                        <th style="width:7%;">Country</th>
+                        <th style="width:12%;">Expert Skills</th>
+                        <th style="width:12%;">Supporting Skills</th>
+                        <th style="width:15%;">Certifications Obtained</th>
+                        <th style="width:15%;">Certifications Planned-FY17</th>
+                        <th style="width:10%;">Point of Contact</th> 
+                        <th style="width:10%;">Comments</th>                
                     </tr>
                 </thead>
                 <tfoot>
@@ -189,42 +161,25 @@
 	   session.setAttribute("exportList",skillList);
    Iterator itr=skillList.iterator();
    while(itr.hasNext()){
-   SkillInfo skillInfo=(SkillInfo)itr.next();
+   SkillsInfo skillInfo=(SkillsInfo)itr.next();
    %>
 
       <tr>      	        	    
-            <td style="text-align:left;"><%=skillInfo.getEnterprizeId() %></td>
-            <td><%=skillInfo.getEmployeeId() %></td>
-            <td><%=skillInfo.getSkillRole() %></td>
-            <td><%=skillInfo.getWorkLocation() %></td>
-            <td><%=skillInfo.getCertDate() %></td>
-            <td><%=skillInfo.getScore() %></td>            
-            <td><%=skillInfo.getSection1Score() %></td>
-            <td><%=skillInfo.getSection2Score() %></td>
-            <td><%=skillInfo.getSection3Score() %></td>
-            <td><%=skillInfo.getSection4Score() %></td>
-            <td><%=skillInfo.getSection5Score() %></td>
-            <td><%=skillInfo.getSection6Score() %></td>
-            <td><%=skillInfo.getClear() %></td>
-            <td nowrap><%=skillInfo.getUploadDate() %></td>
-            <td><%if(skillInfo.isCertificateAvailable()) {%>
-            	<a style="cursor: pointer;" href="downLoadFile?docType=pdf&enterprizeId=<%=skillInfo.getEnterprizeId() %>" target="new"><img src="images/icon_PDF.png" width="21"></a>
-            	<%}%>
-            </td>            
+            <td style="text-align:left;"><a href="mailto:someone@example.com?Subject=Re:Certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
+            <td><%=skillInfo.getTeamName() %></td> 
+            <td><%=skillInfo.getCountry() %></td> 
+            <td><%=skillInfo.getExpertSkills() %></td> 
+            <td><%=skillInfo.getSupSkills() %></td>  
+            <td><%=skillInfo.getCertificationObtained() %></td>
+            <td><%=skillInfo.getCertificationPlanned() %></td> 
+            <td><a href="mailto:someone@example.com?Subject=Re:Certification" target="_top">NA</a></td> 
+            <td>NA</td>    
        </tr>
           <%}
    } %>
    </tbody>
 </table>
         </div>
-        
-    <div>Legends:</div>
-    <div>Section 1: Hosting Cloud Applications</div>
-    <div>Section 2: Planning Cloud Applications</div>
-    <div>Section 3: Implementing Cloud Ready Applications</div>
-    <div>Section 4: Enhancing Cloud Applications Using Managed Services</div>
-    <div>Section 5: Using DevOps Services & Tools to Manage Cloud Applications</div>
-    <div>Section 6: Using Data Services</div>
                
     </div>   
      </form>
