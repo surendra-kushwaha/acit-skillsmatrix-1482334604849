@@ -386,10 +386,10 @@ public static String getSupSkills(JSONObject propertiesJson,String sharepointUrl
 		String username=Utility.getProperties("GenericUserName");
 		String tokenid=Utility.getProperties("GenericPassword");
 		String domain1 = "dir"; // May also be referred as realm
-		//String userName = "surendra.kushwaha@accenture.com";
-		//String password = "Dec@2016";		
+		String userName = "surendra.kushwaha@accenture.com";
+		String password = "Dec@2016";		
 		Main amian=new Main();
-		String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, username, tokenid);
+		String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, userName, password);
 		JSONObject xmlJSONObj=null;
 		xmlJSONObj = XML.toJSONObject(responseText);
 		System.out.println("String sharedata get Supplimentory Skills "+responseText);		
@@ -453,10 +453,10 @@ public static String getMentorEntId(JSONObject propertiesJson,String sharepointU
 		String username=Utility.getProperties("GenericUserName");
 		String tokenid=Utility.getProperties("GenericPassword");
 		String domain1 = "dir"; // May also be referred as realm
-		//String userName = "surendra.kushwaha@accenture.com";
-		//String password = "Dec@2016";		
+		String userName = "surendra.kushwaha@accenture.com";
+		String password = "Dec@2016";		
 		Main amian=new Main();
-		String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, username, tokenid);
+		String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, userName, password);
 		JSONObject xmlJSONObj=null;
 		xmlJSONObj = XML.toJSONObject(responseText);
 		System.out.println("String sharedata get Team Name+ "+responseText);		
