@@ -66,7 +66,7 @@ $(function() {
         $('#myTabs li a:first').click();
     });
     
-    $("#reset").click(function(){
+    $("#reset").click(function(){alert('#reset clicked');
         $(":input","#searchForm")
         .not(":button, :submit, :reset, :hidden")
         .val("")
