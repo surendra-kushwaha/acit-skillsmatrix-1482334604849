@@ -34,11 +34,13 @@ public class SearchSkillsController extends HttpServlet {
     	String clreadFlag=request.getParameter("expertSkills");
     	String skillRole=request.getParameter("supSkills");
     	String location=request.getParameter("workLocation");
+    	String certification=request.getParameter("certification");
     	SkillsInfo skillInfo=new SkillsInfo();
     	skillInfo.setEnterpriseId(enterprizeId);
     	skillInfo.setExpertSkills(clreadFlag);
     	skillInfo.setSupSkills(skillRole);
     	skillInfo.setWorkLocation(location);
+    	skillInfo.setCertificationObtained(certification);
     	
     	System.out.println("Controller entID"+enterprizeId);
     	System.out.println("Controller clear"+clreadFlag);

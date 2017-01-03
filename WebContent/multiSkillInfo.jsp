@@ -68,10 +68,13 @@
                                 <option value="PaaS Developer">PaaS Developer</option>                               
                         	</select>-->
                         	<span><input type="text" name="expertSkills" /></span>
+                        </div>
+                        <div><span class="form-lables">Certification</span>
+                            <span><input type="text" name="certification" /></span>
                         </div>                       
                     </div>                    
                     <div class="col col-md-4">                                                                 
-                      <div class="form-group clr-both"><span class="form-lables">Country<span class="mant-symbol"></span></span>
+                      <div class="form-group clr-both"><span class="form-lables" style="width:105px;">Country<span class="mant-symbol"></span></span>
 	                        <select id="workLocation" name="workLocation">
 	                            	<option value="" selected>Select Country</option>
 	                                <option value="India">India</option>
@@ -84,7 +87,7 @@
 	                                <option value="US">US</option>
 	                        </select>
                        </div>
-                       <div class="form-group clr-both"><span class="form-lables">**Supporting Skill<span class="mant-symbol"></span></span>
+                       <div class="form-group clr-both"><span class="form-lables" style="width:105px;">**Supporting Skill</span>
 	                        <!--<select id="clear" name="clear">
 	                            <option value="" selected>Select Skill</option>
                                 <option value="Integration Developer">Integration Developer</option>
