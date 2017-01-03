@@ -60,7 +60,7 @@
                         <div><span class="form-lables">Enterprise ID</span>
                             <span><input type="text" name="enterprizeId" /></span>
                         </div>
-                        <div class="form-group clr-both"><span class="form-lables">Expert Skill<span class="mant-symbol"></span></span>                       
+                        <div class="form-group clr-both"><span class="form-lables">*Expert Skill<span class="mant-symbol"></span></span>                       
                         	<!--<select id="skillRole" name="skillRole">
                             	<option value="" selected>Select Skill</option>
                                 <option value="Integration Developer">Integration Developer</option>
@@ -70,21 +70,12 @@
                         	<span><input type="text" name="expertSkills" /></span>
                         </div>                       
                     </div>                    
-                    <div class="col col-md-4">                                            
-                      <div class="form-group clr-both"><span class="form-lables">Supporting Skill<span class="mant-symbol"></span></span>
-	                        <!--<select id="clear" name="clear">
-	                            <option value="" selected>Select Skill</option>
-                                <option value="Integration Developer">Integration Developer</option>
-                                <option value="Integration Architect">Integration Architect</option>
-                                <option value="PaaS Developer">PaaS Developer</option> 	                                
-	                        </select>-->
-	                        <span><input type="text" name="supSkills" /></span>
-                       </div>
-                      
-                      <div class="form-group clr-both"><span class="form-lables">Work Location<span class="mant-symbol"></span></span>
+                    <div class="col col-md-4">                                                                 
+                      <div class="form-group clr-both"><span class="form-lables">Country<span class="mant-symbol"></span></span>
 	                        <select id="workLocation" name="workLocation">
-	                            	<option value="" selected>Select Work Location</option>
+	                            	<option value="" selected>Select Country</option>
 	                                <option value="India">India</option>
+	                                <option value="China">China</option>
 	                                <option value="Finland">Finland</option>
 	                                <option value="Maxico">Maxico</option>
 	                                <option value="Spain">Spain</option>
@@ -92,15 +83,25 @@
 	                                <option value="Norway">Norway</option>
 	                                <option value="US">US</option>
 	                        </select>
+                       </div>
+                       <div class="form-group clr-both"><span class="form-lables">**Supporting Skill<span class="mant-symbol"></span></span>
+	                        <!--<select id="clear" name="clear">
+	                            <option value="" selected>Select Skill</option>
+                                <option value="Integration Developer">Integration Developer</option>
+                                <option value="Integration Architect">Integration Architect</option>
+                                <option value="PaaS Developer">PaaS Developer</option> 	                                
+	                        </select>-->
+	                        <span><input type="text" name="supSkills" /></span>
                        </div>                    	
                     </div>
                 <div class="search-btns row">
-                        <div class="col col-md-6" style="text-align: center">
-                        	 <input type="reset" value="Reset"  class="btn btns resetbtn" id="reset"/>							
-                        </div>
-                        <div class="col col-md-6" style="text-align: left">
+                		<div class="col col-md-6" style="text-align: center">
                             <input type="submit" value="Search" id="searchbtn" class="btn btns" />
                         </div>
+                        <div class="col col-md-6" style="text-align: left">
+                        	 <input type="reset" value="Reset"  class="btn btns resetbtn" id="reset"/>							
+                        </div>
+                        
                  </div>
                     
             </form>
@@ -117,8 +118,8 @@
                         <th style="width:9%;">Enterprise ID</th>                                                                     
                         <th style="width:7%;">Team</th>
                         <th style="width:7%;">Country</th>
-                        <th style="width:12%;">Expert Skills</th>
-                        <th style="width:12%;">Supporting Skills</th>
+                        <th style="width:12%;">*Expert Skills</th>
+                        <th style="width:12%;">**Supporting Skills</th>
                         <th style="width:15%;">Certifications Obtained</th>
                         <th style="width:15%;">Certifications Planned-FY17</th>
                         <th style="width:10%;">Point of Contact</th> 
@@ -167,7 +168,9 @@
    </tbody>
 </table>
         </div>
-               
+         <div><b>Note</b></div>
+    <div><b>*Expert Skill</b> : The person has development experience on the skill.</div>
+    <div><b>**Supporting Skill</b> : The person is familiar with this skill and can get cross trained so as to be able to develop simple applications within couple of weeks</div>      
     </div>   
      </form>
 						
