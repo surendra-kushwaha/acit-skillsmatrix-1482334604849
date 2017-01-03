@@ -69,9 +69,9 @@
                         	</select>-->
                         	<span><input type="text" name="expertSkills" /></span>
                         </div>
-                        <div><span class="form-lables">Certification</span>
+                        <%!--<div><span class="form-lables">Certification</span>
                             <span><input type="text" name="certification" /></span>
-                        </div>                       
+                        </div>--%>                       
                     </div>                    
                     <div class="col col-md-4">                                                                 
                       <div class="form-group clr-both"><span class="form-lables" style="width:105px;">Country<span class="mant-symbol"></span></span>
