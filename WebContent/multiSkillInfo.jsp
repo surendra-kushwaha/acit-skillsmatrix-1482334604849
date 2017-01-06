@@ -143,18 +143,18 @@
    while(itr.hasNext()){
    SkillsInfo skillInfo=(SkillsInfo)itr.next();
    %>
-      <!--<tr>      	        	    
-            <td style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
+      <tr>      	        	    
+            <td style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId()%>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
             <td><%=skillInfo.getTeamName() %></td> 
             <td><%=skillInfo.getCountry() %></td> 
             <td><%=skillInfo.getExpertSkills() %></td> 
             <td><%=skillInfo.getSupSkills() %></td>  
             <td><%=skillInfo.getCertificationObtained() %></td>
             <td><%=skillInfo.getCertificationPlanned() %></td> 
-            <td><a href="mailto:<%=skillInfo.getMentorEntId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></div> 
+            <td><a href="mailto:<%=skillInfo.getMentorEntId()%>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></td> 
             <td><%=skillInfo.getComments() %></td>    
-       </tr>-->
-       <div>      	        	    
+       </tr>
+       <!--<div>      	        	    
             <div style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></div> 
             <div><%=skillInfo.getTeamName() %></div> 
             <div><%=skillInfo.getCountry() %></div> 
@@ -164,7 +164,7 @@
             <div><%=skillInfo.getCertificationPlanned() %></div> 
             <div><a href="mailto:<%=skillInfo.getMentorEntId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></div> 
             <div><%=skillInfo.getComments() %></div>    
-       </div>
+       </div>-->
           <%}
    } %>
    </tbody>
