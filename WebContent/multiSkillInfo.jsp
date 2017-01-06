@@ -103,7 +103,8 @@
                         document.getElementById('searchbtn').click()"/>
                         </div>
                         <div class="col col-md-6" style="text-align: left">
-                        	 <input type="reset" value="Reset"  class="btn btns resetbtn" id="reset"/>							
+                        	 <input type="reset" value="Reset"  class="btn btns resetbtn" id="reset" onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('reset').click()"/>							
                         </div>
                         
                  </div>

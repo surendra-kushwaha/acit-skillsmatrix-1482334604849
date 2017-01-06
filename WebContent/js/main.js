@@ -6,7 +6,7 @@ $(function() {
         $('#myTabs li a:first').click();
     });
     
-    $("#reset").click(function(){alert('#reset clicked');
+    $("#reset").click(function(){//alert('#reset clicked');
         $(":input","#searchForm")
         .not(":button, :submit, :reset, :hidden")
         .val("")
@@ -41,7 +41,7 @@ $(function() {
         $(this).blur();
     });
 
-    $(".resetbtn").click(function(e) {alert("reset buttn called@@");
+    $(".resetbtn").click(function(e) {//alert("reset buttn called@@");
         $("searchForm").find("input[name='enterprizeId'], input[name='expertSkills'], input[name='supSkills']").val(null);        
         e.preventDefault();
         return false;
