@@ -121,7 +121,7 @@
             <hr size="4" color="gray" />
             <table id="skillDetails" style="width:100%">
                 <thead>
-                    <!--<tr>
+                    <tr>
                         <th style="width:9%;">Enterprise ID</th>                                                                     
                         <th style="width:7%;">Team</th>
                         <th style="width:7%;">Country</th>
@@ -131,7 +131,7 @@
                         <th style="width:15%;">Certifications Planned-FY17</th>
                         <th style="width:10%;">Point of Contact</th> 
                         <th style="width:10%;">Comments</th>                
-                    </tr>-->
+                    </tr>
                 </thead>
    <tbody>
 <%
@@ -144,7 +144,7 @@
    SkillsInfo skillInfo=(SkillsInfo)itr.next();
    %>
       <tr>      	        	    
-            <td style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
+            <!--<td style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
             <td><%=skillInfo.getTeamName() %></td> 
             <td><%=skillInfo.getCountry() %></td> 
             <td><%=skillInfo.getExpertSkills() %></td> 
@@ -152,7 +152,16 @@
             <td><%=skillInfo.getCertificationObtained() %></td>
             <td><%=skillInfo.getCertificationPlanned() %></td> 
             <td><a href="mailto:<%=skillInfo.getMentorEntId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></td> 
-            <td><%=skillInfo.getComments() %></td>    
+            <td><%=skillInfo.getComments() %></td>-->
+            <td></td> 
+            <td></td>
+            <td><%=skillInfo.getTeamName() %></td>
+            <td><%=skillInfo.getTeamName() %></td>
+            <td><%=skillInfo.getTeamName() %></td>
+            <td><%=skillInfo.getTeamName() %></td>
+            <td><%=skillInfo.getTeamName() %></td>
+            <td><%=skillInfo.getTeamName() %></td>
+            <td><%=skillInfo.getTeamName() %></td>  
        </tr>
           <%}
    } %>
