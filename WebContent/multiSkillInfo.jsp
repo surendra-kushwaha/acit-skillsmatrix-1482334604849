@@ -121,7 +121,7 @@
             <hr size="4" color="gray" />
             <table id="skillDetails" style="width:100%">
                 <thead>
-                    <tr>
+                    <!--<tr>
                         <th style="width:9%;">Enterprise ID</th>                                                                     
                         <th style="width:7%;">Team</th>
                         <th style="width:7%;">Country</th>
@@ -131,23 +131,8 @@
                         <th style="width:15%;">Certifications Planned-FY17</th>
                         <th style="width:10%;">Point of Contact</th> 
                         <th style="width:10%;">Comments</th>                
-                    </tr>
+                    </tr>-->
                 </thead>
-                <tfoot>
-		<!--<tr>
-			<th class="clum-hide" style="width:4%;"></th>
-			<th style="width:11%;">Enterprize ID</th>
-			<th style="width:11%;">Employee ID</th>
-			<th style="width:14%;">Name</th>
-			<th style="width:10%;">Role</th>
-			<th style="width:10%;">Location</th>
-			<th style="width:11%;">Certificate Name</th>
-			<th style="width:11%;">Certificate Date</th>
-			<th style="width:7%;">Cleared</th>
-			<th style="width:10%;">Score(%)</th>			
-			<th class="clum-hide" style="width:7%;"></th>
-		</tr>  -->
-	</tfoot>
    <tbody>
 <%
    List skillList=null;
@@ -158,7 +143,6 @@
    while(itr.hasNext()){
    SkillsInfo skillInfo=(SkillsInfo)itr.next();
    %>
-
       <tr>      	        	    
             <td style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
             <td><%=skillInfo.getTeamName() %></td> 
@@ -168,7 +152,7 @@
             <td><%=skillInfo.getCertificationObtained() %></td>
             <td><%=skillInfo.getCertificationPlanned() %></td> 
             <td><a href="mailto:<%=skillInfo.getMentorEntId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></td> 
-            <td>NA</td>    
+            <td><%=skillInfo.getComments() %></td>    
        </tr>
           <%}
    } %>
