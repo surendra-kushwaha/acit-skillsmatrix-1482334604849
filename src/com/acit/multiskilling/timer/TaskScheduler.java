@@ -186,7 +186,7 @@ private static List<SkillsInfo> convertToJSONList(String sharepointURL,JSONObjec
 		System.out.println("Expert Skills "+expertSkills);
 		System.out.println("Sup Skills  "+supSkills);
 		System.out.println("Mentor ID  "+mentorId);
-		System.out.println("EnterpriseID  "+allianceJson.get("EnterpriseId").toString());
+		//System.out.println("EnterpriseID  "+allianceJson.get("EnterpriseId").toString());
 		System.out.println("Country  "+allianceJson.get("CountryValue").toString());
 		System.out.println("Certification Obtained  "+allianceJson.get("CertificationsObtained").toString());
 		System.out.println("Certification Planned  "+allianceJson.get("CertificationsPlannedForTheYear").toString());
