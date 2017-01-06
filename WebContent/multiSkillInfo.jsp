@@ -100,7 +100,7 @@
                     </div>
                 <div class="search-btns row">
                 		<div class="col col-md-6" style="text-align: center">
-                            <input type="submit" value="Search" id="searchbtn" class="btn btns" />
+                            <input type="submit" value="Search" id="searchbtn" class="btn btns"  tabindex="1"/>
                         </div>
                         <div class="col col-md-6" style="text-align: left">
                         	 <input type="reset" value="Reset"  class="btn btns resetbtn" id="reset"/>							
@@ -143,26 +143,28 @@
    while(itr.hasNext()){
    SkillsInfo skillInfo=(SkillsInfo)itr.next();
    %>
-      <tr>      	        	    
-            <!--<td style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
+      <!--<tr>      	        	    
+            <td style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
             <td><%=skillInfo.getTeamName() %></td> 
             <td><%=skillInfo.getCountry() %></td> 
             <td><%=skillInfo.getExpertSkills() %></td> 
             <td><%=skillInfo.getSupSkills() %></td>  
             <td><%=skillInfo.getCertificationObtained() %></td>
             <td><%=skillInfo.getCertificationPlanned() %></td> 
-            <td><a href="mailto:<%=skillInfo.getMentorEntId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></td> 
-            <td><%=skillInfo.getComments() %></td>-->
-            <td></td> 
-            <td></td>
-            <td><%=skillInfo.getTeamName() %></td>
-            <td><%=skillInfo.getTeamName() %></td>
-            <td><%=skillInfo.getTeamName() %></td>
-            <td><%=skillInfo.getTeamName() %></td>
-            <td><%=skillInfo.getTeamName() %></td>
-            <td><%=skillInfo.getTeamName() %></td>
-            <td><%=skillInfo.getTeamName() %></td>  
-       </tr>
+            <td><a href="mailto:<%=skillInfo.getMentorEntId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></div> 
+            <td><%=skillInfo.getComments() %></td>    
+       </tr>-->
+       <div>      	        	    
+            <div style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></div> 
+            <div><%=skillInfo.getTeamName() %></div> 
+            <div><%=skillInfo.getCountry() %></div> 
+            <div><%=skillInfo.getExpertSkills() %></div> 
+            <div><%=skillInfo.getSupSkills() %></div>  
+            <div><%=skillInfo.getCertificationObtained() %></div>
+            <div><%=skillInfo.getCertificationPlanned() %></div> 
+            <div><a href="mailto:<%=skillInfo.getMentorEntId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></div> 
+            <div><%=skillInfo.getComments() %></div>    
+       </div>
           <%}
    } %>
    </tbody>
