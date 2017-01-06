@@ -1,64 +1,4 @@
 $(function() {
-    /*$('.dataTables_length, .paging_full_numbers').hide();
-    $(".selections .selector-multiple").attr("disabled", true);*/
-    var pTable = $('#skillDetails').DataTable({
-        "sPaginationType": "full_numbers",
-        "iDisplayLength": 10,
-        "sDom": 'T<"clear">lfrtip',
-        "oTableTools": {
-            "sRowSelect": "multi",
-            "aButtons": [{
-                "sExtends": "select_all",
-                "sButtonText": "Select Filtered",
-                "sSelectedClass": "row_selected",
-                "fnClick": function(nButton, oConfig, oFlash) {
-                    var oTT = TableTools.fnGetInstance('skillDetails');
-                    oTT.fnSelectAll(true); //True = Select only filtered rows (true). Optional - default false.
-                }
-            }, {
-                "sExtends": "select_none",
-                "mColumns": "visible"
-            }]
-        },
-        "aoColumnDefs": [{
-            'bSortable': false,
-            'aTargets': [0, 9, 10]
-        }],
-        "deferRender": true,
-        "colVis": {
-            exclude: [0]
-        },
-        "fnInitComplete": function(oSettings, json) {
-            if ($('#skillDetails tbody tr td').hasClass("dataTables_empty")) {
-                //$('tfoot').hide();
-            } else {
-                $('tfoot').css("display", "table-header-group");
-            }
-        },
-        "fnDrawCallback": function(oSettings) {
-            $this = this;
-            if ($('#skillDetails tbody tr td').hasClass("dataTables_empty")) {
-                $('.dataTables_length, .paging_full_numbers').hide();
-            } else {
-                $('.dataTables_length, .paging_full_numbers').show();
-                $('tfoot').css("display", "table-header-group");
-             
-            };  
-            
-            $( ".score-box" ).click(function(e) {
-              	  e.stopImmediatePropagation();
-            	  $("#section1").text($(this).data("section1"));
-                  $("#section2").text($(this).data("section2"));
-                  $("#section3").text($(this).data("section3"));
-                  $("#section4").text($(this).data("section4"));
-                  $("#section5").text($(this).data("section5"));
-                  $("#section6").text($(this).data("section6"));
-                  $("#overall").text($(this).data("overall"));                 
-                  $("#myModal").modal("show");                 
-            });
-        }
-    }).columnFilter();
-
     $('.data-btype').on("change", function() {});
 
     $("#searchbtn").click(function() {
@@ -72,23 +12,7 @@ $(function() {
         .val("")
         .removeAttr("selected");
     });
-        
-    
-    /*$("#score-box").on("click", function(e) {  
-    	alert($(this).data("formno"));
-    	 $("#fromnos").text($(this).data("formno"));
-         $("#section2").text($(this).data("desc"));
-         $("#section3").text($(this).data("btype"));       
-    });*/
-    /*
-    function editretainValues(values) {
-        $("#fromnos").text(values.formno);
-        $("#section2").text(values.desc);
-        $("#section3").val($.trim(values.btype));
-                            
-    }*/
-    
-
+       
     if (errormsgs == "exists") {
         $("#singleUpload").click();
         $(".multipleUpload").addClass("hide");

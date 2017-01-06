@@ -53,7 +53,6 @@
                                 </div>
 						<div class="container">  
               <div id="formHome">
-              <%if(!uploadFlag.equalsIgnoreCase("YES")){ %>
             <form method="POST" action='SearchSkillController' id="searchForm" name="frmSearchForm" onsubmit="return lStorage()">
                 <div class="top-search-items row">
                     <div class="col col-md-4">
@@ -100,7 +99,8 @@
                     </div>
                 <div class="search-btns row">
                 		<div class="col col-md-6" style="text-align: center">
-                            <input type="submit" value="Search" id="searchbtn" class="btn btns"  tabindex="1"/>
+                            <input type="submit" value="Search" id="searchbtn" class="btn btns" onkeydown = "if (event.keyCode == 13)
+                        document.getElementById('searchbtn').click()"/>
                         </div>
                         <div class="col col-md-6" style="text-align: left">
                         	 <input type="reset" value="Reset"  class="btn btns resetbtn" id="reset"/>							
@@ -112,9 +112,6 @@
     				<div><b>**Supporting Skill</b> : The person is familiar with this skill and can get cross trained so as to be able to develop simple applications within couple of weeks</div>      
     			</div>     
             </form>
-            <%} else if(uploadFlag.equalsIgnoreCase("YES")){ %>
-            	<div style="font-weight: bold;">If the information updated is not correct, Please contact administrator.</div>
-            <%} %>
 			<form method="post" id="downloadForm">
             <h3 class="form-title">Skill Details</h3>
              <button class="dwn-btns" id="expExcel">Export All</button>
