@@ -161,7 +161,7 @@
             <td><%=skillInfo.getSupSkills() %></td>  
             <td><%=skillInfo.getCertificationObtained() %></td>
             <td><%=skillInfo.getCertificationPlanned() %></td> 
-            <td><a href="mailto:someone@accenture.com?Subject=Re:Certification" target="_top">NA</a></td> 
+            <td><a href="mailto:<%=skillInfo.getMentorEntId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></td> 
             <td>NA</td>    
        </tr>
           <%}

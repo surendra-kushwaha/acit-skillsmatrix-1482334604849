@@ -176,7 +176,7 @@ private static List<SkillsInfo> convertToJSONList(String sharepointURL,JSONObjec
 				}
 			}
 		}
-		
+		String enterpriseId=getEntId(propertiesJson,sharepointURL);
 		String teamName=getTeamName(propertiesJson,sharepointURL);
 		String expertSkills=getExpertSkills(propertiesJson,sharepointURL);
 		String supSkills=getSupSkills(propertiesJson,sharepointURL);
@@ -194,7 +194,8 @@ private static List<SkillsInfo> convertToJSONList(String sharepointURL,JSONObjec
 		System.out.println("allianceJson   "+allianceJson);
 		
 		SkillsInfo skillInfo=new SkillsInfo();
-		skillInfo.setEnterpriseId(allianceJson.get("EnterpriseId").toString().replace("\"", ""));
+		//skillInfo.setEnterpriseId(allianceJson.get("EnterpriseId").toString().replace("\"", ""));
+		skillInfo.setEnterpriseId(enterpriseId);
 		skillInfo.setTeamName(teamName);
 		skillInfo.setExpertSkills(expertSkills);
 		skillInfo.setSupSkills(supSkills);
@@ -202,6 +203,7 @@ private static List<SkillsInfo> convertToJSONList(String sharepointURL,JSONObjec
 		skillInfo.setCountry(allianceJson.get("CountryValue").toString().replace("\"", ""));
 		skillInfo.setCertificationObtained(allianceJson.get("CertificationsObtained").toString().replace("\"", ""));
 		skillInfo.setCertificationPlanned(allianceJson.get("CertificationsPlannedForTheYear").toString().replace("\"", ""));
+		skillInfo.setComments(allianceJson.get("Comments").toString().replace("\"", ""));
 		/*
 		Gson gson = new Gson();
 		 
@@ -464,6 +466,39 @@ public static String getMentorEntId(JSONObject propertiesJson,String sharepointU
 		jsonTEParray = xmlJSONObj.getJSONObject("entry");
 		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
 					.getJSONObject("m:properties").getString("d:WorkEmail");
+			
+			System.out.println("Team Name Recieved::"+teamName);		
+			
+		}catch(Exception e){
+		
+	}
+	return teamName;
+
+}
+
+public static String getEntId(JSONObject propertiesJson,String sharepointUrl){
+	System.out.println(" in side getTeam NAme");
+	String teamName = "";
+		try{
+		int Id = 0;
+		if (isValidJson(propertiesJson, "d:Id")) {
+			Id = propertiesJson.getJSONObject("d:Id").getInt("content");
+		}
+		String teamUrl = sharepointUrl + "(" + Id + ")" + "/TeamName";		
+		String username=Utility.getProperties("GenericUserName");
+		String tokenid=Utility.getProperties("GenericPassword");
+		String domain1 = "dir"; // May also be referred as realm
+		String userName = "surendra.kushwaha@accenture.com";
+		String password = "Dec@2016";		
+		Main amian=new Main();
+		String responseText = amian.getAuthenticatedResponse(teamUrl, domain1, userName, password);
+		JSONObject xmlJSONObj=null;
+		xmlJSONObj = XML.toJSONObject(responseText);
+		System.out.println("String sharedata get Team Name+ "+responseText);		
+		JSONObject jsonTEParray;
+		jsonTEParray = xmlJSONObj.getJSONObject("entry");
+		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
+					.getJSONObject("m:properties").getString("d:Name");
 			
 			System.out.println("Team Name Recieved::"+teamName);		
 			
