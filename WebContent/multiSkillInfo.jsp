@@ -93,7 +93,10 @@
                                 <option value="PaaS Developer">PaaS Developer</option> 	                                
 	                        </select>-->
 	                        <span><input type="text" name="supSkills" /></span>
-                       </div>                    	
+                       </div>
+                       <div><span class="form-lables">Certificate</span>
+                            <span><input type="text" name="certificate" /></span>
+                        </div>                    	
                     </div>
                 <div class="search-btns row">
                 		<div class="col col-md-6" style="text-align: center">
@@ -104,7 +107,10 @@
                         </div>
                         
                  </div>
-                    
+                <div><b>Note</b></div>
+    				<div><b>*Expert Skill</b> : The person has development experience on the skill.</div>
+    				<div><b>**Supporting Skill</b> : The person is familiar with this skill and can get cross trained so as to be able to develop simple applications within couple of weeks</div>      
+    			</div>     
             </form>
             <%} else if(uploadFlag.equalsIgnoreCase("YES")){ %>
             	<div style="font-weight: bold;">If the information updated is not correct, Please contact administrator.</div>
@@ -168,11 +174,7 @@
    } %>
    </tbody>
 </table>
-        </div>
-         <div><b>Note</b></div>
-    <div><b>*Expert Skill</b> : The person has development experience on the skill.</div>
-    <div><b>**Supporting Skill</b> : The person is familiar with this skill and can get cross trained so as to be able to develop simple applications within couple of weeks</div>      
-    </div>   
+        </div>           
      </form>
 						
                             <footer class="navbar-fixed-bottom">

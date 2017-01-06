@@ -186,7 +186,7 @@ private static List<SkillsInfo> convertToJSONList(String sharepointURL,JSONObjec
 		System.out.println("Expert Skills "+expertSkills);
 		System.out.println("Sup Skills  "+supSkills);
 		System.out.println("Mentor ID  "+mentorId);
-		//System.out.println("EnterpriseID  "+allianceJson.get("EnterpriseId").toString());
+		System.out.println("EnterpriseID  "+enterpriseId);
 		System.out.println("Country  "+allianceJson.get("CountryValue").toString());
 		System.out.println("Certification Obtained  "+allianceJson.get("CertificationsObtained").toString());
 		System.out.println("Certification Planned  "+allianceJson.get("CertificationsPlannedForTheYear").toString());
@@ -484,7 +484,7 @@ public static String getEntId(JSONObject propertiesJson,String sharepointUrl){
 		if (isValidJson(propertiesJson, "d:Id")) {
 			Id = propertiesJson.getJSONObject("d:Id").getInt("content");
 		}
-		String teamUrl = sharepointUrl + "(" + Id + ")" + "/TeamName";		
+		String teamUrl = sharepointUrl + "(" + Id + ")" + "/EnterpriseId";		
 		String username=Utility.getProperties("GenericUserName");
 		String tokenid=Utility.getProperties("GenericPassword");
 		String domain1 = "dir"; // May also be referred as realm
