@@ -94,8 +94,8 @@
 	                        </select>-->
 	                        <span><input type="text" name="supSkills" /></span>
                        </div>
-                       <div><span class="form-lables">Certificate</span>
-                            <span><input type="text" name="certificate" /></span>
+                        <div class="form-group clr-both"><span class="form-lables" style="width:105px;">Certification</span>
+                            <span><input type="text" name="certification" /></span>
                         </div>                    	
                     </div>
                 <div class="search-btns row">

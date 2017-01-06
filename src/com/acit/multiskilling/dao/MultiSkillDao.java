@@ -290,12 +290,12 @@ public class MultiSkillDao {
 				//bindVariables.add(skillDetails.getWorkLocation());
 			}
 			
-			/*if (skillDetails.getCertificationObtained() != null
+			if (skillDetails.getCertificationObtained() != null
 					&& !skillDetails.getCertificationObtained().equals("")) {
-				queryString.append(" and \"CERTIFICATION_OBTAINED\" like '%"+skillDetails.getCertificationObtained()+"%'"
-						+ " or \"CERTIFICATION_PLANNED\" like '%"+skillDetails.getCertificationObtained()+"%'");
+				queryString.append(" and (\"CERTIFICATION_OBTAINED\" like '%"+skillDetails.getCertificationObtained()+"%'"
+						+ " or \"CERTIFICATION_PLANNED\" like '%"+skillDetails.getCertificationObtained()+"%')");
 				//bindVariables.add(skillDetails.getWorkLocation());
-			}*/
+			}
 			
 			ps = connection.prepareStatement(queryString
 					.toString());

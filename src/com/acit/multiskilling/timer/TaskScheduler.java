@@ -451,7 +451,7 @@ public static String getMentorEntId(JSONObject propertiesJson,String sharepointU
 		if (isValidJson(propertiesJson, "d:Id")) {
 			Id = propertiesJson.getJSONObject("d:Id").getInt("content");
 		}
-		String teamUrl = sharepointUrl + "(" + Id + ")" + "/TeamName";		
+		String teamUrl = sharepointUrl + "(" + Id + ")" + "/ACITMentorSEnterpriseId";		
 		String username=Utility.getProperties("GenericUserName");
 		String tokenid=Utility.getProperties("GenericPassword");
 		String domain1 = "dir"; // May also be referred as realm
