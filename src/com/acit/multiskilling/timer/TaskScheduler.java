@@ -499,7 +499,7 @@ public static String getEntId(JSONObject propertiesJson,String sharepointUrl){
 		jsonTEParray = xmlJSONObj.getJSONObject("entry");
 		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
 					.getJSONObject("m:properties").getString("d:WorkEmail");
-			teamName=teamName.substring(0, teamName.lastIndexOf("@")-1);
+			teamName=teamName.substring(0, teamName.lastIndexOf("@"));
 			System.out.println("Entprise Id Recieved::"+teamName);		
 			
 		}catch(Exception e){
