@@ -97,7 +97,7 @@
                     
                     
                     <div class="col col-md-4">
-                        <div class="form-group clr-both"><span class="form-lables" style="width:105px;">&nbsp;</span>
+                        <div class="form-group clr-both"><span class="form-lables" style="width:75px;">&nbsp;</span>
                             <span>&nbsp;</span>
                         </div>
                         <div class="form-group clr-both"><span class="form-lables" style="width:75px;">Certification</span>
@@ -169,7 +169,7 @@
             <div><%=skillInfo.getSupSkills() %></div>  
             <div><%=skillInfo.getCertificationObtained() %></div>
             <div><%=skillInfo.getCertificationPlanned() %></div> 
-            <div><a href="mailto:<%=skillInfo.getMentorEntId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></div> 
+            <div><a href="mailto:<%=skillInfo.getMentorEntId() %>?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></div> 
             <div><%=skillInfo.getComments() %></div>    
        </div>-->
           <%}
