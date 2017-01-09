@@ -100,7 +100,7 @@
                         <div class="form-group clr-both"><span class="form-lables" style="width:75px;">&nbsp;</span>
                             <span>&nbsp;</span>
                         </div>
-                        <div class="form-group clr-both"><span class="form-lables" style="width:75px;">Certification</span>
+                        <div class="form-group clr-both" style="margin-top:25px;"><span class="form-lables" style="width:75px;">Certification</span>
                             <span><input type="text" name="certification" /></span>
                         </div>
                                        
@@ -158,20 +158,9 @@
             <td><%=skillInfo.getSupSkills() %></td>  
             <td><%=skillInfo.getCertificationObtained() %></td>
             <td><%=skillInfo.getCertificationPlanned() %></td> 
-            <td><a href="mailto:<%=skillInfo.getMentorEntId()%>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></td> 
+            <td><a href="mailto:<%=skillInfo.getMentorEntId()%>?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></td> 
             <td><%=skillInfo.getComments() %></td>    
        </tr>
-       <!--<div>      	        	    
-            <div style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId() %>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></div> 
-            <div><%=skillInfo.getTeamName() %></div> 
-            <div><%=skillInfo.getCountry() %></div> 
-            <div><%=skillInfo.getExpertSkills() %></div> 
-            <div><%=skillInfo.getSupSkills() %></div>  
-            <div><%=skillInfo.getCertificationObtained() %></div>
-            <div><%=skillInfo.getCertificationPlanned() %></div> 
-            <div><a href="mailto:<%=skillInfo.getMentorEntId() %>?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></div> 
-            <div><%=skillInfo.getComments() %></div>    
-       </div>-->
           <%}
    } %>
    </tbody>
