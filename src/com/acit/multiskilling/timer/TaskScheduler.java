@@ -202,11 +202,11 @@ private static List<SkillsInfo> convertToJSONList(String sharepointURL,JSONObjec
 		skillInfo.setMentorEntId(mentorId);
 		skillInfo.setCountry(allianceJson.get("CountryValue").toString().replace("\"", ""));
 		String certObtained=allianceJson.get("CertificationsObtained").toString().replace("\"", "");
-		System.out.println("certObtained $$@"+certObtained);
-		System.out.println("certObtained $$%"+certObtained.replaceAll("\n", ";"));
-		System.out.println("certObtained $$^"+certObtained.replaceAll("\\n", ";"));
-		System.out.println("certObtained $$&"+certObtained.replaceAll("/\n", ";"));
-		skillInfo.setCertificationObtained(certObtained.replaceAll("\n", ";"));
+		//System.out.println("certObtained $$@"+certObtained);
+		//System.out.println("certObtained $$%"+certObtained.replaceAll("\n", ";"));
+		//System.out.println("certObtained $$^"+certObtained.replaceAll("\\n", ";"));
+		//System.out.println("certObtained $$&"+certObtained.replaceAll("/\n", ";"));
+		skillInfo.setCertificationObtained(certObtained.replaceAll("\\r\\n|\\r|\\n", ";"));
 		skillInfo.setCertificationPlanned(allianceJson.get("CertificationsPlannedForTheYear").toString().replace("\"", ""));
 		skillInfo.setComments(allianceJson.get("Comments").toString().replace("\"", ""));
 		/*
