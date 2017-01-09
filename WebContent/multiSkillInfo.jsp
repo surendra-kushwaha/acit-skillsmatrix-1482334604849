@@ -75,12 +75,12 @@
 	                            	<option value="" selected>Select Country</option>	                            	
 	                                <option <%= (workLocation.equals("India")?"selected='selected'":"") %> value="India">India</option>
 	                                <option  <%= (workLocation.equals("China")?"selected='selected'":"") %> value="China">China</option>
-	                                <option value="Finland">Finland</option>
-	                                <option value="Maxico">Maxico</option>
-	                                <option value="Spain">Spain</option>
-	                                <option value="UK">UK</option>
-	                                <option value="Norway">Norway</option>
-	                                <option value="US">US</option>
+	                                <option <%= (workLocation.equals("Finland")?"selected='selected'":"") %> value="Finland">Finland</option>
+	                                <option <%= (workLocation.equals("Maxico")?"selected='selected'":"") %> value="Maxico">Maxico</option>
+	                                <option <%= (workLocation.equals("Spain")?"selected='selected'":"") %> value="Spain">Spain</option>
+	                                <option <%= (workLocation.equals("UK")?"selected='selected'":"") %> value="UK">UK</option>
+	                                <option <%= (workLocation.equals("Norway")?"selected='selected'":"") %> value="Norway">Norway</option>
+	                                <option <%= (workLocation.equals("US")?"selected='selected'":"") %> value="US">US</option>
 	                        </select>
                        </div>
                        <div class="form-group clr-both"><span class="form-lables" style="width:105px;">Certification</span>
