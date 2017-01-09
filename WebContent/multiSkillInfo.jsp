@@ -20,9 +20,9 @@
             	//request.getRequestDispatcher("LogoutController").forward(request,response);
             }
             
-            String entId = request.getParameter("entId") == null ? "" : request.getParameter("entId");
+            String enterprizeId = request.getParameter("enterprizeId") == null ? "" : request.getParameter("enterprizeId");
             String skill = request.getParameter("skill") == null ? "" : request.getParameter("skill");
-            String country = request.getParameter("country") == null ? "" : request.getParameter("country");
+            String workLocation = request.getParameter("workLocation") == null ? "" : request.getParameter("workLocation");
             String certification = request.getParameter("certification") == null ? "" : request.getParameter("certification");
 			%>
                 <html>
@@ -62,7 +62,7 @@
                 <div class="top-search-items row">
                     <div class="col col-md-4">
                         <div><span class="form-lables">Enterprise ID</span>
-                            <span><input type="text" name="enterprizeId" /></span>
+                            <span><input type="text" name="enterprizeId"  value="<%=enterprizeId%>"  /></span>
                         </div>
                         <div class="form-group clr-both"><span class="form-lables">Skill<span class="mant-symbol"></span></span>                       
                         	<span><input type="text" name="skill" value="<%=skill%>" /></span>
@@ -84,7 +84,7 @@
 	                        </select>
                        </div>
                        <div class="form-group clr-both"><span class="form-lables" style="width:105px;">Certification</span>
-	                        <span><input type="text" name="certification" /></span>
+	                        <span><input type="text" name="certification"  value="<%=certification%>" /></span>
                        </div>                               	
                     </div>
                     
