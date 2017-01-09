@@ -71,8 +71,8 @@
                     </div>                    
                     <div class="col col-md-4">                                                                 
                       <div class="form-group clr-both"><span class="form-lables" style="width:105px;">Country<span class="mant-symbol"></span></span>
-	                        <select id="workLocation" name="workLocation">
-	                            	<option value="" selected>Select Country</option>
+	                        <select id="workLocation" name="workLocation" value ="<%=workLocation%>" >
+	                            	<option value="" selected>Select Country</option>	                            	
 	                                <option value="India">India</option>
 	                                <option value="China">China</option>
 	                                <option value="Finland">Finland</option>
