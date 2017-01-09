@@ -236,53 +236,26 @@ public class MultiSkillDao {
 				//con.DriverManager.getConnection(...);
 				connection =  DataBase.getInstance().getConnection();
 		    }
-			StringBuffer queryString = new StringBuffer();			
-			//queryString.append("select * FROM \"MULTI_SKILLING_DATA\" WHERE \"EMPLOYEE_ROLE\"='user' AND \"CERT_UPLOAD_FLAG\"='YES' AND \"ENTERPRIZE_ID\" like '%"+enterprizeId+"%'");
-			/*queryString.append("select * FROM \"MULTI_SKILLING_DATA\" WHERE \"EMPLOYEE_ROLE\"='user' AND \"ENTERPRIZE_ID\" like '%"+enterprizeId+"%'");
-			ps = connection.prepareStatement(queryString
-					.toString());
-			rs = ps.executeQuery();*/
-			
-			
+			StringBuffer queryString = new StringBuffer();						
 			List<String> bindVariables = new ArrayList<>();
 
 			queryString.append("select * FROM \"SKILLS_MATRIX_DATA\" where 1=1 ");
-
-			/*if (skillDetails.getEnterpriseId() != null && !skillDetails.getEnterpriseId().equals("")) {
-				queryString.append(" and \"ENTERPRISE_ID\"=?");
-				bindVariables.add(skillDetails.getEnterpriseId());
-			}
-			
-			if (skillDetails.getExpertSkills() != null && !skillDetails.getExpertSkills().equals("")) {
-				queryString.append(" and \"EXPERT_SKILLS\"=?");
-				bindVariables.add(skillDetails.getExpertSkills());
-			}
-
-			if (skillDetails.getSupSkills() != null && !skillDetails.getSupSkills().equals("")) {
-				queryString.append(" and \"SUPPLIMENTORY_SKILLS\"=?");
-				bindVariables.add(skillDetails.getSupSkills());
-			}
-
-			if (skillDetails.getWorkLocation() != null
-					&& !skillDetails.getWorkLocation().equals("")) {
-				queryString.append(" and \"COUNTRY\"=?");
-				bindVariables.add(skillDetails.getWorkLocation());
-			}*/
 			
 			if (skillDetails.getEnterpriseId() != null && !skillDetails.getEnterpriseId().equals("")) {
-				queryString.append(" AND \"ENTERPRISE_ID\" like '%"+skillDetails.getEnterpriseId()+"%'");
+				queryString.append(" AND UPPER(\"ENTERPRISE_ID\") like UPPER('%"+skillDetails.getEnterpriseId()+"%')");
 				//bindVariables.add(skillDetails.getEnterpriseId());
 			}
 			
 			if (skillDetails.getExpertSkills() != null && !skillDetails.getExpertSkills().equals("")) {
-				queryString.append(" and \"EXPERT_SKILLS\" like '%"+skillDetails.getExpertSkills()+"%'");
+				queryString.append(" and (UPPER(\"EXPERT_SKILLS\") like UPPER('%"+skillDetails.getExpertSkills()+"%')"
+						+ " or UPPER(\"SUPPLIMENTORY_SKILLS\") like UPPER('%"+skillDetails.getExpertSkills()+"%'))");
 				//bindVariables.add(skillDetails.getExpertSkills());
 			}
 
-			if (skillDetails.getSupSkills() != null && !skillDetails.getSupSkills().equals("")) {
+			/*if (skillDetails.getSupSkills() != null && !skillDetails.getSupSkills().equals("")) {
 				queryString.append(" and \"SUPPLIMENTORY_SKILLS\" like '%"+skillDetails.getSupSkills()+"%'");
 				//bindVariables.add(skillDetails.getSupSkills());
-			}
+			}*/
 
 			if (skillDetails.getWorkLocation() != null
 					&& !skillDetails.getWorkLocation().equals("")) {
@@ -292,8 +265,8 @@ public class MultiSkillDao {
 			
 			if (skillDetails.getCertificationObtained() != null
 					&& !skillDetails.getCertificationObtained().equals("")) {
-				queryString.append(" and (\"CERTIFICATION_OBTAINED\" like '%"+skillDetails.getCertificationObtained()+"%'"
-						+ " or \"CERTIFICATION_PLANNED\" like '%"+skillDetails.getCertificationObtained()+"%')");
+				queryString.append(" and (UPPER(\"CERTIFICATION_OBTAINED\") like UPPER('%"+skillDetails.getCertificationObtained()+"%')"
+						+ " or UPPER(\"CERTIFICATION_PLANNED\") like UPPER('%"+skillDetails.getCertificationObtained()+"%'))");
 				//bindVariables.add(skillDetails.getWorkLocation());
 			}
 			

@@ -31,20 +31,19 @@ public class SearchSkillsController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	//SkillInfo policyInfo = new SkillInfo();
     	String enterprizeId=request.getParameter("enterprizeId");
-    	String clreadFlag=request.getParameter("expertSkills");
-    	String skillRole=request.getParameter("supSkills");
+    	String skill=request.getParameter("skill");
     	String location=request.getParameter("workLocation");
     	String certification=request.getParameter("certification");
     	SkillsInfo skillInfo=new SkillsInfo();
     	skillInfo.setEnterpriseId(enterprizeId);
-    	skillInfo.setExpertSkills(clreadFlag);
-    	skillInfo.setSupSkills(skillRole);
+    	skillInfo.setExpertSkills(skill);
+    	skillInfo.setSupSkills(skill);
     	skillInfo.setWorkLocation(location);
     	skillInfo.setCertificationObtained(certification);
     	
     	System.out.println("Controller entID"+enterprizeId);
-    	System.out.println("Controller clear"+clreadFlag);
-    	System.out.println("Controller skill role"+skillRole);
+    	//System.out.println("Controller clear"+clreadFlag);
+    	//System.out.println("Controller skill role"+skillRole);
     	System.out.println("Controller work location"+location);
     	
         List<SkillsInfo> policyList=dao.getFormDataBySearch(skillInfo);

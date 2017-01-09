@@ -19,6 +19,11 @@
             	uploadFlag=(String)request.getAttribute("uploadFlag");
             	//request.getRequestDispatcher("LogoutController").forward(request,response);
             }
+            
+            String entId = request.getParameter("entId") == null ? "" : request.getParameter("entId");
+            String skill = request.getParameter("skill") == null ? "" : request.getParameter("skill");
+            String country = request.getParameter("country") == null ? "" : request.getParameter("country");
+            String certification = request.getParameter("certification") == null ? "" : request.getParameter("certification");
 			%>
                 <html>
                 <head>
@@ -59,14 +64,8 @@
                         <div><span class="form-lables">Enterprise ID</span>
                             <span><input type="text" name="enterprizeId" /></span>
                         </div>
-                        <div class="form-group clr-both"><span class="form-lables">*Expert Skill<span class="mant-symbol"></span></span>                       
-                        	<!--<select id="skillRole" name="skillRole">
-                            	<option value="" selected>Select Skill</option>
-                                <option value="Integration Developer">Integration Developer</option>
-                                <option value="Integration Architect">Integration Architect</option>
-                                <option value="PaaS Developer">PaaS Developer</option>                               
-                        	</select>-->
-                        	<span><input type="text" name="expertSkills" /></span>
+                        <div class="form-group clr-both"><span class="form-lables">Skill<span class="mant-symbol"></span></span>                       
+                        	<span><input type="text" name="skill" value="<%=skill%>" /></span>
                         </div>
                                        
                     </div>                    
@@ -84,26 +83,9 @@
 	                                <option value="US">US</option>
 	                        </select>
                        </div>
-                       <div class="form-group clr-both"><span class="form-lables" style="width:105px;">**Supporting Skill</span>
-	                        <!--<select id="clear" name="clear">
-	                            <option value="" selected>Select Skill</option>
-                                <option value="Integration Developer">Integration Developer</option>
-                                <option value="Integration Architect">Integration Architect</option>
-                                <option value="PaaS Developer">PaaS Developer</option> 	                                
-	                        </select>-->
-	                        <span><input type="text" name="supSkills" /></span>
+                       <div class="form-group clr-both"><span class="form-lables" style="width:105px;">Certification</span>
+	                        <span><input type="text" name="certification" /></span>
                        </div>                               	
-                    </div>
-                    
-                    
-                    <div class="col col-md-4">
-                        <div class="form-group clr-both"><span class="form-lables" style="width:75px;">&nbsp;</span>
-                            <span>&nbsp;</span>
-                        </div>
-                        <div class="form-group clr-both" style="margin-top:25px;"><span class="form-lables" style="width:75px;">Certification</span>
-                            <span><input type="text" name="certification" /></span>
-                        </div>
-                                       
                     </div>
                     
                 <div class="search-btns row">
@@ -119,7 +101,7 @@
                  </div>
                 <div><b>Note</b></div>
     				<div><b>*Expert Skill</b> : The person has development experience on the skill.</div>
-    				<div><b>**Supporting Skill</b> : The person is familiar with this skill and can get cross trained so as to be able to develop simple applications within couple of weeks</div>      
+    				<div><b>**Supplementary Skill</b> : The person is familiar with this skill and can get cross trained so as to be able to develop simple applications within couple of weeks</div>      
     			</div>     
             </form>
 			<form method="post" id="downloadForm">
@@ -133,7 +115,7 @@
                         <th style="width:7%;">Team</th>
                         <th style="width:7%;">Country</th>
                         <th style="width:12%;">*Expert Skills</th>
-                        <th style="width:12%;">**Supporting Skills</th>
+                        <th style="width:12%;">**Supplementary Skills</th>
                         <th style="width:15%;">Certifications Obtained</th>
                         <th style="width:15%;">Certifications Planned-FY17</th>
                         <th style="width:10%;">Point of Contact</th> 
