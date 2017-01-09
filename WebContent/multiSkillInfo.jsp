@@ -92,16 +92,15 @@
                                 <option value="PaaS Developer">PaaS Developer</option> 	                                
 	                        </select>-->
 	                        <span><input type="text" name="supSkills" /></span>
-                       </div>
-                                            	
+                       </div>                               	
                     </div>
                     
                     
                     <div class="col col-md-4">
-                        <div><span class="form-lables"></span>
+                        <div class="form-group clr-both"><span class="form-lables" style="width:105px;">&nbsp;</span>
                             <span>&nbsp;</span>
                         </div>
-                        <div class="form-group clr-both"><span class="form-lables" style="width:105px;">Certification</span>
+                        <div class="form-group clr-both"><span class="form-lables" style="width:75px;">Certification</span>
                             <span><input type="text" name="certification" /></span>
                         </div>
                                        
