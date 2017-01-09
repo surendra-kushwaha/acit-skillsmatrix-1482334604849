@@ -201,7 +201,12 @@ private static List<SkillsInfo> convertToJSONList(String sharepointURL,JSONObjec
 		skillInfo.setSupSkills(supSkills);
 		skillInfo.setMentorEntId(mentorId);
 		skillInfo.setCountry(allianceJson.get("CountryValue").toString().replace("\"", ""));
-		skillInfo.setCertificationObtained(allianceJson.get("CertificationsObtained").toString().replace("\"", "").replace("\n", ";"));
+		String certObtained=allianceJson.get("CertificationsObtained").toString().replace("\"", "");
+		System.out.println("certObtained $$@"+certObtained);
+		System.out.println("certObtained $$%"+certObtained.replaceAll("\n", ";"));
+		System.out.println("certObtained $$^"+certObtained.replaceAll("\\n", ";"));
+		System.out.println("certObtained $$&"+certObtained.replaceAll("/\n", ";"));
+		skillInfo.setCertificationObtained(certObtained.replaceAll("\n", ";"));
 		skillInfo.setCertificationPlanned(allianceJson.get("CertificationsPlannedForTheYear").toString().replace("\"", ""));
 		skillInfo.setComments(allianceJson.get("Comments").toString().replace("\"", ""));
 		/*
