@@ -498,9 +498,9 @@ public static String getEntId(JSONObject propertiesJson,String sharepointUrl){
 		JSONObject jsonTEParray;
 		jsonTEParray = xmlJSONObj.getJSONObject("entry");
 		teamName=xmlJSONObj.getJSONObject("entry").getJSONObject("content")
-					.getJSONObject("m:properties").getString("d:Name");
-			
-			System.out.println("Team Name Recieved::"+teamName);		
+					.getJSONObject("m:properties").getString("d:WorkEmail");
+			teamName=teamName.substring(0, teamName.lastIndexOf("@")-1);
+			System.out.println("Entprise Id Recieved::"+teamName);		
 			
 		}catch(Exception e){
 		

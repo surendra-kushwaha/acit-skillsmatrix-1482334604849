@@ -24,7 +24,7 @@
                 <head>
                     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
                     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                    <title>Skill Details</title>
+                    <title>ACIT Skills and Certification Dashboard</title>
                     <link href="css/jquery.dataTables.min.css" rel="stylesheet">
                     <link href="css/dataTables.tableTools.css" rel="stylesheet">
                     <link href="css/bootstrap.css" rel="stylesheet">
@@ -38,12 +38,12 @@
                                 <div class="row top-header-row">
                                     <div class="col col-md-8 col-sm-8 col-xs-8">
                                     	<img class="acc-login" src="images/logo.png" >
-                                        <h4 class="proj-name">Certification Data</h4>
+                                        <h4 class="proj-name">ACIT Skills and Certification Dashboard</h4>
                                     </div>
                                     <div class="col col-md-4 col-sm-4 col-xs-4">
                                     	<span>Accenture Center for IBM Technologies</span><br>
                                     	<span>Smarter Selling, Smarter Delivery.</span>
-                                    	<span class="proj-name loggedin-label">Logged in : <b><%=userName %></b></span>                               	
+                                    	<span class="proj-name loggedin-label"></span>                               	
                                     </div>
                                 </div>
                             </div>
@@ -92,10 +92,10 @@
                                 <option value="PaaS Developer">PaaS Developer</option> 	                                
 	                        </select>-->
 	                        <span><input type="text" name="supSkills" /></span>
-                       </div>
-                        <div class="form-group clr-both"><span class="form-lables" style="width:105px;">Certification</span>
+	                        &nbsp;&nbsp;<span class="form-lables" style="width:105px;">Certification</span>
                             <span><input type="text" name="certification" /></span>
-                        </div>                    	
+                       </div>
+                                           	
                     </div>
                 <div class="search-btns row">
                 		<div class="col col-md-6" style="text-align: center">
