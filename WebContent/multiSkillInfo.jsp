@@ -108,7 +108,7 @@
             <h3 class="form-title">Skill Details</h3>
              <button class="dwn-btns" id="expExcel">Export All</button>
             <hr size="4" color="gray" />
-            <table id="skillDetails" style="width:800px;">
+            <table id="skillDetails" style="width:97%">
                 <thead>
                     <tr>
                         <th style="width:9%;">Enterprise ID</th>                                                                     
