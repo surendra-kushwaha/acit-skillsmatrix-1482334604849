@@ -57,7 +57,7 @@
                                 	<img src="images/sub_title.png" />
                                 </div>
 						<div class="container">  
-              <div id="formHome">
+              <div id="formHome" width="116%" style="width:116%">
             <form method="POST" action='SearchSkillController' id="searchForm" name="frmSearchForm" onsubmit="return lStorage()">
                 <div class="top-search-items row">
                     <div class="col col-md-4">
