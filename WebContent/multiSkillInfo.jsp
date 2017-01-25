@@ -133,15 +133,15 @@
    SkillsInfo skillInfo=(SkillsInfo)itr.next();
    %>
       <tr>      	        	    
-            <td style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId()%>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
-            <td><%=skillInfo.getTeamName() %></td> 
-            <td><%=skillInfo.getCountry() %></td> 
-            <td><%=skillInfo.getExpertSkills() %></td> 
-            <td><%=skillInfo.getSupSkills() %></td>  
-            <td><%=skillInfo.getCertificationObtained() %></td>
-            <td><%=skillInfo.getCertificationPlanned() %></td> 
-            <td><a href="mailto:<%=skillInfo.getMentorEntId()%>?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></td> 
-            <td><%=skillInfo.getComments() %></td>    
+            <td style="width:9%;" style="text-align:left;"><a href="mailto:<%=skillInfo.getEnterpriseId()%>@accenture.com?Subject=Re: certification" target="_top"><%=skillInfo.getEnterpriseId() %></a></td> 
+            <td style="width:7%;"><%=skillInfo.getTeamName() %></td> 
+            <td style="width:7%;"><%=skillInfo.getCountry() %></td> 
+            <td style="width:12%;"><%=skillInfo.getExpertSkills() %></td> 
+            <td style="width:12%;"><%=skillInfo.getSupSkills() %></td>  
+            <td style="width:15%;><%=skillInfo.getCertificationObtained() %></td>
+            <td style="width:15%;><%=skillInfo.getCertificationPlanned() %></td> 
+            <td style="width:10%;><a href="mailto:<%=skillInfo.getMentorEntId()%>?Subject=Re: certification" target="_top"><%=skillInfo.getMentorEntId()%></a></td> 
+            <td style="width:10%;><%=skillInfo.getComments() %></td>    
        </tr>
           <%}
    } %>
